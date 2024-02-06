@@ -1,0 +1,20 @@
+.loader {
+  min-width: 50px;
+  min-height: 50px;
+  max-width: 50px;
+  max-height: 50px;
+  border-radius: 50%;
+  border-top: 3px solid #5e96fc;
+  border-right: 3px solid #5e96fc;
+  animation: rotate 2s infinite linear;
+  margin: 290px auto;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
