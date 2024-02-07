@@ -1,0 +1,7 @@
+.book__items {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 60px 30px;
+  justify-items: center;
+}

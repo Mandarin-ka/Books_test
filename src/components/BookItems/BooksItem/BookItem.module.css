@@ -1,0 +1,31 @@
+.book__item {
+  padding: 30px 20px 30px;
+  background-color: rgba(128, 128, 128, 0.15);
+  width: 270px;
+  display: flex;
+  flex-direction: column;
+}
+
+.book__img {
+  width: 128px;
+  height: 192px;
+  margin: 0 auto;
+}
+
+.type {
+  text-decoration: underline;
+  font-size: 1.125rem;
+  margin-top: 20px;
+  color: #0000007a;
+}
+
+.title {
+  font-size: 1.6rem;
+  margin: 20px 0 0;
+}
+
+.authors {
+  margin-top: 20px;
+  font-size: 1.125rem;
+  color: #0000007a;
+}
