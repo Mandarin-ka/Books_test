@@ -13,6 +13,7 @@
   width: 128px;
   height: 192px;
   margin: 0 auto;
+  box-shadow: 5px 5px 20px black;
 }
 
 .type {

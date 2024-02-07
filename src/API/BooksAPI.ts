@@ -19,4 +19,16 @@ export default class BooksService {
 
     return response;
   }
+
+  static async getBook(id: string) {
+    const path = `${constants.REQUEST_ADRESS}/${id}?key=${constants.API_KEY}`;
+    const response = await axios.get(path, {
+      headers: { Authorization: constants.API_KEY },
+      params: {
+        key: constants.API_KEY,
+      },
+    });
+
+    return response;
+  }
 }

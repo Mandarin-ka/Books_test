@@ -26,8 +26,8 @@ function MainPage() {
         <Loader />
       ) : (
         <>
+          {books.totalItems && <h2>Найдено книг {books.totalItems}</h2>}
           <BookItems books={books.items} />
-          <h2>Найдено книг {books.totalItems}</h2>
         </>
       )}
     </div>
