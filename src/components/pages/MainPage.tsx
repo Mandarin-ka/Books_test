@@ -6,29 +6,27 @@ import SearchInput from '../UI/SearchInput/SearchInput';
 import BookItems from '../BookItems/BookItems';
 import { IBooks } from '../../interfaces/IBooks';
 import Dropdown from '../UI/DropDown/Dropdown';
+import Header from '../Header/Header';
 
 function MainPage() {
   const [books, setBooks] = useState<IBooks>({});
-  const [request, setRequest] = useState('flower');
+  const [request, setRequest] = useState('');
   const [category, setCategory] = useState('all');
+  const [sort, setSort] = useState('relevance');
 
   const [fetchBooks, isBooksLoading] = useFetching(async () => {
-    const response = await BooksService.getBooks(request, category);
+    const response = await BooksService.getBooks(request, category, sort);
     setBooks(response.data);
   });
 
   useEffect(() => {
     fetchBooks();
-  }, [request, category]);
+  }, [request, category, sort]);
 
   return (
     <div className='App'>
-      <SearchInput setRequest={setRequest} />
-      <Dropdown
-        options={['all', 'art', 'biography', 'computers', 'history', 'medical', 'poetry']}
-        category={category}
-        setCategory={setCategory}
-      />
+      <Header category={category} sort={sort} setRequest={setRequest} setCategory={setCategory} setSort={setSort} />
+
       {isBooksLoading ? (
         <Loader />
       ) : (

@@ -13,11 +13,10 @@
   color: #acadb9;
   font-family: Inter;
   font-weight: 400;
-  font-size: 14px;
   position: relative;
   cursor: pointer;
   width: 100%;
-  font-size: 1.25rem;
+  font-size: 1.5rem;
 }
 
 .dropdown__button.active {
@@ -93,14 +92,13 @@
   padding: 8px;
   font-family: Inter;
   color: #232134;
-  font-size: 14px;
   border-radius: 8px;
   transition: 0.05s;
   cursor: pointer;
   margin: 1px 0;
   display: block;
   width: 100%;
-  font-size: 1.125rem;
+  font-size: 1.25rem;
   border: 1px solid rgba(128, 128, 128, 0.192);
   background-color: white;
 }
