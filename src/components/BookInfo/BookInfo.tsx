@@ -10,16 +10,16 @@ function BookInfo({ book }: { book: IBook }) {
     <div className={cl1.book}>
       <div className={cl1.img__wrapper}>
         <img
-          src={book.volumeInfo?.imageLinks?.thumbnail || book.volumeInfo?.imageLinks?.smallThumbnail}
+          src={book.volumeInfo.imageLinks?.thumbnail || book.volumeInfo.imageLinks?.smallThumbnail}
           alt=''
           className={cl1.book__img}
         />
       </div>
       <div className={cl1.info}>
-        <span className={cl1.type}>{book.volumeInfo?.categories.join(' / ')}</span>
+        <span className={cl1.type}>{book.volumeInfo.categories?.join(' / ')}</span>
         <h2 className={cl.title}>{book.volumeInfo?.title}</h2>
         <span className={cl.authors}>{book.volumeInfo?.title}</span>
-        <p className={cl1.description}>{book.volumeInfo?.description}</p>
+        {book.volumeInfo?.description && <p className={cl1.description}>{book.volumeInfo?.description}</p>}
       </div>
     </div>
   );

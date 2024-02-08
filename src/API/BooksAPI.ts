@@ -8,12 +8,13 @@ const constants = {
 const path = `${constants.REQUEST_ADRESS}?key=${constants.API_KEY}`;
 
 export default class BooksService {
-  static async getBooks(request: string) {
+  static async getBooks(request: string, category: string) {
     const response = await axios.get(path, {
       headers: { Authorization: constants.API_KEY },
       params: {
-        q: request,
+        q: `${request}+subject:${category.toLowerCase() === 'all' ? '' : category}`,
         key: constants.API_KEY,
+        maxResults: 30,
       },
     });
 

@@ -12,6 +12,12 @@ function SearchInput({ setRequest }: { setRequest: (request: string) => void }) 
     setInputValue(e.target.value);
   }
 
+  function keyPress(e: React.KeyboardEvent<HTMLInputElement>) {
+    if (e.key.toLowerCase() === 'enter') {
+      setRequest(inputValue);
+    }
+  }
+
   return (
     <div className={cl.search}>
       <input
@@ -22,6 +28,7 @@ function SearchInput({ setRequest }: { setRequest: (request: string) => void }) 
         placeholder={'Что бы почитать...?'}
         value={inputValue}
         onChange={change}
+        onKeyDown={keyPress}
       />
       <button className={cl.searchButton} onClick={click}>
         <div className={cl.loupe}></div>

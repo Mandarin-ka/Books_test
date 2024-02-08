@@ -1,0 +1,127 @@
+.dropdown {
+  width: 100%;
+  margin: 12px auto 0;
+  position: relative;
+  user-select: none;
+}
+
+.dropdown__button {
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 8px;
+  border: 1px solid #d5d6dc;
+  color: #acadb9;
+  font-family: Inter;
+  font-weight: 400;
+  font-size: 14px;
+  position: relative;
+  cursor: pointer;
+  width: 100%;
+  font-size: 1.25rem;
+}
+
+.dropdown__button.active {
+  color: black;
+}
+
+.dropdown__button.opened {
+  border: 1px solid #5e96fc;
+}
+
+.dropdown__button.opened::after,
+.dropdown__button.opened::before {
+  border: 1.5px solid #5e96fc;
+}
+
+.dropdown__button::after,
+.dropdown__button::before {
+  content: '';
+  width: 10px;
+  border: 1.5px solid #acadb9;
+  position: absolute;
+  top: calc(50% - 2px);
+  right: 20px;
+  border-radius: 2px;
+}
+
+.dropdown__button::before {
+  transform: rotate(45deg);
+}
+
+.dropdown__button::after {
+  transform: rotate(-45deg);
+  right: 13px;
+}
+
+.dropdown__button.opened::after {
+  transform: rotate(225deg);
+}
+
+.dropdown__button.opened::before {
+  transform: rotate(135deg);
+}
+
+.dropdown__content {
+  position: absolute;
+  top: 110%;
+  padding: 4px;
+  border-radius: 8px;
+  left: 0;
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 1;
+  background-color: white;
+  max-height: 275px;
+  overflow: auto;
+  scroll-padding-left: -10px;
+}
+
+.dropdown__content::-webkit-scrollbar {
+  width: 5px;
+}
+
+.dropdown__content::-webkit-scrollbar-thumb {
+  background-color: #acadb9;
+  border-radius: 5px;
+}
+
+.dropdown__content::-webkit-scrollbar-track {
+  width: 10px;
+}
+
+.dropdown__item {
+  padding: 8px;
+  font-family: Inter;
+  color: #232134;
+  font-size: 14px;
+  border-radius: 8px;
+  transition: 0.05s;
+  cursor: pointer;
+  margin: 1px 0;
+  display: block;
+  width: 100%;
+  font-size: 1.125rem;
+  border: 1px solid rgba(128, 128, 128, 0.192);
+  background-color: white;
+}
+
+.dropdown__item.active {
+  background-color: #5e96fc;
+  color: white;
+  pointer-events: none;
+}
+
+.dropdown__item:hover {
+  background-color: #deecff;
+}
+
+@media screen and (max-width: 440px) {
+  .dropdown__button {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+  .dropdown__item {
+    padding: 6px;
+    font-size: 12px;
+  }
+}
