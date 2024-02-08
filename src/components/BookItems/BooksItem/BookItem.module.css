@@ -1,0 +1,38 @@
+.book__item {
+  padding: 30px 20px 30px;
+  background-color: rgba(128, 128, 128, 0.15);
+  width: 330px;
+  display: flex;
+  height: fit-content;
+  height: 100%;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.book__img {
+  width: 128px;
+  height: 192px;
+  margin: 0 auto;
+  box-shadow: 5px 5px 20px black;
+  min-height: 192px;
+}
+
+.type {
+  text-decoration: underline;
+  font-size: 1.125rem;
+  margin-top: 20px;
+  color: #0000007a;
+  min-height: 1.125rem;
+}
+
+.title {
+  font-size: 1.6rem;
+  margin: 20px 0 0;
+}
+
+.authors {
+  margin-top: 20px;
+  font-size: 1.125rem;
+  min-width: 1.125rem;
+  color: #0000007a;
+}
