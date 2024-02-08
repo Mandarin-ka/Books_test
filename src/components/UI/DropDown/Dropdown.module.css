@@ -1,5 +1,4 @@
 .dropdown {
-  width: 100%;
   margin: 12px auto 0;
   position: relative;
   user-select: none;
@@ -116,10 +115,10 @@
 @media screen and (max-width: 440px) {
   .dropdown__button {
     padding: 6px 10px;
-    font-size: 12px;
+    font-size: 1rem;
   }
   .dropdown__item {
     padding: 6px;
-    font-size: 12px;
+    font-size: 1rem;
   }
 }

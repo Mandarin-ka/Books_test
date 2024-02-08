@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router';
 import cl from './SearchInput.module.css';
 
 function SearchInput({ setRequest }: { setRequest: (request: string) => void }) {
   const [inputValue, setInputValue] = useState('');
+  const navigate = useNavigate();
 
   function click() {
     setRequest(inputValue);
+    navigate('./');
   }
 
   function change(e: React.ChangeEvent<HTMLInputElement>) {
@@ -15,6 +18,7 @@ function SearchInput({ setRequest }: { setRequest: (request: string) => void }) 
   function keyPress(e: React.KeyboardEvent<HTMLInputElement>) {
     if (e.key.toLowerCase() === 'enter') {
       setRequest(inputValue);
+      navigate('./');
     }
   }
 

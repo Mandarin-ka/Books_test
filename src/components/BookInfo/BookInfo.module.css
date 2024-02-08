@@ -1,8 +1,8 @@
-npm install react-multilevel-select.book {
+.book {
   display: flex;
-  align-items: center;
   justify-content: center;
   width: 100%;
+  padding-bottom: 100px;
 }
 
 .info {
@@ -16,8 +16,7 @@ npm install react-multilevel-select.book {
 
 .book__img {
   width: 15%;
-  min-width: 160px;
-  max-width: 240px;
+  width: 240px;
   box-shadow: 5px 5px 20px black;
 }
 

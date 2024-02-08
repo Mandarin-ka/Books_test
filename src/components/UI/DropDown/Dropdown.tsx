@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router';
 import cl from './Dropdown.module.css';
 
 interface Props {
@@ -11,6 +12,7 @@ interface Props {
 
 const Dropdown = ({ options, value, setValue }: Props) => {
   const [isActive, setIsActive] = useState(false);
+  const navigate = useNavigate();
 
   const optionState = () => {
     let result = cl.dropdown__button;
@@ -27,6 +29,7 @@ const Dropdown = ({ options, value, setValue }: Props) => {
   const click = (option: string) => {
     setValue(option);
     setIsActive(!isActive);
+    navigate('./');
   };
 
   return (
@@ -43,7 +46,7 @@ const Dropdown = ({ options, value, setValue }: Props) => {
             <button
               key={i}
               className={value === option ? cl.dropdown__item + ' ' + cl.active : cl.dropdown__item}
-              onClick={(e) => click(option)}>
+              onClick={() => click(option)}>
               {option}
             </button>
           ))}

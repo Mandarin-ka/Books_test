@@ -8,17 +8,13 @@ function BookItem({ book }: { book: any }) {
       <Link to={`bookPage/${book.id}`}>
         <div className={cl.book__item}>
           <img
-            src={
-              book.volumeInfo.imageLinks?.thumbnail ||
-              book.volumeInfo.imageLinks?.smallThumbnail ||
-              'https://i.pinimg.com/564x/9f/ab/e5/9fabe5f90ca53f9a86306203f517f9fd.jpg'
-            }
+            src={book.volumeInfo.imageLinks?.thumbnail || book.volumeInfo.imageLinks?.smallThumbnail}
             alt={book.volumeInfo.title}
             className={cl.book__img}
           />
-          <span className={cl.type}>{book.volumeInfo?.categories || 'Категория неизвестна'}</span>
-          <h2 className={cl.title}>{book.volumeInfo?.title || 'Названия нет'}</h2>
-          <span className={cl.authors}>{book.volumeInfo.authors?.join(', ') || 'Автор(ы) неизвестн(ы)'}</span>
+          <p className={cl.type}>{book.volumeInfo?.categories}</p>
+          <h2 className={cl.title}>{book.volumeInfo?.title}</h2>
+          <p className={cl.authors}>{book.volumeInfo.authors?.join(', ')}</p>
         </div>
       </Link>
     )
