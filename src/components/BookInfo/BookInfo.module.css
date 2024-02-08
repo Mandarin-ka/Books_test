@@ -1,0 +1,42 @@
+.book {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding-bottom: 100px;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  margin-left: 50px;
+  padding-right: 100px;
+  max-width: 720px;
+}
+
+.book__img {
+  width: 15%;
+  width: 240px;
+  box-shadow: 5px 5px 20px black;
+}
+
+.type {
+  font-size: 1.125rem;
+  margin-top: 20px;
+  color: #0000007a;
+  margin-bottom: 30px;
+}
+
+.description {
+  font-size: 1.25rem;
+  padding: 20px;
+  border: 1px solid #00000038;
+  border-radius: 2px;
+  margin-top: 20px;
+  max-width: 720px;
+}
+
+.img__wrapper {
+  padding: 75px 150px;
+  background-color: #00000015;
+}
