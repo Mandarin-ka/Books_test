@@ -3,35 +3,53 @@ import BooksService from '../../API/BooksAPI';
 import { useFetching } from '../../hooks/useFetchind';
 import Loader from '../UI/Loader/Loader';
 import BookItems from '../BookItems/BookItems';
-import { IBooks } from '../../interfaces/IBooks';
+import { IBook } from '../../interfaces/IBooks';
 import './MainPage.css';
+import LoadButton from '../UI/Button/LoadButton';
+import { getUniqData } from '../../utils/UniqData';
 
 interface Props {
   request: string;
   category: string;
   sort: string;
+  page: number;
+  setPage: (el: number) => void;
 }
 
-function MainPage({ request, category, sort }: Props) {
-  const [books, setBooks] = useState<IBooks>({});
+function MainPage({ request, category, sort, page, setPage }: Props) {
+  const [books, setBooks] = useState<IBook[]>([]);
+  const [totalBooks, setTotalBooks] = useState(0);
+  const [isFetchinfNewPage, setIsFetchingNewPage] = useState(false);
 
   const [fetchBooks, isBooksLoading] = useFetching(async () => {
-    const response = await BooksService.getBooks(request, category, sort);
-    setBooks(response.data);
+    const response = await BooksService.getBooks(request, category, sort, page);
+    if (isFetchinfNewPage) {
+      setBooks(getUniqData([...books, ...response.data.items]));
+      setIsFetchingNewPage(false);
+    } else {
+      setBooks(getUniqData(response.data.items));
+      setTotalBooks(response.data.totalItems);
+    }
   });
 
   useEffect(() => {
     fetchBooks();
-  }, [request, category, sort]);
+  }, [request, category, sort, page]);
+
+  function load() {
+    setPage(page + 30);
+    setIsFetchingNewPage(true);
+  }
 
   return (
     <div className='App'>
-      {isBooksLoading ? (
+      {isBooksLoading && books.length < 1 ? (
         <Loader />
       ) : (
         <>
-          {books.totalItems && <h2 className='quantity'>Найдено книг {books.totalItems}</h2>}
-          <BookItems books={books.items} />
+          {<h2 className='quantity'>Найдено книг {totalBooks}</h2>}
+          <BookItems books={books} />
+          {isFetchinfNewPage ? <Loader /> : <LoadButton click={load}>Load More</LoadButton>}
         </>
       )}
     </div>

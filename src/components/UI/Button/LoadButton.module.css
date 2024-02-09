@@ -1,0 +1,14 @@
+.load {
+  padding: 20px 50px;
+  margin: 50px auto 50px;
+  display: block;
+  border: 1px solid grey;
+  background-color: white;
+  font-size: 1.5rem;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.load:hover {
+  background-color: rgba(128, 128, 128, 0.075);
+}
