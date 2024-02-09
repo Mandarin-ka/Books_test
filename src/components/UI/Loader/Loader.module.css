@@ -7,7 +7,7 @@
   border-top: 3px solid #5e96fc;
   border-right: 3px solid #5e96fc;
   animation: rotate 2s infinite linear;
-  margin: 290px auto;
+  margin: 50px auto;
 }
 
 @keyframes rotate {
