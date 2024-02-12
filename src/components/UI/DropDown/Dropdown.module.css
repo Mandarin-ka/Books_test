@@ -2,6 +2,7 @@
   margin: 12px auto 0;
   position: relative;
   user-select: none;
+  min-width: 210px;
 }
 
 .dropdown__button {
@@ -110,15 +111,4 @@
 
 .dropdown__item:hover {
   background-color: #deecff;
-}
-
-@media screen and (max-width: 440px) {
-  .dropdown__button {
-    padding: 6px 10px;
-    font-size: 1rem;
-  }
-  .dropdown__item {
-    padding: 6px;
-    font-size: 1rem;
-  }
 }

@@ -3,6 +3,7 @@ import MainPage from './components/pages/MainPage';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import BookPage from './components/pages/BookPage';
 import './styles/reset.css';
+import './styles/media.css';
 import Header from './components/Header/Header';
 
 function App() {
@@ -13,7 +14,14 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Header category={category} sort={sort} setRequest={setRequest} setCategory={setCategory} setSort={setSort} />
+      <Header
+        category={category}
+        sort={sort}
+        setRequest={setRequest}
+        setCategory={setCategory}
+        setSort={setSort}
+        setPage={setPage}
+      />
       <Routes>
         <Route
           path={'/'}

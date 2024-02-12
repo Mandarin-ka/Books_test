@@ -8,9 +8,10 @@ interface Props {
   options: string[];
   value: string;
   setValue: (elem: string) => void;
+  setPage: (elem: number) => void;
 }
 
-const Dropdown = ({ options, value, setValue }: Props) => {
+const Dropdown = ({ options, value, setValue, setPage }: Props) => {
   const [isActive, setIsActive] = useState(false);
   const navigate = useNavigate();
 
@@ -30,6 +31,7 @@ const Dropdown = ({ options, value, setValue }: Props) => {
     setValue(option);
     setIsActive(!isActive);
     navigate('./');
+    setPage(0);
   };
 
   return (
