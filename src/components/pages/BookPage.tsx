@@ -6,12 +6,11 @@ import { IBook } from '../../interfaces/IBooks';
 import Loader from '../UI/Loader/Loader';
 import BookInfo from '../BookInfo/BookInfo';
 
-
 function BookPage() {
   const bookId = useParams();
   const [book, setBook] = useState<IBook>();
 
-  const [fetchBook, isBookLoading, BookError] = useFetching(async () => {
+  const [fetchBook, isBookLoading] = useFetching(async () => {
     const response = await BooksService.getBook(bookId.id);
     setBook(response.data);
   });
