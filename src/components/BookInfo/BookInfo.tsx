@@ -5,7 +5,7 @@ import cl1 from './BookInfo.module.css';
 import parse from 'html-react-parser';
 
 function BookInfo({ book }: { book: IBook }) {
-  if (!book) return <div className='h2'>Ууупс..:( Книга не найдена</div>;
+  if (!book) return <h2>Ууупс..:( Книга не найдена</h2>;
 
   return (
     <div className={cl1.book}>
@@ -20,7 +20,7 @@ function BookInfo({ book }: { book: IBook }) {
         <span className={cl1.type}>{book.volumeInfo.categories?.join(' / ')}</span>
         <h2 className={cl.title}>{book.volumeInfo?.title}</h2>
         <span className={cl.authors}>{book.volumeInfo?.title}</span>
-        {book.volumeInfo?.description && <p className={cl1.description}>{parse(book.volumeInfo?.description)}</p>}
+        {book.volumeInfo?.description && <div className={cl1.description}>{parse(book.volumeInfo?.description)}</div>}
       </div>
     </div>
   );

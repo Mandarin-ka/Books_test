@@ -23,13 +23,14 @@ function MainPage({ request, category, sort, page, setPage }: Props) {
 
   const [fetchBooks, isBooksLoading] = useFetching(async () => {
     const response = await BooksService.getBooks(request, category, sort, page);
+    console.log(response.data);
     if (isFetchinfNewPage) {
       setBooks(getUniqData([...books, ...response.data.items]));
-      setIsFetchingNewPage(false);
     } else {
       setBooks(getUniqData(response.data.items));
       setTotalBooks(response.data.totalItems);
     }
+    setIsFetchingNewPage(false);
   });
 
   useEffect(() => {
@@ -47,7 +48,7 @@ function MainPage({ request, category, sort, page, setPage }: Props) {
         <Loader />
       ) : (
         <>
-          <h2 className='quantity'>Найдено книг {totalBooks}</h2>
+          {<h2 className='quantity'>Найдено книг {totalBooks}</h2>}
           <BookItems books={books} />
           {isFetchinfNewPage ? <Loader /> : <LoadButton click={load}>Load More</LoadButton>}
         </>
