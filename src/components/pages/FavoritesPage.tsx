@@ -10,7 +10,7 @@ function FavoritesPage() {
   const [favorites, setFavorites] = useState<IBook[]>();
   const favoritesInLS = getItems();
 
-  const [fetchBooks, isBooksLoading, booksError] = useFetching(async () => {
+  const [fetchBooks, isBooksLoading] = useFetching(async () => {
     const result = [];
     for (let i = 0; i < favoritesInLS.length; i++) {
       const temp = await BooksService.getBook(favoritesInLS[i]);
@@ -19,6 +19,10 @@ function FavoritesPage() {
 
     setFavorites(result);
   });
+
+  // Я не знаю, как сделать лучше.
+  // API не предоставляет возможности к запросу по многим элементам сразу, а хранить в ls сразу объекты слишком дорого.
+  // Работает СЛИШКОМ долго. (30 книг грузит около 15 секунд при хорошем интернете)
 
   useEffect(() => {
     fetchBooks();
