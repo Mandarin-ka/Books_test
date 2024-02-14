@@ -5,6 +5,7 @@ import BookPage from './components/pages/BookPage';
 import './styles/reset.css';
 import './styles/media.css';
 import Header from './components/Header/Header';
+import FavoritesPage from './components/pages/FavoritesPage';
 
 function App() {
   const [request, setRequest] = useState('');
@@ -28,6 +29,7 @@ function App() {
           element={<MainPage request={request} category={category} sort={sort} page={page} setPage={setPage} />}
         />
         <Route path={'/bookPage/:id'} element={<BookPage />} />
+        <Route path={'/favorites'} element={<FavoritesPage />} />
       </Routes>
     </BrowserRouter>
   );

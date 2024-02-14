@@ -4,7 +4,7 @@ import { useFetching } from '../../hooks/useFetchind';
 import Loader from '../UI/Loader/Loader';
 import BookItems from '../BookItems/BookItems';
 import { IBook } from '../../interfaces/IBooks';
-import './MainPage.css';
+import './common.css';
 import LoadButton from '../UI/Button/LoadButton';
 import { getUniqData } from '../../utils/UniqData';
 
@@ -42,7 +42,7 @@ function MainPage({ request, category, sort, page, setPage }: Props) {
   }
 
   return (
-    <div className='App'>
+    <div className='mainPage'>
       {isBooksLoading && books.length < 1 ? (
         <Loader />
       ) : (

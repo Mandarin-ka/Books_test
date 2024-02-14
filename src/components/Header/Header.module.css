@@ -21,6 +21,21 @@
   margin: 15px 20px;
 }
 
+.ul {
+  list-style-type: none;
+  color: white;
+  display: flex;
+}
+
+.ul > * {
+  margin: 0 30px;
+}
+
+.ul > * > * {
+  font-size: 1.5rem;
+  color: white;
+}
+
 @media screen and (max-width: 560px) {
   .dropdown__items {
     flex-direction: column-reverse;

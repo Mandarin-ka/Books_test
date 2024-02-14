@@ -1,5 +1,4 @@
 export const setItem = (id: string) => {
-  console.log(getItems());
   if (getItems().length) {
     const books = getItems();
     books.push(id);

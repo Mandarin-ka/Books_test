@@ -19,7 +19,7 @@ function BookItem({ book }: { book: any }) {
 
   return (
     book && (
-      <Link to={`bookPage/${book.id}`}>
+      <Link to={`/bookPage/${book.id}`}>
         <div className={cl.book__item}>
           <div className={isFavorite ? cl.heart + ' ' + cl.active : cl.heart} onClick={addFavorite}></div>
           <img
