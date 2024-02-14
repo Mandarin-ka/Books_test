@@ -21,9 +21,8 @@ function MainPage({ request, category, sort, page, setPage }: Props) {
   const [totalBooks, setTotalBooks] = useState(0);
   const [isFetchinfNewPage, setIsFetchingNewPage] = useState(false);
 
-  const [fetchBooks, isBooksLoading] = useFetching(async () => {
+  const [fetchBooks, isBooksLoading, booksError] = useFetching(async () => {
     const response = await BooksService.getBooks(request, category, sort, page);
-    console.log(response.data);
     if (isFetchinfNewPage) {
       setBooks(getUniqData([...books, ...response.data.items]));
     } else {
@@ -56,5 +55,4 @@ function MainPage({ request, category, sort, page, setPage }: Props) {
     </div>
   );
 }
-
 export default MainPage;
