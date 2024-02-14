@@ -25,10 +25,11 @@
   list-style-type: none;
   color: white;
   display: flex;
+  margin: 10px 0;
 }
 
 .ul > * {
-  margin: 0 30px;
+  margin: 0 40px;
 }
 
 .ul > * > * {
