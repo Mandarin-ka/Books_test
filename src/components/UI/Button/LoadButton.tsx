@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import cl from './LoadButton.module.css';
+import { ThemeContext } from '../../Context/ThemeContext';
 
 interface Props {
   click?: () => void;
@@ -7,8 +8,10 @@ interface Props {
 }
 
 function LoadButton({ click, children }: Props) {
+  const { theme } = useContext(ThemeContext);
+
   return (
-    <button className={cl.load} onClick={click}>
+    <button className={cl.load + ' ' + cl[theme]} onClick={click}>
       {children}
     </button>
   );

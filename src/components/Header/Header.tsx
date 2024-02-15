@@ -29,6 +29,14 @@ function Header({ category, sort, setRequest, setCategory, setSort, setPage }: P
 
   return (
     <header className={cl.header}>
+      <ul className={cl.ul}>
+        <li>
+          <Link to='./'>Главная</Link>
+        </li>
+        <li>
+          <Link to='./favorites'>Избранное</Link>
+        </li>
+      </ul>
       <SearchInput setRequest={setRequest} setPage={setPage} />
       <div className={cl.dropdown__items}>
         <Dropdown options={filterOptions} value={category} setValue={setCategory} defaultAction={defaultAction} />

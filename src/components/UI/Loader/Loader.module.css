@@ -4,10 +4,30 @@
   max-width: 50px;
   max-height: 50px;
   border-radius: 50%;
-  border-top: 3px solid #5e96fc;
-  border-right: 3px solid #5e96fc;
+  background-color: rgb(134, 134, 134);
   animation: rotate 2s infinite linear;
   margin: 50px auto;
+  position: relative;
+}
+
+.loader::before,
+.loader::after {
+  content: '';
+  width: 70px;
+  height: 10px;
+  position: absolute;
+  background-color: rgb(134, 134, 134);
+}
+
+.loader::before {
+  left: -10px;
+  top: 20px;
+}
+
+.loader::after {
+  left: -10px;
+  top: 20px;
+  transform: rotate(90deg);
 }
 
 @keyframes rotate {
