@@ -26,11 +26,11 @@ function MainPage({ request, category, sort, page, setPage }: Props) {
   const [fetchBooks, isBooksLoading] = useFetching(async () => {
     const response = await BooksService.getBooks(request, category, sort, page);
     if (isFetchinfNewPage) {
-      setBooks(getUniqData([...books, ...response.data.items]));
+      setBooks(getUniqData([...books, ...response.data.items]).data);
     } else {
-      setBooks(getUniqData(response.data.items));
-      setTotalBooks(response.data.totalItems);
+      setBooks(getUniqData(response.data.items).data);
     }
+    setTotalBooks(response.data.totalItems - getUniqData(books).duplicates);
     setIsFetchingNewPage(false);
   });
 
