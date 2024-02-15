@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import BooksService from '../../API/BooksAPI';
 import { useFetching } from '../../hooks/useFetchind';
 import { IBook } from '../../interfaces/IBooks';
 import { getItems } from '../../utils/localStorage';
 import BookItems from '../BookItems/BookItems';
 import Loader from '../UI/Loader/Loader';
+import { ThemeContext } from '../Context/ThemeContext';
 
 function FavoritesPage() {
+  const { theme } = useContext(ThemeContext);
   const [favorites, setFavorites] = useState<IBook[]>();
   const favoritesInLS = getItems();
 
@@ -29,7 +31,7 @@ function FavoritesPage() {
   }, []);
 
   return (
-    <div className='favoritesPage'>
+    <div className={`page ${theme}`}>
       <h2 className='quantity'>Найдено книг: {favoritesInLS.length}</h2>
       {isBooksLoading ? <Loader /> : <BookItems books={favorites} />}
     </div>

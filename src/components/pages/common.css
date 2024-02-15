@@ -1,4 +1,25 @@
 .quantity {
   text-align: center;
-  margin: 20px 0 40px;
+  margin-bottom: 30px;
+}
+
+.page {
+  padding: 20px 0;
+  min-height: 60vh;
+}
+
+.page.light {
+  background-color: #fff;
+}
+
+.page.dark {
+  background-color: #1f1f1f;
+}
+
+.page.light .quantity {
+  color: black;
+}
+
+.page.dark .quantity {
+  color: white;
 }

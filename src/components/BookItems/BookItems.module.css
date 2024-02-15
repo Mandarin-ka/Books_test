@@ -6,8 +6,6 @@
   padding: 0 10px;
 }
 
-
-
 @media screen and (max-width: 1600px) {
   .book__items {
     grid-template-columns: repeat(3, 1fr);

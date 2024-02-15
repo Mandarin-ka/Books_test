@@ -1,6 +1,5 @@
 .book__item {
   padding: 30px 20px 30px;
-  background-color: rgba(128, 128, 128, 0.15);
   width: 330px;
   display: flex;
   height: fit-content;
@@ -9,6 +8,14 @@
   position: relative;
   box-sizing: border-box;
   cursor: auto;
+}
+
+.book__item.light {
+  background-color: rgba(128, 128, 128, 0.15);
+}
+
+.book__item.dark {
+  background-color: rgba(94, 94, 94, 0.452);
 }
 
 .book__img {
@@ -23,8 +30,17 @@
   text-decoration: underline;
   font-size: 1.125rem;
   margin-top: 20px;
-  color: #0000007a;
   min-height: 1.125rem;
+}
+
+.book__item.light .type,
+.book__item.light .authors {
+  color: #0000007a;
+}
+
+.book__item.dark .type,
+.book__item.dark .authors {
+  color: #ffffff8f;
 }
 
 .title {
@@ -33,11 +49,18 @@
   max-width: 100%;
 }
 
+.book__item.dark .title {
+  color: rgb(221, 221, 221);
+}
+
+.book__item.light .title {
+  color: black;
+}
+
 .authors {
   margin-top: 20px;
   font-size: 1.125rem;
   min-width: 1.125rem;
-  color: #0000007a;
 }
 
 .heart {

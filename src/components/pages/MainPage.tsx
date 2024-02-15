@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import BooksService from '../../API/BooksAPI';
 import { useFetching } from '../../hooks/useFetchind';
 import Loader from '../UI/Loader/Loader';
@@ -7,6 +7,7 @@ import { IBook } from '../../interfaces/IBooks';
 import './common.css';
 import LoadButton from '../UI/Button/LoadButton';
 import { getUniqData } from '../../utils/UniqData';
+import { ThemeContext } from '../Context/ThemeContext';
 
 interface Props {
   request: string;
@@ -17,11 +18,12 @@ interface Props {
 }
 
 function MainPage({ request, category, sort, page, setPage }: Props) {
+  const { theme } = useContext(ThemeContext);
   const [books, setBooks] = useState<IBook[]>([]);
   const [totalBooks, setTotalBooks] = useState(0);
   const [isFetchinfNewPage, setIsFetchingNewPage] = useState(false);
 
-  const [fetchBooks, isBooksLoading, booksError] = useFetching(async () => {
+  const [fetchBooks, isBooksLoading] = useFetching(async () => {
     const response = await BooksService.getBooks(request, category, sort, page);
     if (isFetchinfNewPage) {
       setBooks(getUniqData([...books, ...response.data.items]));
@@ -42,7 +44,7 @@ function MainPage({ request, category, sort, page, setPage }: Props) {
   }
 
   return (
-    <div className='mainPage'>
+    <div className={`page ${theme}`}>
       {isBooksLoading && books.length < 1 ? (
         <Loader />
       ) : (

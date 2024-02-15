@@ -21,8 +21,17 @@
 .type {
   font-size: 1.125rem;
   margin-top: 20px;
-  color: #0000007a;
   margin-bottom: 30px;
+}
+
+.book.light .type,
+.book.light .authors {
+  color: #0000007a;
+}
+
+.book.dark .type,
+.book.dark .authors {
+  color: #ffffff8f;
 }
 
 .description {
@@ -35,6 +44,34 @@
   max-width: 720px;
 }
 
+.book.light .description {
+  color: black;
+}
+
+.book.dark .description {
+  color: rgba(221, 221, 221, 0.568);
+}
+
+.title {
+  font-size: 1.6rem;
+  margin: 20px 0 0;
+  max-width: 100%;
+}
+
+.book.dark .title {
+  color: rgb(221, 221, 221);
+}
+
+.book.light .title {
+  color: black;
+}
+
+.authors {
+  margin-top: 20px;
+  font-size: 1.125rem;
+  min-width: 1.125rem;
+}
+
 .img__wrapper {
   padding: 125px 150px;
   width: 50%;
@@ -42,7 +79,14 @@
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
+}
+
+.book.light .img__wrapper {
   background-color: #00000015;
+}
+
+.book.dark .img__wrapper {
+  background-color: #a7a7a78a;
 }
 
 @media screen and (max-width: 1400px) {

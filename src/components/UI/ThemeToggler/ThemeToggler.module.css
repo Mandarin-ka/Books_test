@@ -1,0 +1,65 @@
+.toggler {
+  display: block;
+  position: fixed;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  right: 30px;
+  bottom: 30px;
+  cursor: pointer;
+}
+
+.helper,
+.helper1 {
+  content: '';
+  width: 80px;
+  height: 4px;
+  border-radius: 2px;
+  position: absolute;
+  top: 16px;
+  left: -22px;
+}
+
+.helper1 {
+  transform: rotate(90deg);
+}
+
+.helper::before,
+.helper::after {
+  content: '';
+  width: 80px;
+  height: 4px;
+  border-radius: 2px;
+  background-color: black;
+  position: absolute;
+}
+
+.helper::before {
+  transform: rotate(45deg);
+}
+
+.helper::after {
+  transform: rotate(-45deg);
+}
+
+.toggler.light,
+.toggler.light .helper,
+.toggler.light .helper1,
+.toggler.light .helper::before,
+.toggler.light .helper::after {
+  background-color: rgb(255, 153, 0);
+}
+
+.toggler.dark .helper::before,
+.toggler.dark .helper::after,
+.toggler.dark .helper1 {
+  display: none;
+}
+
+.toggler.dark {
+  width: 40px;
+  height: 40px;
+  border-bottom: 10px solid #d6d6d6;
+  border-right: 10px solid #d6d6d6;
+  border-radius: 50%;
+}
