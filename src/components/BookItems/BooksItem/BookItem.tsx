@@ -7,6 +7,7 @@ import { ThemeContext } from '../../Context/ThemeContext';
 function BookItem({ book }: { book: any }) {
   const { theme } = useContext(ThemeContext);
   const [isFavorite, setIsFavorite] = useState(getItems().includes(book.id));
+
   const addFavorite = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     e.preventDefault();
 

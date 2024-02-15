@@ -38,10 +38,10 @@ function MainPage({ request, category, sort, page, setPage }: Props) {
     fetchBooks();
   }, [request, category, sort, page]);
 
-  function load() {
+  const load = () => {
     setPage(page + 30);
     setIsFetchingNewPage(true);
-  }
+  };
 
   return (
     <div className={`page ${theme}`}>

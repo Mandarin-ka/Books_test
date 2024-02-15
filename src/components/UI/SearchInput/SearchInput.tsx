@@ -13,21 +13,21 @@ function SearchInput({ setRequest, setPage }: Props) {
   const [inputValue, setInputValue] = useState('');
   const navigate = useNavigate();
 
-  function click() {
+  const click = () => {
     setRequest(inputValue);
     navigate('./');
     setPage(0);
-  }
+  };
 
-  function change(e: React.ChangeEvent<HTMLInputElement>) {
+  const change = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
-  }
+  };
 
-  function keyPress(e: React.KeyboardEvent<HTMLInputElement>) {
+  const keyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key.toLowerCase() === 'enter') {
       click();
     }
-  }
+  };
 
   return (
     <div className={cl.search}>

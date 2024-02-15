@@ -1,6 +1,6 @@
 import { IBook } from '../interfaces/IBooks';
 
-export function getUniqData(data: IBook[]) {
+export const getUniqData = (data: IBook[]) => {
   const ids = [];
   let count = 0;
   for (let i = 0; i < data.length; i++) {
@@ -13,4 +13,4 @@ export function getUniqData(data: IBook[]) {
   }
 
   return { data: data.filter((e) => !!e), duplicates: count };
-}
+};
