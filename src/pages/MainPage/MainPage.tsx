@@ -1,20 +1,23 @@
+import './../styles/common.css';
+
 import React, { useContext, useEffect, useState } from 'react';
+
 import BooksService from '../../API/BooksAPI';
+import BookItems from '../../components/BookItems/BookItems';
+import { ThemeContext } from '../../components/Context/ThemeContext';
+import LoadButton from '../../components/UI/Button/LoadButton';
+import Loader from '../../components/UI/Loader/Loader';
 import { useFetching } from '../../hooks/useFetchind';
-import Loader from '../UI/Loader/Loader';
-import BookItems from '../BookItems/BookItems';
 import { IBook } from '../../interfaces/IBooks';
-import './common.css';
-import LoadButton from '../UI/Button/LoadButton';
+import { mapData } from '../../utils/DataMap';
 import { getUniqData } from '../../utils/UniqData';
-import { ThemeContext } from '../Context/ThemeContext';
 
 interface Props {
   request: string;
   category: string;
   sort: string;
   page: number;
-  setPage: (el: number) => void;
+  setPage: (value: (value: number) => number) => void;
 }
 
 function MainPage({ request, category, sort, page, setPage }: Props) {
@@ -26,11 +29,11 @@ function MainPage({ request, category, sort, page, setPage }: Props) {
   const [fetchBooks, isBooksLoading] = useFetching(async () => {
     const response = await BooksService.getBooks(request, category, sort, page);
     if (isFetchinfNewPage) {
-      setBooks(getUniqData([...books, ...response.data.items]).data);
+      setBooks(getUniqData(mapData([...books, ...response.data.items])));
     } else {
-      setBooks(getUniqData(response.data.items).data);
+      setBooks(getUniqData(mapData(response.data.items)));
     }
-    setTotalBooks(response.data.totalItems - getUniqData(books).duplicates);
+    setTotalBooks(response.data.totalItems);
     setIsFetchingNewPage(false);
   });
 
@@ -39,7 +42,7 @@ function MainPage({ request, category, sort, page, setPage }: Props) {
   }, [request, category, sort, page]);
 
   const load = () => {
-    setPage(page + 30);
+    setPage((prevState: number) => prevState + 30);
     setIsFetchingNewPage(true);
   };
 

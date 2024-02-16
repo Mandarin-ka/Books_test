@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
+
 import cl from './SearchInput.module.css';
 
-type Setter = (elem: string | number) => void;
-
 interface Props {
-  setRequest: Setter;
-  setPage: Setter;
+  setRequest: (elem: string) => void;
+  setPage: (elem: number) => void;
 }
 
 function SearchInput({ setRequest, setPage }: Props) {

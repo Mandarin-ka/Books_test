@@ -1,9 +1,10 @@
 import React from 'react';
+import { useNavigate } from 'react-router';
+import { Link } from 'react-router-dom';
+
 import Dropdown from '../UI/DropDown/Dropdown';
 import SearchInput from '../UI/SearchInput/SearchInput';
 import cl from './Header.module.css';
-import { useNavigate } from 'react-router';
-import { Link } from 'react-router-dom';
 
 type Setter = (elem: string) => void;
 

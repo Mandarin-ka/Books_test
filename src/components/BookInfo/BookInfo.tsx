@@ -1,8 +1,9 @@
-import React, { useContext } from 'react';
-import { IBook } from '../../interfaces/IBooks';
-import cl1 from './BookInfo.module.css';
 import parse from 'html-react-parser';
+import React, { useContext } from 'react';
+
+import { IBook } from '../../interfaces/IBooks';
 import { ThemeContext } from '../Context/ThemeContext';
+import cl1 from './BookInfo.module.css';
 
 function BookInfo({ book }: { book: IBook }) {
   const { theme } = useContext(ThemeContext);

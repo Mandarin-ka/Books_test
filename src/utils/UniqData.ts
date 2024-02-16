@@ -12,5 +12,5 @@ export const getUniqData = (data: IBook[]) => {
     }
   }
 
-  return { data: data.filter((e) => !!e), duplicates: count };
+  return data.filter((e) => !!e);
 };

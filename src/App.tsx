@@ -1,13 +1,16 @@
-import React, { useState } from 'react';
-import MainPage from './components/pages/MainPage';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import BookPage from './components/pages/BookPage';
 import './styles/reset.css';
 import './styles/media.css';
-import Header from './components/Header/Header';
-import FavoritesPage from './components/pages/FavoritesPage';
+
+import React, { useState } from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+
 import { ThemeContext } from './components/Context/ThemeContext';
+import Header from './components/Header/Header';
+import MainRoutes from './components/Routes/MainRoutes';
 import ThemeToggler from './components/UI/ThemeToggler/ThemeToggler';
+import BookPage from './pages/BookPage/BookPage';
+import FavoritesPage from './pages/FavoritesPage/FavoritesPage';
+import MainPage from './pages/MainPage/MainPage';
 
 function App() {
   const [request, setRequest] = useState('');
@@ -27,14 +30,9 @@ function App() {
           setSort={setSort}
           setPage={setPage}
         />
-        <Routes>
-          <Route
-            path={'/'}
-            element={<MainPage request={request} category={category} sort={sort} page={page} setPage={setPage} />}
-          />
-          <Route path={'/bookPage/:id'} element={<BookPage />} />
-          <Route path={'/favorites'} element={<FavoritesPage />} />
-        </Routes>
+
+        <MainRoutes request={request} category={category} sort={sort} page={page} setPage={setPage} />
+
         <ThemeToggler />
       </ThemeContext.Provider>
     </BrowserRouter>
