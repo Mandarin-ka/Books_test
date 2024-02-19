@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const constants = {
   REQUEST_ADRESS: 'https://www.googleapis.com/books/v1/volumes',
-  API_KEY: `AIzaSyAkr_hrIdj-ejrqO5elPFf4j1-GUL8kOCI`,
+  API_KEY: 'AIzaSyAkr_hrIdj-ejrqO5elPFf4j1-GUL8kOCI',
 };
 
 export default class BooksService {

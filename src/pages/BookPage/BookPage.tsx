@@ -1,12 +1,14 @@
+import './../styles/common.css';
+
 import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router';
+
 import BooksService from '../../API/BooksAPI';
+import BookInfo from '../../components/BookInfo/BookInfo';
+import { ThemeContext } from '../../components/Context/ThemeContext';
+import Loader from '../../components/UI/Loader/Loader';
 import { useFetching } from '../../hooks/useFetchind';
 import { IBook } from '../../interfaces/IBooks';
-import Loader from '../UI/Loader/Loader';
-import BookInfo from '../BookInfo/BookInfo';
-import { ThemeContext } from '../Context/ThemeContext';
-import './common.css';
 
 function BookPage() {
   const { theme } = useContext(ThemeContext);

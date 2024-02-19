@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
-import cl from './LoadButton.module.css';
+
 import { ThemeContext } from '../../Context/ThemeContext';
+import cl from './LoadButton.module.css';
 
 interface Props {
   click?: () => void;
