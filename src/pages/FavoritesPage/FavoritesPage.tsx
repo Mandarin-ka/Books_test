@@ -1,11 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
+
 import BooksService from '../../API/BooksAPI';
+import BookItems from '../../components/BookItems/BookItems';
+import { ThemeContext } from '../../components/Context/ThemeContext';
+import Loader from '../../components/UI/Loader/Loader';
 import { useFetching } from '../../hooks/useFetchind';
 import { IBook } from '../../interfaces/IBooks';
 import { getItems } from '../../utils/localStorage';
-import BookItems from '../BookItems/BookItems';
-import Loader from '../UI/Loader/Loader';
-import { ThemeContext } from '../Context/ThemeContext';
 
 function FavoritesPage() {
   const { theme } = useContext(ThemeContext);

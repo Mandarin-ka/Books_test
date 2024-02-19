@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
-import cl from './ThemeToggler.module.css';
+
 import { ThemeContext } from '../../Context/ThemeContext';
+import cl from './ThemeToggler.module.css';
 
 function ThemeToggler() {
   const { theme, setTheme } = useContext(ThemeContext);

@@ -1,12 +1,14 @@
 import React, { useContext, useState } from 'react';
-import cl from './BookItem.module.css';
 import { Link } from 'react-router-dom';
+
 import { deleteItem, getItems, setItem } from '../../../utils/localStorage';
 import { ThemeContext } from '../../Context/ThemeContext';
+import cl from './BookItem.module.css';
 
 function BookItem({ book }: { book: any }) {
   const { theme } = useContext(ThemeContext);
   const [isFavorite, setIsFavorite] = useState(getItems().includes(book.id));
+
   const addFavorite = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     e.preventDefault();
 
