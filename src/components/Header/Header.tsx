@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import Dropdown from '../UI/DropDown/Dropdown';
 import SearchInput from '../UI/SearchInput/SearchInput';
-import cl from './Header.module.css';
+import styles from './Header.module.css';
 
 type Setter = (elem: string) => void;
 
@@ -29,8 +29,8 @@ function Header({ category, sort, setRequest, setCategory, setSort, setPage }: P
   const sortOptions = ['relevance', 'newest'];
 
   return (
-    <header className={cl.header}>
-      <ul className={cl.ul}>
+    <header className={styles.header}>
+      <ul className={styles.ul}>
         <li>
           <Link to='./'>Главная</Link>
         </li>
@@ -39,7 +39,7 @@ function Header({ category, sort, setRequest, setCategory, setSort, setPage }: P
         </li>
       </ul>
       <SearchInput setRequest={setRequest} setPage={setPage} />
-      <div className={cl.dropdown__items}>
+      <div className={styles.dropdown__items}>
         <Dropdown options={filterOptions} value={category} setValue={setCategory} defaultAction={defaultAction} />
         <Dropdown options={sortOptions} value={sort} setValue={setSort} defaultAction={defaultAction} />
       </div>
