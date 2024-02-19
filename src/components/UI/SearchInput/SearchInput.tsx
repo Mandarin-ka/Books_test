@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { memo, useCallback, useState } from 'react';
 import { useNavigate } from 'react-router';
 
-import cl from './SearchInput.module.css';
+import styles from './SearchInput.module.css';
 
 interface Props {
   setRequest: (elem: string) => void;
@@ -12,26 +12,29 @@ function SearchInput({ setRequest, setPage }: Props) {
   const [inputValue, setInputValue] = useState('');
   const navigate = useNavigate();
 
-  const click = () => {
+  const click = useCallback(() => {
     setRequest(inputValue);
     navigate('./');
     setPage(0);
-  };
+  }, [inputValue]);
 
-  const change = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const change = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
-  };
+  }, []);
 
-  const keyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key.toLowerCase() === 'enter') {
-      click();
-    }
-  };
+  const keyPress = useCallback(
+    (e: React.KeyboardEvent<HTMLInputElement>) => {
+      if (e.key.toLowerCase() === 'enter') {
+        click();
+      }
+    },
+    [inputValue]
+  );
 
   return (
-    <div className={cl.search}>
+    <div className={styles.search}>
       <input
-        className={cl.input}
+        className={styles.input}
         type='text'
         name=''
         id=''
@@ -40,11 +43,11 @@ function SearchInput({ setRequest, setPage }: Props) {
         onChange={change}
         onKeyDown={keyPress}
       />
-      <button className={cl.searchButton} onClick={click}>
-        <div className={cl.loupe}></div>
+      <button className={styles.searchButton} onClick={click}>
+        <div className={styles.loupe}></div>
       </button>
     </div>
   );
 }
 
-export default SearchInput;
+export default memo(SearchInput);

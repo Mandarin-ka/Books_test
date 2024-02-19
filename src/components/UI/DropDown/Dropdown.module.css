@@ -1,8 +1,9 @@
 .dropdown {
-  margin: 12px auto 0;
+  margin: 12px 10px 0;
   position: relative;
   user-select: none;
   min-width: 210px;
+  display: block;
 }
 
 .dropdown__button {

@@ -1,11 +1,12 @@
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 
+import { IBook } from '../../../interfaces/IBooks';
 import { deleteItem, getItems, setItem } from '../../../utils/localStorage';
 import { ThemeContext } from '../../Context/ThemeContext';
-import cl from './BookItem.module.css';
+import styles from './BookItem.module.css';
 
-function BookItem({ book }: { book: any }) {
+function BookItem({ book }: { book: IBook }) {
   const { theme } = useContext(ThemeContext);
   const [isFavorite, setIsFavorite] = useState(getItems().includes(book.id));
 
@@ -24,16 +25,16 @@ function BookItem({ book }: { book: any }) {
   return (
     book && (
       <Link to={`/bookPage/${book.id}`}>
-        <div className={cl.book__item + ' ' + cl[theme]}>
-          <div className={isFavorite ? cl.heart + ' ' + cl.active : cl.heart} onClick={addFavorite}></div>
+        <div className={styles.book__item + ' ' + styles[theme]}>
+          <div className={isFavorite ? styles.heart + ' ' + styles.active : styles.heart} onClick={addFavorite}></div>
           <img
             src={book.volumeInfo.imageLinks?.thumbnail || book.volumeInfo.imageLinks?.smallThumbnail}
             alt={book.volumeInfo.title}
-            className={cl.book__img}
+            className={styles.book__img}
           />
-          <p className={cl.type + ' ' + cl[theme]}>{book.volumeInfo?.categories}</p>
-          <h2 className={cl.title + ' ' + cl[theme]}>{book.volumeInfo?.title}</h2>
-          <p className={cl.authors + ' ' + cl[theme]}>{book.volumeInfo.authors?.join(', ')}</p>
+          <p className={styles.type + ' ' + styles[theme]}>{book.volumeInfo?.categories}</p>
+          <h2 className={styles.title + ' ' + styles[theme]}>{book.volumeInfo?.title}</h2>
+          <p className={styles.authors + ' ' + styles[theme]}>{book.volumeInfo.authors?.join(', ')}</p>
         </div>
       </Link>
     )
