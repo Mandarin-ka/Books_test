@@ -1,7 +1,7 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { memo } from 'react';
+import { useCallback, useState } from 'react';
 
-import cl from './Dropdown.module.css';
+import styles from './Dropdown.module.css';
 
 interface Props {
   options: string[];
@@ -14,40 +14,42 @@ const Dropdown = ({ options, value, setValue, defaultAction }: Props) => {
   const [isActive, setIsActive] = useState(false);
 
   const optionState = () => {
-    let result = cl.dropdown__button;
+    let result = styles.dropdown__button;
     if (options) {
-      result += ' ' + cl.active;
+      result += ' ' + styles.active;
     }
     if (isActive) {
-      result += ' ' + cl.opened;
+      result += ' ' + styles.opened;
     }
 
     return result;
   };
 
-  const click = (option: string) => {
-    setValue(option);
-    setIsActive(!isActive);
+  const click = useCallback((e: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
+    setValue((e.target as HTMLInputElement).value);
+    setIsActive((prevValue) => !prevValue);
     defaultAction();
-  };
+  }, []);
 
   return (
-    <div className={cl.dropdown}>
+    <div className={styles.dropdown}>
       <button
         className={optionState()}
         onClick={() => setIsActive(!isActive)}
-        style={value === options[0] ? { color: '#000000a1' } : { color: 'black' }}>
+        style={value === options[0] ? { color: '#000000a1' } : { color: 'black' }}
+      >
         {value ? value : options[0]}
       </button>
       {isActive && (
-        <div className={cl.dropdown__content}>
+        <div className={styles.dropdown__content}>
           {options.map((option, i) => (
-            <button
+            <input
+              type='button'
               key={i}
-              className={value === option ? cl.dropdown__item + ' ' + cl.active : cl.dropdown__item}
-              onClick={() => click(option)}>
-              {option}
-            </button>
+              className={value === option ? styles.dropdown__item + ' ' + styles.active : styles.dropdown__item}
+              value={option}
+              onClick={click}
+            />
           ))}
         </div>
       )}
@@ -55,4 +57,4 @@ const Dropdown = ({ options, value, setValue, defaultAction }: Props) => {
   );
 };
 
-export default Dropdown;
+export default memo(Dropdown);
