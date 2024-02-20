@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 
-import { ThemeContext } from '../../Context/ThemeContext';
+import { ThemeContext } from '../../../Context/ThemeContext';
 import styles from './LoadButton.module.css';
 
 interface Props {
