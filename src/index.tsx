@@ -1,7 +1,6 @@
 import { initializeApp } from 'firebase/app';
-import { GoogleAuthProvider } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
-import React, { createContext } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom/client';
 
 import App from './App';
