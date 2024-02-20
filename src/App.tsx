@@ -28,13 +28,7 @@ function App() {
           setPage={setPage}
         />
 
-        <MainRoutes
-          request={request}
-          category={category}
-          sort={sort}
-          page={page}
-          setPage={setPage}
-        />
+        <MainRoutes request={request} category={category} sort={sort} page={page} setPage={setPage} />
 
         <ThemeToggler />
       </ThemeContext.Provider>

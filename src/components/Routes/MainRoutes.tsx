@@ -1,5 +1,5 @@
-import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
-import React, { useContext, useState } from 'react';
+import { getAuth } from 'firebase/auth';
+import React, { useContext, useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router';
 
 import BookPage from '../../pages/BookPage/BookPage';
@@ -18,21 +18,14 @@ interface Props {
 
 function MainRoutes({ request, category, sort, page, setPage }: Props) {
   const { app } = useContext(FirebaseContext);
-  const [user, setUser] = useState(null);
   const auth = getAuth(app);
+  const [user, setUser] = useState(null);
 
-  const login = async () => {
-    // try {
-    //   const provider = new GoogleAuthProvider();
-    //   setUser(await signInWithPopup(getAuth(), provider));
-    // } catch (e: any) {
-    //   console.log(e.message);
-    // }
-  };
-
-  auth.onAuthStateChanged((user) => {
-    setUser(user);
-  });
+  useEffect(() => {
+    auth.onAuthStateChanged((user) => {
+      setUser(user);
+    });
+  }, []);
 
   return user ? (
     <Routes>
@@ -44,7 +37,7 @@ function MainRoutes({ request, category, sort, page, setPage }: Props) {
       <Route path={'/favorites'} element={<FavoritesPage />} />
     </Routes>
   ) : (
-    <Login login={login} />
+    <Login />
   );
 }
 

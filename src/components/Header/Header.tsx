@@ -1,5 +1,5 @@
 import { getAuth } from 'firebase/auth';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { Link } from 'react-router-dom';
 
@@ -23,7 +23,7 @@ function Header({ category, sort, setRequest, setCategory, setSort, setPage }: P
   const navigate = useNavigate();
   const { app } = useContext(FirebaseContext);
   const auth = getAuth(app);
-  const [user, setUser] = useState(auth.currentUser);
+  const [user, setUser] = useState(null);
 
   const defaultAction = () => {
     setPage(0);
@@ -37,9 +37,11 @@ function Header({ category, sort, setRequest, setCategory, setSort, setPage }: P
     auth.signOut();
   };
 
-  auth.onAuthStateChanged((user) => {
-    setUser(user);
-  });
+  useEffect(() => {
+    auth.onAuthStateChanged((user1) => {
+      setUser(user1);
+    });
+  }, []);
 
   return (
     <header className={styles.header}>
