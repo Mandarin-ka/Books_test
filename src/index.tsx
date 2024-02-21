@@ -16,12 +16,12 @@ const app = initializeApp({
   measurementId: 'G-T19LNBVRKT',
 });
 
-const firestore = getFirestore();
+const db = getFirestore(app);
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   <React.StrictMode>
-    <FirebaseContext.Provider value={{ app, firestore }}>
+    <FirebaseContext.Provider value={{ app, db }}>
       <App />
     </FirebaseContext.Provider>
   </React.StrictMode>

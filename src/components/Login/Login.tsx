@@ -9,7 +9,7 @@ function Login() {
       const provider = new GoogleAuthProvider();
       await signInWithPopup(getAuth(), provider);
     } catch (e: any) {
-      console.log(e.message);
+      console.error(e.message);
     }
   };
 

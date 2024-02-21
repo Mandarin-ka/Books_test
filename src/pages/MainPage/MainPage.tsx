@@ -7,7 +7,7 @@ import BookItems from '../../components/BookItems/BookItems';
 import { ThemeContext } from '../../components/Context/ThemeContext';
 import LoadButton from '../../components/UI/Button/LoadButton/LoadButton';
 import Loader from '../../components/UI/Loader/Loader';
-import { useFetching } from '../../hooks/useFetchind';
+import { useFetching } from '../../hooks/useFetching';
 import { IBook } from '../../interfaces/IBooks';
 import { mapData } from '../../utils/DataMap';
 import { getUniqData } from '../../utils/UniqData';

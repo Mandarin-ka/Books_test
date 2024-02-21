@@ -7,7 +7,7 @@ import BooksService from '../../API/BooksAPI';
 import BookInfo from '../../components/BookInfo/BookInfo';
 import { ThemeContext } from '../../components/Context/ThemeContext';
 import Loader from '../../components/UI/Loader/Loader';
-import { useFetching } from '../../hooks/useFetchind';
+import { useFetching } from '../../hooks/useFetching';
 import { IBook } from '../../interfaces/IBooks';
 
 function BookPage() {
