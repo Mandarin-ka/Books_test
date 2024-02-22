@@ -1,34 +1,20 @@
 import { getAuth } from 'firebase/auth';
-import { collection, getDocs } from 'firebase/firestore';
 import React, { useContext, useEffect, useState } from 'react';
 
 import BookItems from '../../components/BookItems/BookItems';
 import { FirebaseContext } from '../../components/Context/FirebaseContext';
 import { ThemeContext } from '../../components/Context/ThemeContext';
 import { IBook } from '../../interfaces/IBooks';
+import { getBooks } from '../../utils/Firebase';
 
 function FavoritesPage() {
   const { theme } = useContext(ThemeContext);
   const { app, db } = useContext(FirebaseContext);
   const [favorites, setFavorites] = useState<IBook[]>([]);
-
-  const getUser = () => {
-    return getAuth(app).currentUser.uid;
-  };
-
-  const colRef = collection(db, getUser());
+  const user = getAuth(app).currentUser.uid;
 
   useEffect(() => {
-    const getBooks = async () => {
-      try {
-        const data = await getDocs(colRef);
-        setFavorites(data.docs.map((doc) => ({ ...doc.data() })));
-      } catch (err: any) {
-        console.error(err.message);
-      }
-    };
-
-    getBooks();
+    getBooks(db, user, setFavorites);
   }, []);
 
   return (

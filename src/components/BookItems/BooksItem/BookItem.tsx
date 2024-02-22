@@ -1,10 +1,9 @@
 import { getAuth } from 'firebase/auth';
-import { deleteDoc, doc, getDoc, setDoc } from 'firebase/firestore';
 import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { IBook } from '../../../interfaces/IBooks';
-// import { deleteItem, getItems, setItem } from '../../../utils/localStorage';
+import { addToDB, deleteFromBD, hasBook } from '../../../utils/Firebase';
 import { FirebaseContext } from '../../Context/FirebaseContext';
 import { ThemeContext } from '../../Context/ThemeContext';
 import styles from './BookItem.module.css';
@@ -12,54 +11,17 @@ import styles from './BookItem.module.css';
 function BookItem({ book }: { book: IBook }) {
   const { theme } = useContext(ThemeContext);
   const { app, db } = useContext(FirebaseContext);
-
-  const getUser = () => {
-    return getAuth(app).currentUser.uid;
-  };
+  const user = getAuth(app).currentUser.uid;
 
   const [isFavorite, setIsFavorite] = useState(false);
 
   useEffect(() => {
-    const getBook = async () => {
-      try {
-        const docRef = doc(db, getUser(), book.id);
-        const docSnap = await getDoc(docRef);
-        setIsFavorite(docSnap.exists());
-      } catch (err: any) {
-        console.error(err.message);
-      }
-    };
-
-    getBook();
+    hasBook(db, user, book, setIsFavorite);
   }, []);
-
-  const addToDB = async () => {
-    await setDoc(doc(db, getUser(), book.id), {
-      id: book.id,
-      volumeInfo: {
-        title: book.volumeInfo.title || null,
-        authors: book.volumeInfo.authors || null,
-        publisher: book.volumeInfo.publisher || null,
-        categories: book.volumeInfo.categories || null,
-        imageLinks: book.volumeInfo.imageLinks || null,
-      },
-    });
-  };
-
-  const deleteFromBD = async () => {
-    const docRef = doc(db, getUser(), book.id);
-    await deleteDoc(docRef);
-  };
 
   const toggleFavorite = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     e.preventDefault();
-
-    if (!isFavorite) {
-      addToDB();
-    } else {
-      deleteFromBD();
-    }
-
+    isFavorite ? deleteFromBD(db, user, book) : addToDB(db, user, book);
     setIsFavorite((prevValue) => !prevValue);
   };
 
