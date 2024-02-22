@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom/client';
 
 import App from './App';
 import { FirebaseContext } from './components/Context/FirebaseContext';
+import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 
 const app = initializeApp({
   apiKey: 'AIzaSyDfsCMord727tLKYcfvnBTBg6dYbReuSPQ',
@@ -22,7 +23,9 @@ const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
   <React.StrictMode>
     <FirebaseContext.Provider value={{ app, db }}>
-      <App />
+      <ErrorBoundary>
+        <App />
+      </ErrorBoundary>
     </FirebaseContext.Provider>
   </React.StrictMode>
 );
