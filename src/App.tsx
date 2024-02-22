@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 
 import { ThemeContext } from './components/Context/ThemeContext';
+import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 import Header from './components/Header/Header';
 import MainRoutes from './components/Routes/MainRoutes';
 import ThemeToggler from './components/UI/ThemeToggler/ThemeToggler';
@@ -19,17 +20,21 @@ function App() {
   return (
     <BrowserRouter>
       <ThemeContext.Provider value={{ theme, setTheme }}>
-        <Header
-          category={category}
-          sort={sort}
-          setRequest={setRequest}
-          setCategory={setCategory}
-          setSort={setSort}
-          setPage={setPage}
-        />
+        <ErrorBoundary>
+          <Header
+            category={category}
+            sort={sort}
+            setRequest={setRequest}
+            setCategory={setCategory}
+            setSort={setSort}
+            setPage={setPage}
+          />
+        </ErrorBoundary>
 
-        <MainRoutes request={request} category={category} sort={sort} page={page} setPage={setPage} />
-        
+        <ErrorBoundary>
+          <MainRoutes request={request} category={category} sort={sort} page={page} setPage={setPage} />
+        </ErrorBoundary>
+
         <ThemeToggler />
       </ThemeContext.Provider>
     </BrowserRouter>
