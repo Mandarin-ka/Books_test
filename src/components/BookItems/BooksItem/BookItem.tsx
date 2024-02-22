@@ -1,32 +1,37 @@
-import React, { useContext, useState } from 'react';
+import { getAuth } from 'firebase/auth';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { IBook } from '../../../interfaces/IBooks';
-import { deleteItem, getItems, setItem } from '../../../utils/localStorage';
+import { addToDB, deleteFromBD, hasBook } from '../../../utils/Firebase';
+import { FirebaseContext } from '../../Context/FirebaseContext';
 import { ThemeContext } from '../../Context/ThemeContext';
 import styles from './BookItem.module.css';
 
 function BookItem({ book }: { book: IBook }) {
   const { theme } = useContext(ThemeContext);
-  const [isFavorite, setIsFavorite] = useState(getItems().includes(book.id));
+  const { app, db } = useContext(FirebaseContext);
+  const user = getAuth(app).currentUser.uid;
 
-  const addFavorite = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  useEffect(() => {
+    hasBook(db, user, book, setIsFavorite);
+  }, []);
+
+  const toggleFavorite = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     e.preventDefault();
-
-    if (!isFavorite) {
-      setItem(book.id);
-    } else {
-      deleteItem(book.id);
-    }
-
-    setIsFavorite(!isFavorite);
+    isFavorite ? deleteFromBD(db, user, book) : addToDB(db, user, book);
+    setIsFavorite((prevValue) => !prevValue);
   };
 
   return (
     book && (
       <Link to={`/bookPage/${book.id}`}>
         <div className={styles.book__item + ' ' + styles[theme]}>
-          <div className={isFavorite ? styles.heart + ' ' + styles.active : styles.heart} onClick={addFavorite}></div>
+          <div
+            className={isFavorite ? styles.heart + ' ' + styles.active : styles.heart}
+            onClick={toggleFavorite}></div>
           <img
             src={book.volumeInfo.imageLinks?.thumbnail || book.volumeInfo.imageLinks?.smallThumbnail}
             alt={book.volumeInfo.title}

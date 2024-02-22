@@ -1,11 +1,11 @@
 import { initializeApp } from 'firebase/app';
-import { GoogleAuthProvider } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
-import React, { createContext } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom/client';
 
 import App from './App';
 import { FirebaseContext } from './components/Context/FirebaseContext';
+import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 
 const app = initializeApp({
   apiKey: 'AIzaSyDfsCMord727tLKYcfvnBTBg6dYbReuSPQ',
@@ -17,13 +17,15 @@ const app = initializeApp({
   measurementId: 'G-T19LNBVRKT',
 });
 
-const firestore = getFirestore();
+const db = getFirestore(app);
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   <React.StrictMode>
-    <FirebaseContext.Provider value={{ app, firestore }}>
-      <App />
+    <FirebaseContext.Provider value={{ app, db }}>
+      <ErrorBoundary>
+        <App />
+      </ErrorBoundary>
     </FirebaseContext.Provider>
   </React.StrictMode>
 );

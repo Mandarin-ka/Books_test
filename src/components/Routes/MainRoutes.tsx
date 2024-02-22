@@ -1,6 +1,5 @@
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { getAuth } from 'firebase/auth';
 import React, { useContext, useEffect, useState } from 'react';
-import useAuthState from 'react-firebase-hooks/auth';
 import { Route, Routes } from 'react-router';
 
 import BookPage from '../../pages/BookPage/BookPage';
@@ -8,6 +7,7 @@ import FavoritesPage from '../../pages/FavoritesPage/FavoritesPage';
 import MainPage from '../../pages/MainPage/MainPage';
 import { FirebaseContext } from '../Context/FirebaseContext';
 import Login from '../Login/Login';
+import LoadButton from '../UI/Button/LoadButton/LoadButton';
 
 interface Props {
   request: string;
@@ -19,15 +19,16 @@ interface Props {
 
 function MainRoutes({ request, category, sort, page, setPage }: Props) {
   const { app } = useContext(FirebaseContext);
+  const auth = getAuth(app);
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    setUser(getAuth(app).currentUser);
-  }, [app]);
+    auth.onAuthStateChanged((user) => {
+      setUser(user);
+    });
+  }, []);
 
-  if (!user) return <Login />;
-
-  return (
+  return user ? (
     <Routes>
       <Route
         path={'/'}
@@ -36,6 +37,8 @@ function MainRoutes({ request, category, sort, page, setPage }: Props) {
       <Route path={'/bookPage/:id'} element={<BookPage />} />
       <Route path={'/favorites'} element={<FavoritesPage />} />
     </Routes>
+  ) : (
+    <Login />
   );
 }
 
