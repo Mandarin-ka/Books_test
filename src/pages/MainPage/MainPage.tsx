@@ -55,12 +55,6 @@ function MainPage({ request, category, sort, page, setPage }: Props) {
           <h2 className='quantity'>Найдено книг {totalBooks}</h2>
           <BookItems books={books} />
           {isFetchinfNewPage ? <Loader /> : <LoadButton click={load}>Load More</LoadButton>}
-          <LoadButton
-            click={() => {
-              throw Error('ahahahhahah');
-            }}>
-            Ошибочка
-          </LoadButton>
         </>
       )}
     </div>

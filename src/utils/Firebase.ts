@@ -1,4 +1,4 @@
-import { deleteDoc, doc, getDoc, getDocs, setDoc } from 'firebase/firestore';
+import { collection, deleteDoc, doc, getDoc, getDocs, setDoc } from 'firebase/firestore';
 
 import { IBook } from '../interfaces/IBooks';
 
@@ -31,7 +31,7 @@ export const deleteFromBD = async (db, user: string, book: IBook) => {
 
 export const getBooks = async (db, user: string, setBooks: (elems: IBook[]) => void) => {
   try {
-    const data = await getDocs(doc(db, user));
+    const data = await getDocs(collection(db, user));
     setBooks(data.docs.map((doc) => ({ ...doc.data() })));
   } catch (err) {
     console.error((err as Error).message);
