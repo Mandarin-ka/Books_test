@@ -5,7 +5,6 @@ import React, { useContext, useEffect, useState } from 'react';
 import BooksService from '../../API/BooksAPI';
 import BookItems from '../../components/BookItems/BookItems';
 import { ThemeContext } from '../../components/Context/ThemeContext';
-import ErrorBoundary from '../../components/ErrorBoundary/ErrorBoundary';
 import LoadButton from '../../components/UI/Button/LoadButton/LoadButton';
 import Loader from '../../components/UI/Loader/Loader';
 import { useFetching } from '../../hooks/useFetching';

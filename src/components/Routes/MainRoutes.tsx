@@ -7,7 +7,6 @@ import FavoritesPage from '../../pages/FavoritesPage/FavoritesPage';
 import MainPage from '../../pages/MainPage/MainPage';
 import { FirebaseContext } from '../Context/FirebaseContext';
 import Login from '../Login/Login';
-import LoadButton from '../UI/Button/LoadButton/LoadButton';
 
 interface Props {
   request: string;
