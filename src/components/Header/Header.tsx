@@ -1,7 +1,9 @@
-import React from 'react';
+import { getAuth } from 'firebase/auth';
+import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { Link } from 'react-router-dom';
 
+import { FirebaseContext } from '../Context/FirebaseContext';
 import Dropdown from '../UI/DropDown/Dropdown';
 import SearchInput from '../UI/SearchInput/SearchInput';
 import styles from './Header.module.css';
@@ -19,6 +21,9 @@ interface Props {
 
 function Header({ category, sort, setRequest, setCategory, setSort, setPage }: Props) {
   const navigate = useNavigate();
+  const { app } = useContext(FirebaseContext);
+  const auth = getAuth(app);
+  const [user, setUser] = useState(null);
 
   const defaultAction = () => {
     setPage(0);
@@ -27,6 +32,16 @@ function Header({ category, sort, setRequest, setCategory, setSort, setPage }: P
 
   const filterOptions = ['all', 'art', 'biography', 'computers', 'history', 'medical', 'poetry'];
   const sortOptions = ['relevance', 'newest'];
+
+  const signOut = () => {
+    auth.signOut();
+  };
+
+  useEffect(() => {
+    auth.onAuthStateChanged((user1) => {
+      setUser(user1);
+    });
+  }, []);
 
   return (
     <header className={styles.header}>
@@ -43,6 +58,12 @@ function Header({ category, sort, setRequest, setCategory, setSort, setPage }: P
         <Dropdown options={filterOptions} value={category} setValue={setCategory} defaultAction={defaultAction} />
         <Dropdown options={sortOptions} value={sort} setValue={setSort} defaultAction={defaultAction} />
       </div>
+
+      {user && (
+        <button className={styles.login} onClick={signOut}>
+          Выйти
+        </button>
+      )}
     </header>
   );
 }

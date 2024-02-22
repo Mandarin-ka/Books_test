@@ -5,9 +5,10 @@ import React, { useContext, useEffect, useState } from 'react';
 import BooksService from '../../API/BooksAPI';
 import BookItems from '../../components/BookItems/BookItems';
 import { ThemeContext } from '../../components/Context/ThemeContext';
-import LoadButton from '../../components/UI/Button/LoadButton';
+import ErrorBoundary from '../../components/ErrorBoundary/ErrorBoundary';
+import LoadButton from '../../components/UI/Button/LoadButton/LoadButton';
 import Loader from '../../components/UI/Loader/Loader';
-import { useFetching } from '../../hooks/useFetchind';
+import { useFetching } from '../../hooks/useFetching';
 import { IBook } from '../../interfaces/IBooks';
 import { mapData } from '../../utils/DataMap';
 import { getUniqData } from '../../utils/UniqData';
@@ -55,6 +56,12 @@ function MainPage({ request, category, sort, page, setPage }: Props) {
           <h2 className='quantity'>Найдено книг {totalBooks}</h2>
           <BookItems books={books} />
           {isFetchinfNewPage ? <Loader /> : <LoadButton click={load}>Load More</LoadButton>}
+          <LoadButton
+            click={() => {
+              throw Error('ahahahhahah');
+            }}>
+            Ошибочка
+          </LoadButton>
         </>
       )}
     </div>

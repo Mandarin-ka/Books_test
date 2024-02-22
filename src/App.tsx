@@ -29,7 +29,7 @@ function App() {
         />
 
         <MainRoutes request={request} category={category} sort={sort} page={page} setPage={setPage} />
-
+        
         <ThemeToggler />
       </ThemeContext.Provider>
     </BrowserRouter>

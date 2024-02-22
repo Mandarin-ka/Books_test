@@ -1,9 +1,13 @@
-import React from 'react';
+import { getAuth } from 'firebase/auth';
+import React, { useContext, useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router';
 
 import BookPage from '../../pages/BookPage/BookPage';
 import FavoritesPage from '../../pages/FavoritesPage/FavoritesPage';
 import MainPage from '../../pages/MainPage/MainPage';
+import { FirebaseContext } from '../Context/FirebaseContext';
+import Login from '../Login/Login';
+import LoadButton from '../UI/Button/LoadButton/LoadButton';
 
 interface Props {
   request: string;
@@ -14,7 +18,17 @@ interface Props {
 }
 
 function MainRoutes({ request, category, sort, page, setPage }: Props) {
-  return (
+  const { app } = useContext(FirebaseContext);
+  const auth = getAuth(app);
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    auth.onAuthStateChanged((user) => {
+      setUser(user);
+    });
+  }, []);
+
+  return user ? (
     <Routes>
       <Route
         path={'/'}
@@ -23,6 +37,8 @@ function MainRoutes({ request, category, sort, page, setPage }: Props) {
       <Route path={'/bookPage/:id'} element={<BookPage />} />
       <Route path={'/favorites'} element={<FavoritesPage />} />
     </Routes>
+  ) : (
+    <Login />
   );
 }
 
