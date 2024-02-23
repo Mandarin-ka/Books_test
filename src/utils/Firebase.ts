@@ -40,7 +40,7 @@ export const deleteFromBD = async (db, user: string, book: IBook) => {
 export const getBooks = async (db, user: string, setBooks: (elems: IBook[]) => void) => {
   try {
     const data = await getDocs(collection(db, user));
-    setBooks(data.docs.map((doc: any) => ({ ...doc.data() })));
+    setBooks(data.docs.map((doc: any) => ({ ...doc.data(), id: doc.id })));
   } catch (err) {
     console.error((err as Error).message);
   }
