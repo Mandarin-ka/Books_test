@@ -3,16 +3,20 @@ import { collection, deleteDoc, doc, getDoc, getDocs, setDoc } from 'firebase/fi
 import { IBook } from '../interfaces/IBooks';
 
 export const addToDB = async (db, user: string, book: IBook) => {
-  await setDoc(doc(db, user, book.id), {
-    id: book.id,
-    volumeInfo: {
-      title: book.volumeInfo.title || null,
-      authors: book.volumeInfo.authors || null,
-      publisher: book.volumeInfo.publisher || null,
-      categories: book.volumeInfo.categories || null,
-      imageLinks: book.volumeInfo.imageLinks || null,
-    },
-  });
+  try {
+    await setDoc(doc(db, user, book.id), {
+      id: book.id,
+      volumeInfo: {
+        title: book.volumeInfo.title || null,
+        authors: book.volumeInfo.authors || null,
+        publisher: book.volumeInfo.publisher || null,
+        categories: book.volumeInfo.categories || null,
+        imageLinks: book.volumeInfo.imageLinks || null,
+      },
+    });
+  } catch (err) {
+    console.error((err as Error).message);
+  }
 };
 
 export const hasBook = async (db, user: string, book: IBook, setFavorite: (elem: boolean) => void) => {
@@ -25,14 +29,18 @@ export const hasBook = async (db, user: string, book: IBook, setFavorite: (elem:
 };
 
 export const deleteFromBD = async (db, user: string, book: IBook) => {
-  const docRef = doc(db, user, book.id);
-  await deleteDoc(docRef);
+  try {
+    const docRef = doc(db, user, book.id);
+    await deleteDoc(docRef);
+  } catch (err) {
+    console.error((err as Error).message);
+  }
 };
 
 export const getBooks = async (db, user: string, setBooks: (elems: IBook[]) => void) => {
   try {
     const data = await getDocs(collection(db, user));
-    setBooks(data.docs.map((doc) => ({ ...doc.data() })));
+    setBooks(data.docs.map((doc: any) => ({ ...doc.data(), id: doc.id })));
   } catch (err) {
     console.error((err as Error).message);
   }
