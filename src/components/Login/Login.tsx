@@ -8,8 +8,8 @@ function Login() {
     try {
       const provider = new GoogleAuthProvider();
       await signInWithPopup(getAuth(), provider);
-    } catch (e: any) {
-      console.error(e.message);
+    } catch (e) {
+      console.error((e as Error).message);
     }
   };
 
