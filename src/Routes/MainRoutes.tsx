@@ -2,11 +2,11 @@ import { getAuth } from 'firebase/auth';
 import React, { useContext, useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router';
 
-import BookPage from '../../pages/BookPage/BookPage';
-import FavoritesPage from '../../pages/FavoritesPage/FavoritesPage';
-import MainPage from '../../pages/MainPage/MainPage';
-import { FirebaseContext } from '../Context/FirebaseContext';
-import Login from '../Login/Login';
+import Login from '../components/Login/Login';
+import { FirebaseContext } from '../context/FirebaseContext';
+import BookPage from '../pages/BookPage/BookPage';
+import FavoritesPage from '../pages/FavoritesPage/FavoritesPage';
+import MainPage from '../pages/MainPage/MainPage';
 
 interface Props {
   request: string;

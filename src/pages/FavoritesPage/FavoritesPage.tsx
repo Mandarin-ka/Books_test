@@ -2,8 +2,8 @@ import { getAuth } from 'firebase/auth';
 import React, { useContext, useEffect, useState } from 'react';
 
 import BookItems from '../../components/BookItems/BookItems';
-import { FirebaseContext } from '../../components/Context/FirebaseContext';
-import { ThemeContext } from '../../components/Context/ThemeContext';
+import { FirebaseContext } from '../../context/FirebaseContext';
+import { ThemeContext } from '../../context/ThemeContext';
 import { IBook } from '../../interfaces/IBooks';
 import { getBooks } from '../../utils/Firebase';
 

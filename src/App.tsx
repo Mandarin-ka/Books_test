@@ -4,11 +4,11 @@ import './styles/media.css';
 import React, { useState } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 
-import { ThemeContext } from './components/Context/ThemeContext';
 import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 import Header from './components/Header/Header';
-import MainRoutes from './components/Routes/MainRoutes';
-import ThemeToggler from './components/UI/ThemeToggler/ThemeToggler';
+import { ThemeContext } from './context/ThemeContext';
+import MainRoutes from './Routes/MainRoutes';
+import ThemeToggler from './UI/ThemeToggler/ThemeToggler';
 
 function App() {
   const [request, setRequest] = useState('');
@@ -35,7 +35,7 @@ function App() {
           <MainRoutes request={request} category={category} sort={sort} page={page} setPage={setPage} />
         </ErrorBoundary>
 
-        <ThemeToggler />
+        <ThemeToggler theme={theme} setTheme={setTheme} />
       </ThemeContext.Provider>
     </BrowserRouter>
   );

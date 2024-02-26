@@ -1,13 +1,13 @@
 import parse from 'html-react-parser';
 import React, { useContext } from 'react';
 
+import { ThemeContext } from '../../context/ThemeContext';
 import { IBook } from '../../interfaces/IBooks';
-import { ThemeContext } from '../Context/ThemeContext';
 import styles from './BookInfo.module.css';
 
 function BookInfo({ book }: { book: IBook }) {
   const { theme } = useContext(ThemeContext);
-  if (!book) return <h2>Ууупс..:( Книга не найдена</h2>;
+  if (!book) return <p>Книга не найдена...</p>;
 
   return (
     <div className={styles.book + ' ' + styles[theme]}>

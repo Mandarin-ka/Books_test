@@ -1,3 +1,4 @@
+import { initializeApp } from 'firebase/app';
 import { collection, deleteDoc, doc, getDoc, getDocs, setDoc } from 'firebase/firestore';
 
 import { IBook } from '../interfaces/IBooks';
@@ -40,8 +41,18 @@ export const deleteFromBD = async (db, user: string, book: IBook) => {
 export const getBooks = async (db, user: string, setBooks: (elems: IBook[]) => void) => {
   try {
     const data = await getDocs(collection(db, user));
-    setBooks(data.docs.map((doc: any) => ({ ...doc.data(), id: doc.id })));
+    setBooks(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
   } catch (err) {
     console.error((err as Error).message);
   }
 };
+
+export const app = initializeApp({
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: 'books-test-1c383.firebaseapp.com',
+  projectId: 'books-test-1c383',
+  storageBucket: 'books-test-1c383.appspot.com',
+  messagingSenderId: '794209970107',
+  appId: '1:794209970107:web:af6d136c6fc8d8064b469e',
+  measurementId: 'G-T19LNBVRKT',
+});

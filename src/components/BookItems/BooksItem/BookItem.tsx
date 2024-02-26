@@ -2,10 +2,10 @@ import { getAuth } from 'firebase/auth';
 import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
+import { FirebaseContext } from '../../../context/FirebaseContext';
+import { ThemeContext } from '../../../context/ThemeContext';
 import { IBook } from '../../../interfaces/IBooks';
 import { addToDB, deleteFromBD, hasBook } from '../../../utils/Firebase';
-import { FirebaseContext } from '../../Context/FirebaseContext';
-import { ThemeContext } from '../../Context/ThemeContext';
 import styles from './BookItem.module.css';
 
 function BookItem({ book }: { book: IBook }) {

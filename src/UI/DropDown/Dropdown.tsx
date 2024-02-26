@@ -13,7 +13,7 @@ interface Props {
 const Dropdown = ({ options, value, setValue, defaultAction }: Props) => {
   const [isActive, setIsActive] = useState(false);
 
-  const optionState = () => {
+  const optionHandler = () => {
     let result = styles.dropdown__button;
     if (options) {
       result += ' ' + styles.active;
@@ -25,7 +25,7 @@ const Dropdown = ({ options, value, setValue, defaultAction }: Props) => {
     return result;
   };
 
-  const click = useCallback((e: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
+  const onClick = useCallback((e: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
     setValue((e.target as HTMLInputElement).value);
     setIsActive((prevValue) => !prevValue);
     defaultAction();
@@ -34,10 +34,9 @@ const Dropdown = ({ options, value, setValue, defaultAction }: Props) => {
   return (
     <div className={styles.dropdown}>
       <button
-        className={optionState()}
+        className={optionHandler()}
         onClick={() => setIsActive(!isActive)}
-        style={value === options[0] ? { color: '#000000a1' } : { color: 'black' }}
-      >
+        style={value === options[0] ? { color: '#000000a1' } : { color: 'black' }}>
         {value ? value : options[0]}
       </button>
       {isActive && (
@@ -48,7 +47,7 @@ const Dropdown = ({ options, value, setValue, defaultAction }: Props) => {
               key={i}
               className={value === option ? styles.dropdown__item + ' ' + styles.active : styles.dropdown__item}
               value={option}
-              onClick={click}
+              onClick={onClick}
             />
           ))}
         </div>
