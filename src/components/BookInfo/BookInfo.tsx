@@ -1,12 +1,12 @@
 import parse from 'html-react-parser';
-import React, { useContext } from 'react';
+import React from 'react';
 
-import { ThemeContext } from '../../context/ThemeContext';
 import { IBook } from '../../interfaces/IBooks';
+import { useTypedSelector } from '../../types/useTypedSelector';
 import styles from './BookInfo.module.css';
 
 function BookInfo({ book }: { book: IBook }) {
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useTypedSelector((state) => state.theme);
   if (!book) return <p>Книга не найдена...</p>;
 
   return (

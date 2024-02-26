@@ -1,16 +1,16 @@
 import './../styles/common.css';
 
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import BooksService from '../../API/BooksAPI';
 import { useFetching } from '../../hooks/useFetching';
 import { IBook } from '../../interfaces/IBooks';
+import { useTypedSelector } from '../../types/useTypedSelector';
 import LoadButton from '../../UI/Button/LoadButton/LoadButton';
 import Loader from '../../UI/Loader/Loader';
 import { mapData } from '../../utils/DataMap';
 import { getUniqData } from '../../utils/UniqData';
 import BookItems from './../../components/BookItems/BookItems';
-import { ThemeContext } from './../../context/ThemeContext';
 
 interface Props {
   request: string;
@@ -21,7 +21,7 @@ interface Props {
 }
 
 function MainPage({ request, category, sort, page, setPage }: Props) {
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useTypedSelector((state) => state.theme);
   const [books, setBooks] = useState<IBook[]>([]);
   const [totalBooks, setTotalBooks] = useState(0);
   const [isFetchinfNewPage, setIsFetchingNewPage] = useState(false);

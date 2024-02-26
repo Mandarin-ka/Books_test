@@ -3,13 +3,13 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { FirebaseContext } from '../../../context/FirebaseContext';
-import { ThemeContext } from '../../../context/ThemeContext';
 import { IBook } from '../../../interfaces/IBooks';
+import { useTypedSelector } from '../../../types/useTypedSelector';
 import { addToDB, deleteFromBD, hasBook } from '../../../utils/Firebase';
 import styles from './BookItem.module.css';
 
 function BookItem({ book }: { book: IBook }) {
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useTypedSelector((state) => state.theme);
   const { app, db } = useContext(FirebaseContext);
   const user = getAuth(app).currentUser.uid;
 
