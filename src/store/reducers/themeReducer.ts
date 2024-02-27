@@ -1,4 +1,3 @@
-/* eslint-disable indent */
 import { initialState, ThemeAction, ThemeState, ThemeTypes } from '../../types/ThemeTypes';
 
 export const themeReducer = (state = initialState, action: ThemeAction): ThemeState => {

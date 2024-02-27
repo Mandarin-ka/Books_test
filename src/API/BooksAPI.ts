@@ -3,12 +3,12 @@ import axios from 'axios';
 const REQUEST_ADRESS = 'https://www.googleapis.com/books/v1/volumes';
 
 export default class BooksService {
-  static async getBooks(request: string, category: string, sort: string, page: number) {
+  static async getBooks(search: string, category: string, sort: string, page: number) {
     const path = `${REQUEST_ADRESS}?key=${process.env.REACT_APP_API_KEY}`;
     const response = await axios.get(path, {
       headers: { Authorization: process.env.REACT_APP_API_KEY },
       params: {
-        q: `${request}+subject:${category.toLowerCase() === 'all' ? '' : category}`,
+        q: `${search}+subject:${category.toLowerCase() === 'all' ? '' : category}`,
         key: process.env.REACT_APP_API_KEY,
         orderBy: sort,
         maxResults: 30,

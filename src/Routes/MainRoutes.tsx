@@ -8,13 +8,7 @@ import BookPage from '../pages/BookPage/BookPage';
 import FavoritesPage from '../pages/FavoritesPage/FavoritesPage';
 import MainPage from '../pages/MainPage/MainPage';
 
-interface Props {
-  request: string;
-  category: string;
-  sort: string;
-}
-
-function MainRoutes({ request, category, sort }: Props) {
+function MainRoutes() {
   const { app } = useContext(FirebaseContext);
   const auth = getAuth(app);
   const [user, setUser] = useState(null);
@@ -27,7 +21,7 @@ function MainRoutes({ request, category, sort }: Props) {
 
   return user ? (
     <Routes>
-      <Route path={'/'} element={<MainPage request={request} category={category} sort={sort} />} />
+      <Route path={'/'} element={<MainPage />} />
       <Route path={'/bookPage/:id'} element={<BookPage />} />
       <Route path={'/favorites'} element={<FavoritesPage />} />
     </Routes>

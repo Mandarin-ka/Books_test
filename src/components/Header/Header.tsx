@@ -5,30 +5,30 @@ import { useNavigate } from 'react-router';
 import { Link } from 'react-router-dom';
 
 import { FirebaseContext } from '../../context/FirebaseContext';
+import { useTypedSelector } from '../../types/useTypedSelector';
 import Dropdown from '../../UI/DropDown/Dropdown';
 import SearchInput from '../../UI/SearchInput/SearchInput';
 import styles from './Header.module.css';
 
-type Setter = (elem: string) => void;
-
-interface Props {
-  category: string;
-  sort: string;
-  setRequest: Setter;
-  setCategory: Setter;
-  setSort: Setter;
-}
-
-function Header({ category, sort, setRequest, setCategory, setSort }: Props) {
+function Header() {
   const navigate = useNavigate();
   const { app } = useContext(FirebaseContext);
   const auth = getAuth(app);
   const [user, setUser] = useState(null);
   const dispatch = useDispatch();
+  const { page } = useTypedSelector((state) => state.request);
 
   const defaultAction = () => {
-    dispatch({ type: 'RESET_PAGE' });
+    if (page !== 0) dispatch({ type: 'RESET_PAGE' });
     navigate('./');
+  };
+
+  const setFilter = (filterOption: string) => {
+    dispatch({ type: 'SET_CATEGORY', payload: filterOption });
+  };
+
+  const setSort = (sortOption: string) => {
+    dispatch({ type: 'SET_SORT', payload: sortOption });
   };
 
   const filterOptions = ['all', 'art', 'biography', 'computers', 'history', 'medical', 'poetry'];
@@ -39,8 +39,8 @@ function Header({ category, sort, setRequest, setCategory, setSort }: Props) {
   };
 
   useEffect(() => {
-    auth.onAuthStateChanged((user1) => {
-      setUser(user1);
+    auth.onAuthStateChanged((user) => {
+      setUser(user);
     });
   }, []);
 
@@ -54,10 +54,10 @@ function Header({ category, sort, setRequest, setCategory, setSort }: Props) {
           <Link to='./favorites'>Избранное</Link>
         </li>
       </ul>
-      <SearchInput setRequest={setRequest} defaultAction={defaultAction} />
+      <SearchInput defaultAction={defaultAction} />
       <div className={styles.dropdown__items}>
-        <Dropdown options={filterOptions} value={category} setValue={setCategory} defaultAction={defaultAction} />
-        <Dropdown options={sortOptions} value={sort} setValue={setSort} defaultAction={defaultAction} />
+        <Dropdown options={filterOptions} defaultAction={defaultAction} action={setFilter} />
+        <Dropdown options={sortOptions} defaultAction={defaultAction} action={setSort} />
       </div>
 
       {user && (

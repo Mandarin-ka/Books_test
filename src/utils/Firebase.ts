@@ -1,7 +1,7 @@
 import { initializeApp } from 'firebase/app';
 import { collection, deleteDoc, doc, getDoc, getDocs, setDoc } from 'firebase/firestore';
 
-import { IBook } from '../interfaces/IBooks';
+import { IBook } from '../types/IBooks';
 
 export const addToDB = async (db, user: string, book: IBook) => {
   try {
@@ -20,7 +20,12 @@ export const addToDB = async (db, user: string, book: IBook) => {
   }
 };
 
-export const hasBook = async (db, user: string, book: IBook, setFavorite: (elem: boolean) => void) => {
+export const hasBook = async (
+  db,
+  user: string,
+  book: IBook,
+  setFavorite: (elem: boolean) => void
+) => {
   try {
     const docSnap = await getDoc(doc(db, user, book.id));
     setFavorite(docSnap.exists());

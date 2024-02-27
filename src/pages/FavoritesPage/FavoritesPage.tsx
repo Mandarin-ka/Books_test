@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from 'react';
 
 import BookItems from '../../components/BookItems/BookItems';
 import { FirebaseContext } from '../../context/FirebaseContext';
-import { IBook } from '../../interfaces/IBooks';
+import { IBook } from '../../types/IBooks';
 import { useTypedSelector } from '../../types/useTypedSelector';
 import { getBooks } from '../../utils/Firebase';
 

@@ -4,14 +4,14 @@ import { useCallback, useState } from 'react';
 import styles from './Dropdown.module.css';
 
 interface Props {
+  action: (elem: string) => void;
   options: string[];
-  value: string;
-  setValue: (elem: string) => void;
   defaultAction: () => void;
 }
 
-const Dropdown = ({ options, value, setValue, defaultAction }: Props) => {
+const Dropdown = ({ options, defaultAction, action }: Props) => {
   const [isActive, setIsActive] = useState(false);
+  const [currentValue, setCurrentValue] = useState(options[0]);
 
   const optionHandler = () => {
     let result = styles.dropdown__button;
@@ -26,8 +26,9 @@ const Dropdown = ({ options, value, setValue, defaultAction }: Props) => {
   };
 
   const onClick = useCallback((e: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
-    setValue((e.target as HTMLInputElement).value);
+    setCurrentValue((e.target as HTMLInputElement).value);
     setIsActive((prevValue) => !prevValue);
+    action((e.target as HTMLInputElement).value);
     defaultAction();
   }, []);
 
@@ -36,8 +37,9 @@ const Dropdown = ({ options, value, setValue, defaultAction }: Props) => {
       <button
         className={optionHandler()}
         onClick={() => setIsActive(!isActive)}
-        style={value === options[0] ? { color: '#000000a1' } : { color: 'black' }}>
-        {value ? value : options[0]}
+        style={currentValue === options[0] ? { color: '#000000a1' } : { color: 'black' }}
+      >
+        {currentValue ? currentValue : options[0]}
       </button>
       {isActive && (
         <div className={styles.dropdown__content}>
@@ -45,7 +47,11 @@ const Dropdown = ({ options, value, setValue, defaultAction }: Props) => {
             <input
               type='button'
               key={i}
-              className={value === option ? styles.dropdown__item + ' ' + styles.active : styles.dropdown__item}
+              className={
+                currentValue === option
+                  ? styles.dropdown__item + ' ' + styles.active
+                  : styles.dropdown__item
+              }
               value={option}
               onClick={onClick}
             />

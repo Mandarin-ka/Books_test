@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 
 import BooksService from '../../API/BooksAPI';
 import { useFetching } from '../../hooks/useFetching';
-import { IBook } from '../../interfaces/IBooks';
+import { IBook } from '../../types/IBooks';
 import { useTypedSelector } from '../../types/useTypedSelector';
 import LoadButton from '../../UI/Button/LoadButton/LoadButton';
 import Loader from '../../UI/Loader/Loader';
@@ -13,23 +13,17 @@ import { mapData } from '../../utils/DataMap';
 import { getUniqData } from '../../utils/UniqData';
 import BookItems from './../../components/BookItems/BookItems';
 
-interface Props {
-  request: string;
-  category: string;
-  sort: string;
-}
-
-function MainPage({ request, category, sort }: Props) {
+function MainPage() {
   const { theme } = useTypedSelector((state) => state.theme);
   const [books, setBooks] = useState<IBook[]>([]);
   const [totalBooks, setTotalBooks] = useState(0);
   const [isFetchinfNewPage, setIsFetchingNewPage] = useState(false);
 
-  const { page } = useTypedSelector((state) => state.page);
+  const { search, category, sort, page } = useTypedSelector((state) => state.request);
   const dispatch = useDispatch();
 
   const [fetchBooks, isBooksLoading] = useFetching(async () => {
-    const response = await BooksService.getBooks(request, category, sort, page);
+    const response = await BooksService.getBooks(search, category, sort, page);
     if (isFetchinfNewPage) {
       setBooks(getUniqData(mapData([...books, ...response.data.items])));
     } else {
@@ -41,10 +35,10 @@ function MainPage({ request, category, sort }: Props) {
 
   useEffect(() => {
     fetchBooks();
-  }, [request, category, sort, page]);
+  }, [search, category, sort, page]);
 
   const onLoad = () => {
-    dispatch({ type: 'ADD_PAGE', payload: 30 });
+    dispatch({ type: 'ADD_PAGE' });
     setIsFetchingNewPage(true);
   };
 

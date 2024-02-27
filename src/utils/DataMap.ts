@@ -1,4 +1,4 @@
-import { IBook } from '../interfaces/IBooks';
+import { IBook } from '../types/IBooks';
 
 export const mapData = (data: IBook[]) => {
   return data.map((e) => {

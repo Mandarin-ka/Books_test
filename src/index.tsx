@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 
 import App from './App';
+import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 import { FirebaseContext } from './context/FirebaseContext';
 import { store } from './store';
 import { app } from './utils/Firebase';
@@ -15,7 +16,9 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <FirebaseContext.Provider value={{ app, db }}>
-        <App />
+        <ErrorBoundary>
+          <App />
+        </ErrorBoundary>
       </FirebaseContext.Provider>
     </Provider>
   </React.StrictMode>

@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { FirebaseContext } from '../../../context/FirebaseContext';
-import { IBook } from '../../../interfaces/IBooks';
+import { IBook } from '../../../types/IBooks';
 import { useTypedSelector } from '../../../types/useTypedSelector';
 import { addToDB, deleteFromBD, hasBook } from '../../../utils/Firebase';
 import styles from './BookItem.module.css';
@@ -31,15 +31,20 @@ function BookItem({ book }: { book: IBook }) {
         <div className={styles.book__item + ' ' + styles[theme]}>
           <div
             className={isFavorite ? styles.heart + ' ' + styles.active : styles.heart}
-            onClick={toggleFavorite}></div>
+            onClick={toggleFavorite}
+          ></div>
           <img
-            src={book.volumeInfo.imageLinks?.thumbnail || book.volumeInfo.imageLinks?.smallThumbnail}
+            src={
+              book.volumeInfo.imageLinks?.thumbnail || book.volumeInfo.imageLinks?.smallThumbnail
+            }
             alt={book.volumeInfo.title}
             className={styles.book__img}
           />
           <p className={styles.type + ' ' + styles[theme]}>{book.volumeInfo?.categories}</p>
           <h2 className={styles.title + ' ' + styles[theme]}>{book.volumeInfo?.title}</h2>
-          <p className={styles.authors + ' ' + styles[theme]}>{book.volumeInfo.authors?.join(', ')}</p>
+          <p className={styles.authors + ' ' + styles[theme]}>
+            {book.volumeInfo.authors?.join(', ')}
+          </p>
         </div>
       </Link>
     )

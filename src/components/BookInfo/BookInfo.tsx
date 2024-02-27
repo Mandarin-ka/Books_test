@@ -1,7 +1,7 @@
 import parse from 'html-react-parser';
 import React from 'react';
 
-import { IBook } from '../../interfaces/IBooks';
+import { IBook } from '../../types/IBooks';
 import { useTypedSelector } from '../../types/useTypedSelector';
 import styles from './BookInfo.module.css';
 

@@ -6,7 +6,7 @@ import { useParams } from 'react-router';
 import BooksService from '../../API/BooksAPI';
 import BookInfo from '../../components/BookInfo/BookInfo';
 import { useFetching } from '../../hooks/useFetching';
-import { IBook } from '../../interfaces/IBooks';
+import { IBook } from '../../types/IBooks';
 import { useTypedSelector } from '../../types/useTypedSelector';
 import Loader from '../../UI/Loader/Loader';
 
