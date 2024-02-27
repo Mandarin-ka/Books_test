@@ -27,10 +27,10 @@ export const deleteItem = (id: string): void => {
 
 //=====================save themes after reloading
 
-export const setTheme = (theme: 'dark' | 'light'): void => {
+export const setThemeToLS = (theme: 'dark' | 'light'): void => {
   localStorage.setItem('theme', theme);
 };
 
-export const getTheme = (): 'dark' | 'light' => {
+export const getThemeFromLS = (): 'dark' | 'light' => {
   return localStorage.getItem('theme') === 'dark' ? 'dark' : 'light';
 };

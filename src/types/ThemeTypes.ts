@@ -1,4 +1,4 @@
-import { getTheme } from '../utils/LocalStorage';
+import { getThemeFromLS } from '../utils/LocalStorage';
 
 export interface ThemeState {
   theme: 'dark' | 'light';
@@ -14,5 +14,5 @@ export interface ThemeAction {
 }
 
 export const initialState: ThemeState = {
-  theme: getTheme(),
+  theme: getThemeFromLS(),
 };

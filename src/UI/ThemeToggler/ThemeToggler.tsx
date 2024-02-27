@@ -1,8 +1,24 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 
+import { useTypedSelector } from '../../types/useTypedSelector';
+import { setThemeToLS } from '../../utils/LocalStorage';
 import styles from './ThemeToggler.module.css';
 
-function ThemeToggler({ theme, toggleTheme }: { theme: string; toggleTheme: () => void }) {
+function ThemeToggler() {
+  const dispatch = useDispatch();
+  const { theme } = useTypedSelector((state) => state.theme);
+
+  const toggleTheme = () => {
+    if (theme === 'light') {
+      setThemeToLS('dark');
+      dispatch({ type: 'SET_DARK' });
+    } else {
+      setThemeToLS('light');
+      dispatch({ type: 'SET_LIGHT' });
+    }
+  };
+
   return (
     <div
       onClick={toggleTheme}

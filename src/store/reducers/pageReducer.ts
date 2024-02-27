@@ -1,22 +1,5 @@
 /* eslint-disable indent */
-
-enum PageTypes {
-  ADD_PAGE = 'ADD_PAGE',
-  RESET_PAGE = 'RESET_PAGE',
-}
-
-interface PageState {
-  page: number;
-}
-
-const initialState = {
-  page: 0,
-};
-
-interface ActionType {
-  type: string;
-  payload?: number;
-}
+import { ActionType, initialState, PageState, PageTypes } from '../../types/PageTypes';
 
 export const pageReducer = (state = initialState, action: ActionType): PageState => {
   switch (action.type) {
