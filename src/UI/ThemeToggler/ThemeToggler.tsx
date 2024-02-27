@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 
 import { useTypedSelector } from '../../types/useTypedSelector';
-import { setThemeToLS } from '../../utils/LocalStorage';
+import { setThemeToLS } from '../../utils/ThemeStorage';
 import styles from './ThemeToggler.module.css';
 
 function ThemeToggler() {
@@ -22,7 +22,10 @@ function ThemeToggler() {
   return (
     <div
       onClick={toggleTheme}
-      className={theme === 'dark' ? styles.toggler + ' ' + styles.dark : styles.toggler + ' ' + styles.light}>
+      className={
+        theme === 'dark' ? styles.toggler + ' ' + styles.dark : styles.toggler + ' ' + styles.light
+      }
+    >
       <div className={styles.helper}></div>
       <div className={styles.helper1}></div>
     </div>
