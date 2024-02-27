@@ -1,4 +1,4 @@
-import { getThemeFromLS } from '../utils/LocalStorage';
+import { getThemeFromLS } from '../utils/ThemeStorage';
 
 export interface ThemeState {
   theme: 'dark' | 'light';
