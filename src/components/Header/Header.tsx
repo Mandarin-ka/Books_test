@@ -1,5 +1,6 @@
 import { getAuth } from 'firebase/auth';
 import React, { useContext, useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { Link } from 'react-router-dom';
 
@@ -16,17 +17,17 @@ interface Props {
   setRequest: Setter;
   setCategory: Setter;
   setSort: Setter;
-  setPage: (elem: number) => void;
 }
 
-function Header({ category, sort, setRequest, setCategory, setSort, setPage }: Props) {
+function Header({ category, sort, setRequest, setCategory, setSort }: Props) {
   const navigate = useNavigate();
   const { app } = useContext(FirebaseContext);
   const auth = getAuth(app);
   const [user, setUser] = useState(null);
+  const dispatch = useDispatch();
 
   const defaultAction = () => {
-    setPage(0);
+    dispatch({ type: 'RESET_PAGE' });
     navigate('./');
   };
 
@@ -53,7 +54,7 @@ function Header({ category, sort, setRequest, setCategory, setSort, setPage }: P
           <Link to='./favorites'>Избранное</Link>
         </li>
       </ul>
-      <SearchInput setRequest={setRequest} setPage={setPage} />
+      <SearchInput setRequest={setRequest} defaultAction={defaultAction} />
       <div className={styles.dropdown__items}>
         <Dropdown options={filterOptions} value={category} setValue={setCategory} defaultAction={defaultAction} />
         <Dropdown options={sortOptions} value={sort} setValue={setSort} defaultAction={defaultAction} />

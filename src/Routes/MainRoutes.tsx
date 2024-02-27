@@ -12,11 +12,9 @@ interface Props {
   request: string;
   category: string;
   sort: string;
-  page: number;
-  setPage: (value: (value: number) => number) => void;
 }
 
-function MainRoutes({ request, category, sort, page, setPage }: Props) {
+function MainRoutes({ request, category, sort }: Props) {
   const { app } = useContext(FirebaseContext);
   const auth = getAuth(app);
   const [user, setUser] = useState(null);
@@ -29,10 +27,7 @@ function MainRoutes({ request, category, sort, page, setPage }: Props) {
 
   return user ? (
     <Routes>
-      <Route
-        path={'/'}
-        element={<MainPage request={request} category={category} sort={sort} page={page} setPage={setPage} />}
-      />
+      <Route path={'/'} element={<MainPage request={request} category={category} sort={sort} />} />
       <Route path={'/bookPage/:id'} element={<BookPage />} />
       <Route path={'/favorites'} element={<FavoritesPage />} />
     </Routes>

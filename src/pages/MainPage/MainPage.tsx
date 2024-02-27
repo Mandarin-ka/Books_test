@@ -1,6 +1,7 @@
 import './../styles/common.css';
 
 import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 import BooksService from '../../API/BooksAPI';
 import { useFetching } from '../../hooks/useFetching';
@@ -16,15 +17,16 @@ interface Props {
   request: string;
   category: string;
   sort: string;
-  page: number;
-  setPage: (value: (value: number) => number) => void;
 }
 
-function MainPage({ request, category, sort, page, setPage }: Props) {
+function MainPage({ request, category, sort }: Props) {
   const { theme } = useTypedSelector((state) => state.theme);
   const [books, setBooks] = useState<IBook[]>([]);
   const [totalBooks, setTotalBooks] = useState(0);
   const [isFetchinfNewPage, setIsFetchingNewPage] = useState(false);
+
+  const { page } = useTypedSelector((state) => state.page);
+  const dispatch = useDispatch();
 
   const [fetchBooks, isBooksLoading] = useFetching(async () => {
     const response = await BooksService.getBooks(request, category, sort, page);
@@ -42,7 +44,7 @@ function MainPage({ request, category, sort, page, setPage }: Props) {
   }, [request, category, sort, page]);
 
   const onLoad = () => {
-    setPage((prevState: number) => prevState + 30);
+    dispatch({ type: 'ADD_PAGE', payload: 30 });
     setIsFetchingNewPage(true);
   };
 

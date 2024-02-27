@@ -13,22 +13,14 @@ function App() {
   const [request, setRequest] = useState('');
   const [category, setCategory] = useState('all');
   const [sort, setSort] = useState('relevance');
-  const [page, setPage] = useState(0);
 
   return (
     <BrowserRouter>
       <ErrorBoundary>
-        <Header
-          category={category}
-          sort={sort}
-          setRequest={setRequest}
-          setCategory={setCategory}
-          setSort={setSort}
-          setPage={setPage}
-        />
+        <Header category={category} sort={sort} setRequest={setRequest} setCategory={setCategory} setSort={setSort} />
       </ErrorBoundary>
 
-      <MainRoutes request={request} category={category} sort={sort} page={page} setPage={setPage} />
+      <MainRoutes request={request} category={category} sort={sort} />
 
       <ThemeToggler />
     </BrowserRouter>

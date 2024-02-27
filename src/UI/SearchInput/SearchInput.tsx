@@ -5,17 +5,16 @@ import styles from './SearchInput.module.css';
 
 interface Props {
   setRequest: (elem: string) => void;
-  setPage: (elem: number) => void;
+  defaultAction: () => void;
 }
 
-function SearchInput({ setRequest, setPage }: Props) {
+function SearchInput({ setRequest, defaultAction }: Props) {
   const [inputValue, setInputValue] = useState('');
   const navigate = useNavigate();
 
   const click = useCallback(() => {
     setRequest(inputValue);
-    navigate('./');
-    setPage(0);
+    defaultAction();
   }, [inputValue]);
 
   const change = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
