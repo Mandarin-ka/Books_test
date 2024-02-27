@@ -1,33 +1,34 @@
 import { getAuth } from 'firebase/auth';
 import React, { useContext, useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { Link } from 'react-router-dom';
 
-import { FirebaseContext } from '../Context/FirebaseContext';
-import Dropdown from '../UI/DropDown/Dropdown';
-import SearchInput from '../UI/SearchInput/SearchInput';
+import { FirebaseContext } from '../../context/FirebaseContext';
+import { useTypedSelector } from '../../types/useTypedSelector';
+import Dropdown from '../../UI/DropDown/Dropdown';
+import SearchInput from '../../UI/SearchInput/SearchInput';
 import styles from './Header.module.css';
 
-type Setter = (elem: string) => void;
-
-interface Props {
-  category: string;
-  sort: string;
-  setRequest: Setter;
-  setCategory: Setter;
-  setSort: Setter;
-  setPage: (elem: number) => void;
-}
-
-function Header({ category, sort, setRequest, setCategory, setSort, setPage }: Props) {
+function Header() {
   const navigate = useNavigate();
   const { app } = useContext(FirebaseContext);
   const auth = getAuth(app);
   const [user, setUser] = useState(null);
+  const dispatch = useDispatch();
+  const { page } = useTypedSelector((state) => state.request);
 
   const defaultAction = () => {
-    setPage(0);
+    if (page !== 0) dispatch({ type: 'RESET_PAGE' });
     navigate('./');
+  };
+
+  const setFilter = (filterOption: string) => {
+    dispatch({ type: 'SET_CATEGORY', payload: filterOption });
+  };
+
+  const setSort = (sortOption: string) => {
+    dispatch({ type: 'SET_SORT', payload: sortOption });
   };
 
   const filterOptions = ['all', 'art', 'biography', 'computers', 'history', 'medical', 'poetry'];
@@ -38,8 +39,8 @@ function Header({ category, sort, setRequest, setCategory, setSort, setPage }: P
   };
 
   useEffect(() => {
-    auth.onAuthStateChanged((user1) => {
-      setUser(user1);
+    auth.onAuthStateChanged((user) => {
+      setUser(user);
     });
   }, []);
 
@@ -53,10 +54,10 @@ function Header({ category, sort, setRequest, setCategory, setSort, setPage }: P
           <Link to='./favorites'>Избранное</Link>
         </li>
       </ul>
-      <SearchInput setRequest={setRequest} setPage={setPage} />
+      <SearchInput defaultAction={defaultAction} />
       <div className={styles.dropdown__items}>
-        <Dropdown options={filterOptions} value={category} setValue={setCategory} defaultAction={defaultAction} />
-        <Dropdown options={sortOptions} value={sort} setValue={setSort} defaultAction={defaultAction} />
+        <Dropdown options={filterOptions} defaultAction={defaultAction} action={setFilter} />
+        <Dropdown options={sortOptions} defaultAction={defaultAction} action={setSort} />
       </div>
 
       {user && (

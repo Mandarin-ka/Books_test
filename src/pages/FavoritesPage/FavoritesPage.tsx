@@ -2,13 +2,13 @@ import { getAuth } from 'firebase/auth';
 import React, { useContext, useEffect, useState } from 'react';
 
 import BookItems from '../../components/BookItems/BookItems';
-import { FirebaseContext } from '../../components/Context/FirebaseContext';
-import { ThemeContext } from '../../components/Context/ThemeContext';
-import { IBook } from '../../interfaces/IBooks';
+import { FirebaseContext } from '../../context/FirebaseContext';
+import { IBook } from '../../types/IBooks';
+import { useTypedSelector } from '../../types/useTypedSelector';
 import { getBooks } from '../../utils/Firebase';
 
 function FavoritesPage() {
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useTypedSelector((state) => state.theme);
   const { app, db } = useContext(FirebaseContext);
   const [favorites, setFavorites] = useState<IBook[]>([]);
   const user = getAuth(app).currentUser.uid;

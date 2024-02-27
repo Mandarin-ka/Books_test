@@ -1,4 +1,4 @@
-import { IBook } from '../interfaces/IBooks';
+import { IBook } from '../types/IBooks';
 
 export const getUniqData = (data: IBook[]) => {
   const ids = [];

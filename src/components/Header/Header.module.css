@@ -30,7 +30,7 @@
 }
 
 .ul > * {
-  margin: 0 40px;
+  margin: 0 30px;
 }
 
 .ul > * > * {
@@ -53,5 +53,16 @@
 @media screen and (max-width: 560px) {
   .dropdown__items {
     flex-direction: column-reverse;
+  }
+}
+
+@media screen and (max-width: 490px) {
+  .header {
+    padding: 40px 0;
+  }
+
+  .login {
+    top: 15px;
+    right: 15px;
   }
 }
