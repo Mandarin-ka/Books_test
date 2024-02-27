@@ -22,7 +22,10 @@ function ThemeToggler() {
   return (
     <div
       onClick={toggleTheme}
-      className={theme === 'dark' ? styles.toggler + ' ' + styles.dark : styles.toggler + ' ' + styles.light}>
+      className={
+        theme === 'dark' ? styles.toggler + ' ' + styles.dark : styles.toggler + ' ' + styles.light
+      }
+    >
       <div className={styles.helper}></div>
       <div className={styles.helper1}></div>
     </div>
