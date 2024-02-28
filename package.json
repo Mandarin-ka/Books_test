@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@craco/craco": "^7.1.0",
     "@firebase/firestore-types": "^3.0.0",
     "@reduxjs/toolkit": "^2.2.1",
     "@types/firebase": "^3.2.1",
@@ -25,10 +26,10 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
+    "eject": "craco eject"
   },
   "eslintConfig": {
     "extends": [
@@ -52,7 +53,10 @@
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@types/css-modules": "^1.0.5",
     "axios": "^1.6.7",
+    "craco-alias": "^3.0.1",
     "eslint": "^8.56.0",
+    "eslint-import-resolver-alias": "^1.1.2",
+    "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-simple-import-sort": "^12.0.0",
     "file-loader": "^6.2.0",
     "html-react-parser": "^5.1.7"

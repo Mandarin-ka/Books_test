@@ -1,4 +1,4 @@
-import { initialState, ThemeAction, ThemeState, ThemeTypes } from '../../types/ThemeTypes';
+import { initialState, ThemeAction, ThemeState, ThemeTypes } from '@projectTypes/ThemeTypes';
 
 export const themeReducer = (state = initialState, action: ThemeAction): ThemeState => {
   switch (action.type) {

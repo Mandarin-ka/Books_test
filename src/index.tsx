@@ -1,13 +1,13 @@
+import ErrorBoundary from '@components/ErrorBoundary/ErrorBoundary';
+import { FirebaseContext } from '@context/FirebaseContext';
+import { store } from '@store/index';
+import { app } from '@utils/Firebase';
 import { getFirestore } from 'firebase/firestore';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 
 import App from './App';
-import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
-import { FirebaseContext } from './context/FirebaseContext';
-import { store } from './store';
-import { app } from './utils/Firebase';
 
 const db = getFirestore(app);
 

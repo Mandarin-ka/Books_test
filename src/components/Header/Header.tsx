@@ -1,13 +1,13 @@
+import { FirebaseContext } from '@context/FirebaseContext';
+import { useTypedSelector } from '@projectTypes/useTypedSelector';
+import Dropdown from '@UI/DropDown/Dropdown';
+import SearchInput from '@UI/SearchInput/SearchInput';
 import { getAuth } from 'firebase/auth';
 import React, { useContext, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { Link } from 'react-router-dom';
 
-import { FirebaseContext } from '../../context/FirebaseContext';
-import { useTypedSelector } from '../../types/useTypedSelector';
-import Dropdown from '../../UI/DropDown/Dropdown';
-import SearchInput from '../../UI/SearchInput/SearchInput';
 import styles from './Header.module.css';
 
 function Header() {

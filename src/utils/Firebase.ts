@@ -1,7 +1,6 @@
+import { IBook } from '@projectTypes/IBooks';
 import { initializeApp } from 'firebase/app';
 import { collection, deleteDoc, doc, getDoc, getDocs, setDoc } from 'firebase/firestore';
-
-import { IBook } from '../types/IBooks';
 
 export const addToDB = async (db, user: string, book: IBook) => {
   try {

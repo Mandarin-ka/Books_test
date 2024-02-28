@@ -1,4 +1,4 @@
-import { IBook } from '../types/IBooks';
+import { IBook } from '@projectTypes/IBooks';
 
 export const getUniqData = (data: IBook[]) => {
   const ids = [];
