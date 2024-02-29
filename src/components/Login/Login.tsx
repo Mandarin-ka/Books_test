@@ -1,7 +1,7 @@
 import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import React from 'react';
 
-import LoginButton from '../UI/Button/LoginButton/LoginButton';
+import LoginButton from '../../UI/Button/LoginButton/LoginButton';
 
 function Login() {
   const login = async () => {
@@ -13,7 +13,7 @@ function Login() {
     }
   };
 
-  return <LoginButton click={login} />;
+  return <LoginButton onClick={login} />;
 }
 
 export default Login;

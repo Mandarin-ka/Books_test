@@ -2,14 +2,14 @@ import { getAuth } from 'firebase/auth';
 import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { IBook } from '../../../interfaces/IBooks';
+import { FirebaseContext } from '../../../context/FirebaseContext';
+import { IBook } from '../../../types/IBooks';
+import { useTypedSelector } from '../../../types/useTypedSelector';
 import { addToDB, deleteFromBD, hasBook } from '../../../utils/Firebase';
-import { FirebaseContext } from '../../Context/FirebaseContext';
-import { ThemeContext } from '../../Context/ThemeContext';
 import styles from './BookItem.module.css';
 
 function BookItem({ book }: { book: IBook }) {
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useTypedSelector((state) => state.theme);
   const { app, db } = useContext(FirebaseContext);
   const user = getAuth(app).currentUser.uid;
 
@@ -31,15 +31,20 @@ function BookItem({ book }: { book: IBook }) {
         <div className={styles.book__item + ' ' + styles[theme]}>
           <div
             className={isFavorite ? styles.heart + ' ' + styles.active : styles.heart}
-            onClick={toggleFavorite}></div>
+            onClick={toggleFavorite}
+          ></div>
           <img
-            src={book.volumeInfo.imageLinks?.thumbnail || book.volumeInfo.imageLinks?.smallThumbnail}
+            src={
+              book.volumeInfo.imageLinks?.thumbnail || book.volumeInfo.imageLinks?.smallThumbnail
+            }
             alt={book.volumeInfo.title}
             className={styles.book__img}
           />
           <p className={styles.type + ' ' + styles[theme]}>{book.volumeInfo?.categories}</p>
           <h2 className={styles.title + ' ' + styles[theme]}>{book.volumeInfo?.title}</h2>
-          <p className={styles.authors + ' ' + styles[theme]}>{book.volumeInfo.authors?.join(', ')}</p>
+          <p className={styles.authors + ' ' + styles[theme]}>
+            {book.volumeInfo.authors?.join(', ')}
+          </p>
         </div>
       </Link>
     )

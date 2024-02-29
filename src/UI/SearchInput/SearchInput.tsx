@@ -1,31 +1,29 @@
 import React, { memo, useCallback, useState } from 'react';
-import { useNavigate } from 'react-router';
+import { useDispatch } from 'react-redux';
 
 import styles from './SearchInput.module.css';
 
 interface Props {
-  setRequest: (elem: string) => void;
-  setPage: (elem: number) => void;
+  defaultAction: () => void;
 }
 
-function SearchInput({ setRequest, setPage }: Props) {
+function SearchInput({ defaultAction }: Props) {
   const [inputValue, setInputValue] = useState('');
-  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const click = useCallback(() => {
-    setRequest(inputValue);
-    navigate('./');
-    setPage(0);
+  const onClick = useCallback(() => {
+    dispatch({ type: 'SET_SEARCH', payload: inputValue });
+    defaultAction();
   }, [inputValue]);
 
-  const change = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+  const onChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
   }, []);
 
   const keyPress = useCallback(
     (e: React.KeyboardEvent<HTMLInputElement>) => {
       if (e.key.toLowerCase() === 'enter') {
-        click();
+        onClick();
       }
     },
     [inputValue]
@@ -40,10 +38,10 @@ function SearchInput({ setRequest, setPage }: Props) {
         id=''
         placeholder={'Что бы почитать...?'}
         value={inputValue}
-        onChange={change}
+        onChange={onChange}
         onKeyDown={keyPress}
       />
-      <button className={styles.searchButton} onClick={click}>
+      <button className={styles.searchButton} onClick={onClick}>
         <div className={styles.loupe}></div>
       </button>
     </div>

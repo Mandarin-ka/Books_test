@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { IBook } from '../../interfaces/IBooks';
+import { IBook } from '../../types/IBooks';
 import styles from './BookItems.module.css';
 import BookItem from './BooksItem/BookItem';
 

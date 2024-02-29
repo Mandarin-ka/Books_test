@@ -1,33 +1,29 @@
 import './../styles/common.css';
 
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 import BooksService from '../../API/BooksAPI';
-import BookItems from '../../components/BookItems/BookItems';
-import { ThemeContext } from '../../components/Context/ThemeContext';
-import LoadButton from '../../components/UI/Button/LoadButton/LoadButton';
-import Loader from '../../components/UI/Loader/Loader';
 import { useFetching } from '../../hooks/useFetching';
-import { IBook } from '../../interfaces/IBooks';
+import { IBook } from '../../types/IBooks';
+import { useTypedSelector } from '../../types/useTypedSelector';
+import LoadButton from '../../UI/Button/LoadButton/LoadButton';
+import Loader from '../../UI/Loader/Loader';
 import { mapData } from '../../utils/DataMap';
 import { getUniqData } from '../../utils/UniqData';
+import BookItems from './../../components/BookItems/BookItems';
 
-interface Props {
-  request: string;
-  category: string;
-  sort: string;
-  page: number;
-  setPage: (value: (value: number) => number) => void;
-}
-
-function MainPage({ request, category, sort, page, setPage }: Props) {
-  const { theme } = useContext(ThemeContext);
+function MainPage() {
+  const { theme } = useTypedSelector((state) => state.theme);
   const [books, setBooks] = useState<IBook[]>([]);
   const [totalBooks, setTotalBooks] = useState(0);
   const [isFetchinfNewPage, setIsFetchingNewPage] = useState(false);
 
+  const { search, category, sort, page } = useTypedSelector((state) => state.request);
+  const dispatch = useDispatch();
+
   const [fetchBooks, isBooksLoading] = useFetching(async () => {
-    const response = await BooksService.getBooks(request, category, sort, page);
+    const response = await BooksService.getBooks(search, category, sort, page);
     if (isFetchinfNewPage) {
       setBooks(getUniqData(mapData([...books, ...response.data.items])));
     } else {
@@ -39,10 +35,10 @@ function MainPage({ request, category, sort, page, setPage }: Props) {
 
   useEffect(() => {
     fetchBooks();
-  }, [request, category, sort, page]);
+  }, [search, category, sort, page]);
 
-  const load = () => {
-    setPage((prevState: number) => prevState + 30);
+  const onLoad = () => {
+    dispatch({ type: 'ADD_PAGE' });
     setIsFetchingNewPage(true);
   };
 
@@ -54,7 +50,13 @@ function MainPage({ request, category, sort, page, setPage }: Props) {
         <>
           <h2 className='quantity'>Найдено книг {totalBooks}</h2>
           <BookItems books={books} />
-          {isFetchinfNewPage ? <Loader /> : <LoadButton click={load}>Load More</LoadButton>}
+          {isFetchinfNewPage ? (
+            <Loader />
+          ) : (
+            <LoadButton onClick={onLoad} theme={theme}>
+              Load More
+            </LoadButton>
+          )}
         </>
       )}
     </div>
