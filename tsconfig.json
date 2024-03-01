@@ -31,5 +31,5 @@
       "@hooks/*": ["./hooks/*"]
     }
   },
-  "include": ["src"]
+  "include": ["src", "src/.ts"]
 }
