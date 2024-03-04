@@ -11,7 +11,7 @@ import styles from './BookItem.module.css';
 function BookItem({ book }: { book: IBook }) {
   const { theme } = useTypedSelector((state) => state.theme);
   const { app, db } = useContext(FirebaseContext);
-  const user = getAuth(app).currentUser.uid;
+  const user = getAuth(app).currentUser?.uid;
 
   const [isFavorite, setIsFavorite] = useState(false);
 
@@ -35,15 +35,15 @@ function BookItem({ book }: { book: IBook }) {
           ></div>
           <img
             src={
-              book.volumeInfo.imageLinks?.thumbnail || book.volumeInfo.imageLinks?.smallThumbnail
+              book.volumeInfo?.imageLinks?.thumbnail || book.volumeInfo?.imageLinks?.smallThumbnail
             }
-            alt={book.volumeInfo.title}
+            alt={book.volumeInfo?.title}
             className={styles.book__img}
           />
           <p className={styles.type + ' ' + styles[theme]}>{book.volumeInfo?.categories}</p>
           <h2 className={styles.title + ' ' + styles[theme]}>{book.volumeInfo?.title}</h2>
           <p className={styles.authors + ' ' + styles[theme]}>
-            {book.volumeInfo.authors?.join(', ')}
+            {book.volumeInfo?.authors?.join(', ')}
           </p>
         </div>
       </Link>

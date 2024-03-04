@@ -3,11 +3,7 @@ import { useDispatch } from 'react-redux';
 
 import styles from './SearchInput.module.css';
 
-interface Props {
-  defaultAction: () => void;
-}
-
-function SearchInput({ defaultAction }: Props) {
+function SearchInput({ defaultAction }: { defaultAction: () => void }) {
   const [inputValue, setInputValue] = useState('');
   const dispatch = useDispatch();
 
@@ -40,6 +36,7 @@ function SearchInput({ defaultAction }: Props) {
         value={inputValue}
         onChange={onChange}
         onKeyDown={keyPress}
+        data-testid='search'
       />
       <button className={styles.searchButton} onClick={onClick}>
         <div className={styles.loupe}></div>

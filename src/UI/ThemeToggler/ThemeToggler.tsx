@@ -25,6 +25,7 @@ function ThemeToggler() {
       className={
         theme === 'dark' ? styles.toggler + ' ' + styles.dark : styles.toggler + ' ' + styles.light
       }
+      data-testid='theme-toggler'
     >
       <div className={styles.helper}></div>
       <div className={styles.helper1}></div>

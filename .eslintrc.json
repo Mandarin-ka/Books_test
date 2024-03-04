@@ -7,7 +7,6 @@
     "import/resolver": {
       "alias": {
         "map": [
-          // And all your import aliases
           ["@components", "./src/components"],
           ["@pages", "./src/pages"],
           ["@context", "./src/context"],
@@ -36,7 +35,6 @@
   "plugins": ["@typescript-eslint", "react", "simple-import-sort"],
   "rules": {
     "indent": ["error", 2, { "SwitchCase": 1 }],
-    // "linebreak-style": ["error", "windows"],
     "quotes": ["error", "single"],
     "semi": ["error", "always"],
     "simple-import-sort/imports": "error",
