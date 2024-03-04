@@ -6,16 +6,37 @@ import { Provider } from 'react-redux';
 
 import SearchInput from './SearchInput';
 
-test('Inputing value', () => {
-  render(
-    <Provider store={store}>
-      <SearchInput defaultAction={() => console.log(1)} />
-    </Provider>
-  );
+describe('text field check', () => {
+  test('Inputing value', () => {
+    render(
+      <Provider store={store}>
+        <SearchInput defaultAction={() => console.log()} />
+      </Provider>
+    );
 
-  act(() => {
-    expect((screen.getByTestId('search') as HTMLInputElement).value).toEqual('');
-    userEvent.type(screen.getByTestId('search'), 'something');
-    expect((screen.getByTestId('search') as HTMLInputElement).value).toEqual('something');
+    act(() => {
+      expect((screen.getByTestId('search') as HTMLInputElement).value).toEqual('');
+      userEvent.type(screen.getByTestId('search'), 'something');
+      expect((screen.getByTestId('search') as HTMLInputElement).value).toEqual('something');
+      userEvent.type(screen.getByTestId('search'), 'sherlock');
+      expect((screen.getByTestId('search') as HTMLInputElement).value).toEqual('somethingsherlock');
+    });
+  });
+
+  test('clear value', () => {
+    render(
+      <Provider store={store}>
+        <SearchInput defaultAction={() => console.log()} />
+      </Provider>
+    );
+
+    act(() => {
+      expect((screen.getByTestId('search') as HTMLInputElement).value).toEqual('');
+      userEvent.type(screen.getByTestId('search'), 'test');
+      expect((screen.getByTestId('search') as HTMLInputElement).value).toEqual('test');
+      userEvent.clear(screen.getByTestId('search'));
+      expect((screen.getByTestId('search') as HTMLInputElement).value).toEqual('');
+      expect((screen.getByTestId('search') as HTMLInputElement).value).not.toEqual('test');
+    });
   });
 });
