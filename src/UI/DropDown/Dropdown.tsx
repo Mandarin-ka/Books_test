@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React from 'react';
 import { useState } from 'react';
 
 import styles from './Dropdown.module.css';
@@ -8,13 +8,17 @@ const Dropdown = ({ options, defaultAction, action }: DropdownProps) => {
   const [isActive, setIsActive] = useState(false);
   const [currentValue, setCurrentValue] = useState(options[0]);
 
-  const optionHandler = () => {
+  const generateClass = () => {
     let result = styles.dropdown__button;
     if (options) {
       result += ' ' + styles.active;
     }
     if (isActive) {
       result += ' ' + styles.opened;
+    }
+
+    if (currentValue === options[0]) {
+      result += ` ${styles.current}`;
     }
 
     return result;
@@ -31,11 +35,7 @@ const Dropdown = ({ options, defaultAction, action }: DropdownProps) => {
 
   return (
     <div className={styles.dropdown}>
-      <button
-        className={optionHandler()}
-        onClick={toggleActive}
-        style={currentValue === options[0] ? { color: '#000000a1' } : { color: 'black' }}
-      >
+      <button className={generateClass()} onClick={toggleActive}>
         {currentValue ? currentValue : options[0]}
       </button>
       {isActive && (
@@ -59,4 +59,4 @@ const Dropdown = ({ options, defaultAction, action }: DropdownProps) => {
   );
 };
 
-export default memo(Dropdown);
+export default Dropdown;
