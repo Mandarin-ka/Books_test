@@ -1,6 +1,6 @@
 import { FirebaseContext } from '@context/FirebaseContext';
+import { useTypedSelector } from '@hooks/useTypedSelector';
 import { IBook } from '@projectTypes/IBooks';
-import { useTypedSelector } from '@projectTypes/useTypedSelector';
 import { addToDB, deleteFromBD, hasBook } from '@utils/Firebase';
 import { getAuth } from 'firebase/auth';
 import React, { useContext, useEffect, useState } from 'react';
@@ -19,7 +19,7 @@ function BookItem({ book }: { book: IBook }) {
     hasBook(db, user, book, setIsFavorite);
   }, []);
 
-  const toggleFavorite = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+  const toggleFavorite = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
     isFavorite ? deleteFromBD(db, user, book) : addToDB(db, user, book);
     setIsFavorite((prevValue) => !prevValue);
@@ -29,10 +29,10 @@ function BookItem({ book }: { book: IBook }) {
     book && (
       <Link to={`/bookPage/${book.id}`}>
         <div className={styles.book__item + ' ' + styles[theme]}>
-          <div
+          <button
             className={isFavorite ? styles.heart + ' ' + styles.active : styles.heart}
             onClick={toggleFavorite}
-          ></div>
+          />
           <img
             src={
               book.volumeInfo?.imageLinks?.thumbnail || book.volumeInfo?.imageLinks?.smallThumbnail

@@ -1,5 +1,5 @@
+import { useTypedSelector } from '@hooks/useTypedSelector';
 import { IBook } from '@projectTypes/IBooks';
-import { useTypedSelector } from '@projectTypes/useTypedSelector';
 import parse from 'html-react-parser';
 import React from 'react';
 

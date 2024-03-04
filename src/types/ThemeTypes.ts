@@ -1,5 +1,3 @@
-import { getThemeFromLS } from '@utils/ThemeStorage';
-
 export interface ThemeState {
   theme: 'dark' | 'light';
 }
@@ -12,7 +10,3 @@ export enum ThemeTypes {
 export interface ThemeAction {
   type: string;
 }
-
-export const initialState: ThemeState = {
-  theme: getThemeFromLS(),
-};

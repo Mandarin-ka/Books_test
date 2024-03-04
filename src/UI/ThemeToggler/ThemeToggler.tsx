@@ -1,4 +1,4 @@
-import { useTypedSelector } from '@projectTypes/useTypedSelector';
+import { useTypedSelector } from '@hooks/useTypedSelector';
 import { setThemeToLS } from '@utils/ThemeStorage';
 import React from 'react';
 import { useDispatch } from 'react-redux';

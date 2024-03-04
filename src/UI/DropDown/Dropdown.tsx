@@ -1,15 +1,10 @@
 import React, { memo } from 'react';
-import { useCallback, useState } from 'react';
+import { useState } from 'react';
 
 import styles from './Dropdown.module.css';
+import { DropdownProps } from './IDropdown';
 
-interface Props {
-  action: (elem: string) => void;
-  options: string[];
-  defaultAction: () => void;
-}
-
-const Dropdown = ({ options, defaultAction, action }: Props) => {
+const Dropdown = ({ options, defaultAction, action }: DropdownProps) => {
   const [isActive, setIsActive] = useState(false);
   const [currentValue, setCurrentValue] = useState(options[0]);
 
@@ -25,18 +20,20 @@ const Dropdown = ({ options, defaultAction, action }: Props) => {
     return result;
   };
 
-  const onClick = useCallback((e: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
+  const toggleActive = () => setIsActive((prevValue) => !prevValue);
+
+  const onClick = (e: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
     setCurrentValue((e.target as HTMLInputElement).value);
     setIsActive((prevValue) => !prevValue);
     action((e.target as HTMLInputElement).value);
     defaultAction();
-  }, []);
+  };
 
   return (
     <div className={styles.dropdown}>
       <button
         className={optionHandler()}
-        onClick={() => setIsActive(!isActive)}
+        onClick={toggleActive}
         style={currentValue === options[0] ? { color: '#000000a1' } : { color: 'black' }}
       >
         {currentValue ? currentValue : options[0]}

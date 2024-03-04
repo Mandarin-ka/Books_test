@@ -1,5 +1,5 @@
 import { FirebaseContext } from '@context/FirebaseContext';
-import { useTypedSelector } from '@projectTypes/useTypedSelector';
+import { useTypedSelector } from '@hooks/useTypedSelector';
 import Dropdown from '@UI/DropDown/Dropdown';
 import SearchInput from '@UI/SearchInput/SearchInput';
 import { getAuth } from 'firebase/auth';
