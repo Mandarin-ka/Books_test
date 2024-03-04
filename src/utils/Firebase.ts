@@ -1,8 +1,8 @@
 import { IBook } from '@projectTypes/IBooks';
 import { initializeApp } from 'firebase/app';
-import { collection, deleteDoc, doc, getDoc, getDocs, setDoc } from 'firebase/firestore';
+import { collection, deleteDoc, doc, Firestore, getDoc, getDocs, setDoc } from 'firebase/firestore';
 
-export const addToDB = async (db, user: string, book: IBook) => {
+export const addToDB = async (db: Firestore, user: string, book: IBook) => {
   try {
     await setDoc(doc(db, user, book.id), {
       id: book.id,
@@ -20,7 +20,7 @@ export const addToDB = async (db, user: string, book: IBook) => {
 };
 
 export const hasBook = async (
-  db,
+  db: Firestore,
   user: string,
   book: IBook,
   setFavorite: (elem: boolean) => void
@@ -33,7 +33,7 @@ export const hasBook = async (
   }
 };
 
-export const deleteFromBD = async (db, user: string, book: IBook) => {
+export const deleteFromBD = async (db: Firestore, user: string, book: IBook) => {
   try {
     const docRef = doc(db, user, book.id);
     await deleteDoc(docRef);
@@ -42,7 +42,7 @@ export const deleteFromBD = async (db, user: string, book: IBook) => {
   }
 };
 
-export const getBooks = async (db, user: string, setBooks: (elems: IBook[]) => void) => {
+export const getBooks = async (db: Firestore, user: string, setBooks: (elems: IBook[]) => void) => {
   try {
     const data = await getDocs(collection(db, user));
     setBooks(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
