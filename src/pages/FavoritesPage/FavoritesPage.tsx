@@ -13,7 +13,13 @@ function FavoritesPage() {
   const user = getAuth(app).currentUser.uid;
 
   useEffect(() => {
-    getBooks(db, user, setFavorites);
+    const getData = async () => {
+      const data = await getBooks(db, user);
+
+      setFavorites(data);
+    };
+
+    getData();
   }, []);
 
   return (

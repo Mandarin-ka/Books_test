@@ -23,7 +23,11 @@ function BookPage() {
     fetchBook();
   }, [bookId]);
 
-  return <div className={`page ${theme}`}>{!book ? <Loader /> : <BookInfo book={book} />}</div>;
+  return (
+    <div className={`page ${theme}`} data-testid='book-page'>
+      {!book ? <Loader /> : <BookInfo book={book} />}
+    </div>
+  );
 }
 
 export default BookPage;

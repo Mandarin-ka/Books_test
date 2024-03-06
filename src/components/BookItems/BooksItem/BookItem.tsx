@@ -16,7 +16,13 @@ function BookItem({ book }: { book: IBook }) {
   const [isFavorite, setIsFavorite] = useState(false);
 
   useEffect(() => {
-    hasBook(db, user, book, setIsFavorite);
+    const getData = async () => {
+      const data = await hasBook(db, user, book);
+
+      setIsFavorite(data);
+    };
+
+    getData();
   }, []);
 
   const toggleFavorite = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
@@ -27,11 +33,12 @@ function BookItem({ book }: { book: IBook }) {
 
   return (
     book && (
-      <Link to={`/bookPage/${book.id}`}>
+      <Link to={`/bookPage/${book.id}`} data-testid='book-item'>
         <div className={styles.book__item + ' ' + styles[theme]}>
           <button
             className={isFavorite ? styles.heart + ' ' + styles.active : styles.heart}
             onClick={toggleFavorite}
+            data-testid='add-favorite'
           />
           <img
             src={

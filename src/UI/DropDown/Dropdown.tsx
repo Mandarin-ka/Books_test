@@ -35,13 +35,14 @@ const Dropdown = ({ options, defaultAction, action }: DropdownProps) => {
 
   return (
     <div className={styles.dropdown}>
-      <button className={generateClass()} onClick={toggleActive}>
+      <button data-testid='dropdown' className={generateClass()} onClick={toggleActive}>
         {currentValue ? currentValue : options[0]}
       </button>
       {isActive && (
         <div className={styles.dropdown__content}>
           {options.map((option, i) => (
             <input
+              data-testid='dropdown-item'
               type='button'
               key={i}
               className={
