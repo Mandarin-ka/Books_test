@@ -1,16 +1,11 @@
-import { store } from '@store/index';
 import { fireEvent, render, screen } from '@testing-library/react';
 import React from 'react';
-import { Provider } from 'react-redux';
+import { renderWithStorage } from 'Tests/Helpers/StoreHelper';
 
 import ThemeToggler from './ThemeToggler';
 
 test('Change theme', () => {
-  render(
-    <Provider store={store}>
-      <ThemeToggler />
-    </Provider>
-  );
+  render(renderWithStorage(<ThemeToggler />));
 
   const toggler = screen.getByTestId('theme-toggler');
 
