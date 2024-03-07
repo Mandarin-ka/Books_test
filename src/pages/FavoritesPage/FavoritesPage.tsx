@@ -1,11 +1,10 @@
+import BookItems from '@components/BookItems/BookItems';
+import { FirebaseContext } from '@context/FirebaseContext';
+import { IBook } from '@projectTypes/IBooks';
+import { useTypedSelector } from '@projectTypes/useTypedSelector';
+import { getBooks } from '@utils/Firebase';
 import { getAuth } from 'firebase/auth';
 import React, { useContext, useEffect, useState } from 'react';
-
-import BookItems from '../../components/BookItems/BookItems';
-import { FirebaseContext } from '../../context/FirebaseContext';
-import { IBook } from '../../types/IBooks';
-import { useTypedSelector } from '../../types/useTypedSelector';
-import { getBooks } from '../../utils/Firebase';
 
 function FavoritesPage() {
   const { theme } = useTypedSelector((state) => state.theme);

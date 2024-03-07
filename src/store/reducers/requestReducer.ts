@@ -1,4 +1,4 @@
-import { ActionType, initialState, RequestActionTypes } from '../../types/RequestTypes';
+import { ActionType, initialState, RequestActionTypes } from '@projectTypes/RequestTypes';
 
 export const requestReducer = (state = initialState, action: ActionType) => {
   switch (action.type) {

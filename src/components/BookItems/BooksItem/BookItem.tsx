@@ -1,11 +1,11 @@
+import { FirebaseContext } from '@context/FirebaseContext';
+import { IBook } from '@projectTypes/IBooks';
+import { useTypedSelector } from '@projectTypes/useTypedSelector';
+import { addToDB, deleteFromBD, hasBook } from '@utils/Firebase';
 import { getAuth } from 'firebase/auth';
 import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { FirebaseContext } from '../../../context/FirebaseContext';
-import { IBook } from '../../../types/IBooks';
-import { useTypedSelector } from '../../../types/useTypedSelector';
-import { addToDB, deleteFromBD, hasBook } from '../../../utils/Firebase';
 import styles from './BookItem.module.css';
 
 function BookItem({ book }: { book: IBook }) {
