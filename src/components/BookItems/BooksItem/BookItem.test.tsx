@@ -1,4 +1,4 @@
-import { act, fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { getDoc } from 'firebase/firestore';
 import React from 'react';
 import { renderWithAll } from 'Tests/Helpers/MainHelper';
@@ -8,8 +8,7 @@ import BookItem from './BookItem';
 jest.mock('firebase/firestore');
 
 describe('', () => {
-  let response;
-
+  let response: { exists: () => boolean };
   beforeEach(() => {
     response = {
       exists: () => false,
@@ -31,7 +30,7 @@ describe('', () => {
 
   test('Render book', async () => {
     (getDoc as jest.Mock).mockReturnValue(response);
-    render(renderWithAll(await act(async () => <BookItem book={book} />)));
+    render(renderWithAll(<BookItem book={book} />));
 
     const item = screen.getByTestId('book-item');
     expect(item).toBeInTheDocument();
@@ -39,7 +38,7 @@ describe('', () => {
 
   test('Add favorite', async () => {
     (getDoc as jest.Mock).mockReturnValue(response);
-    render(renderWithAll(await act(async () => <BookItem book={book} />)));
+    render(renderWithAll(<BookItem book={book} />));
 
     expect(screen.getByTestId('add-favorite')).toBeInTheDocument();
     expect(screen.getByTestId('add-favorite').classList.contains('active')).toBe(false);
@@ -49,7 +48,7 @@ describe('', () => {
 
   test('Go to book page', async () => {
     (getDoc as jest.Mock).mockReturnValue(response);
-    render(renderWithAll(await act(async () => <BookItem book={book} />)));
+    render(renderWithAll(<BookItem book={book} />));
 
     const item = screen.getByTestId('book-item');
     expect(screen.queryByTestId('book-page')).not.toBeInTheDocument();

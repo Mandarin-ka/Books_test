@@ -42,7 +42,7 @@ function MainPage() {
   };
 
   return (
-    <div className={`page ${theme}`}>
+    <div className={`page ${theme}`} data-testid='main-page'>
       {isBooksLoading && books.length < 1 ? (
         <Loader />
       ) : (

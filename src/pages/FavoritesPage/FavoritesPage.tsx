@@ -23,7 +23,7 @@ function FavoritesPage() {
   }, []);
 
   return (
-    <div className={`page ${theme}`}>
+    <div className={`page ${theme}`} data-testid='faorites-page'>
       <h2 className='quantity'>Найдено книг: {favorites.length}</h2>
       <BookItems books={favorites} />
     </div>
