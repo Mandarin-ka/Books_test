@@ -3,8 +3,8 @@ import './../styles/common.css';
 import BooksService from '@API/BooksAPI';
 import BookInfo from '@components/BookInfo/BookInfo';
 import { useFetching } from '@hooks/useFetching';
+import { useTypedSelector } from '@hooks/useTypedSelector';
 import { IBook } from '@projectTypes/IBooks';
-import { useTypedSelector } from '@projectTypes/useTypedSelector';
 import Loader from '@UI/Loader/Loader';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
@@ -23,7 +23,11 @@ function BookPage() {
     fetchBook();
   }, [bookId]);
 
-  return <div className={`page ${theme}`}>{!book ? <Loader /> : <BookInfo book={book} />}</div>;
+  return (
+    <div className={`page ${theme}`} data-testid='book-page'>
+      {!book ? <Loader /> : <BookInfo book={book} />}
+    </div>
+  );
 }
 
 export default BookPage;

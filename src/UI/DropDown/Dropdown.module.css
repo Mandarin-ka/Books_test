@@ -28,6 +28,10 @@
   border: 1px solid #5e96fc;
 }
 
+.dropdown__button.current {
+  color: #000000a1;
+}
+
 .dropdown__button.opened::after,
 .dropdown__button.opened::before {
   border: 1.5px solid #5e96fc;

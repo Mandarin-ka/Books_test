@@ -1,7 +1,7 @@
 import BookItems from '@components/BookItems/BookItems';
 import { FirebaseContext } from '@context/FirebaseContext';
+import { useTypedSelector } from '@hooks/useTypedSelector';
 import { IBook } from '@projectTypes/IBooks';
-import { useTypedSelector } from '@projectTypes/useTypedSelector';
 import { getBooks } from '@utils/Firebase';
 import { getAuth } from 'firebase/auth';
 import React, { useContext, useEffect, useState } from 'react';
@@ -13,7 +13,13 @@ function FavoritesPage() {
   const user = getAuth(app).currentUser.uid;
 
   useEffect(() => {
-    getBooks(db, user, setFavorites);
+    const getData = async () => {
+      const data = await getBooks(db, user);
+
+      setFavorites(data);
+    };
+
+    getData();
   }, []);
 
   return (
