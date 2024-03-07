@@ -1,4 +1,9 @@
-import { initialState, ThemeAction, ThemeState, ThemeTypes } from '../../types/ThemeTypes';
+import { ThemeAction, ThemeState, ThemeTypes } from '@projectTypes/ThemeTypes';
+import { getThemeFromLS } from '@utils/ThemeStorage';
+
+export const initialState: ThemeState = {
+  theme: getThemeFromLS(),
+};
 
 export const themeReducer = (state = initialState, action: ThemeAction): ThemeState => {
   switch (action.type) {

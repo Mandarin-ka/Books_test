@@ -1,9 +1,17 @@
+import { IBook } from '@projectTypes/IBooks';
 import { initializeApp } from 'firebase/app';
-import { collection, deleteDoc, doc, getDoc, getDocs, setDoc } from 'firebase/firestore';
+import {
+  collection,
+  deleteDoc,
+  doc,
+  Firestore,
+  getDoc,
+  getDocs,
+  getFirestore,
+  setDoc,
+} from 'firebase/firestore';
 
-import { IBook } from '../types/IBooks';
-
-export const addToDB = async (db, user: string, book: IBook) => {
+export const addToDB = async (db: Firestore, user: string, book: IBook) => {
   try {
     await setDoc(doc(db, user, book.id), {
       id: book.id,
@@ -20,21 +28,16 @@ export const addToDB = async (db, user: string, book: IBook) => {
   }
 };
 
-export const hasBook = async (
-  db,
-  user: string,
-  book: IBook,
-  setFavorite: (elem: boolean) => void
-) => {
+export const hasBook = async (db: Firestore, user: string, book: IBook) => {
   try {
     const docSnap = await getDoc(doc(db, user, book.id));
-    setFavorite(docSnap.exists());
+    return docSnap.exists();
   } catch (err) {
     console.error((err as Error).message);
   }
 };
 
-export const deleteFromBD = async (db, user: string, book: IBook) => {
+export const deleteFromBD = async (db: Firestore, user: string, book: IBook) => {
   try {
     const docRef = doc(db, user, book.id);
     await deleteDoc(docRef);
@@ -43,10 +46,10 @@ export const deleteFromBD = async (db, user: string, book: IBook) => {
   }
 };
 
-export const getBooks = async (db, user: string, setBooks: (elems: IBook[]) => void) => {
+export const getBooks = async (db: Firestore, user: string) => {
   try {
     const data = await getDocs(collection(db, user));
-    setBooks(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    return data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
   } catch (err) {
     console.error((err as Error).message);
   }
@@ -61,3 +64,5 @@ export const app = initializeApp({
   appId: '1:794209970107:web:af6d136c6fc8d8064b469e',
   measurementId: 'G-T19LNBVRKT',
 });
+
+export const db = getFirestore(app);

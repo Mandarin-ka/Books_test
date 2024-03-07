@@ -1,17 +1,16 @@
 import './../styles/common.css';
 
+import BooksService from '@API/BooksAPI';
+import BookItems from '@components/BookItems/BookItems';
+import { useFetching } from '@hooks/useFetching';
+import { useTypedSelector } from '@hooks/useTypedSelector';
+import { IBook } from '@projectTypes/IBooks';
+import LoadButton from '@UI/Button/LoadButton/LoadButton';
+import Loader from '@UI/Loader/Loader';
+import { mapData } from '@utils/DataMap';
+import { getUniqData } from '@utils/UniqData';
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-
-import BooksService from '../../API/BooksAPI';
-import { useFetching } from '../../hooks/useFetching';
-import { IBook } from '../../types/IBooks';
-import { useTypedSelector } from '../../types/useTypedSelector';
-import LoadButton from '../../UI/Button/LoadButton/LoadButton';
-import Loader from '../../UI/Loader/Loader';
-import { mapData } from '../../utils/DataMap';
-import { getUniqData } from '../../utils/UniqData';
-import BookItems from './../../components/BookItems/BookItems';
 
 function MainPage() {
   const { theme } = useTypedSelector((state) => state.theme);

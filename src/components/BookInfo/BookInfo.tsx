@@ -1,8 +1,8 @@
+import { useTypedSelector } from '@hooks/useTypedSelector';
+import { IBook } from '@projectTypes/IBooks';
 import parse from 'html-react-parser';
 import React from 'react';
 
-import { IBook } from '../../types/IBooks';
-import { useTypedSelector } from '../../types/useTypedSelector';
 import styles from './BookInfo.module.css';
 
 function BookInfo({ book }: { book: IBook }) {

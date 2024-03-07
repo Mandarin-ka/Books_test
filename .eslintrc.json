@@ -3,6 +3,25 @@
     "browser": true,
     "es2021": true
   },
+  "settings": {
+    "import/resolver": {
+      "alias": {
+        "map": [
+          ["@components", "./src/components"],
+          ["@pages", "./src/pages"],
+          ["@context", "./src/context"],
+          ["@store", "./src/store"],
+          ["@projectTypes/", "./src/types"],
+          ["@utils/", "./src/utils"],
+          ["@UI/", "./src/UI"],
+          ["@routes/", "./src/routes"],
+          ["@API/", "./src/API"],
+          ["@hooks/", "./src/hooks"]
+        ],
+        "extensions": [".ts", ".js", ".tsx", ".json"]
+      }
+    }
+  },
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
@@ -16,7 +35,6 @@
   "plugins": ["@typescript-eslint", "react", "simple-import-sort"],
   "rules": {
     "indent": ["error", 2, { "SwitchCase": 1 }],
-    // "linebreak-style": ["error", "windows"],
     "quotes": ["error", "single"],
     "semi": ["error", "always"],
     "simple-import-sort/imports": "error",

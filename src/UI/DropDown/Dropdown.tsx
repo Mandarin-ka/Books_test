@@ -1,19 +1,14 @@
-import React, { memo } from 'react';
-import { useCallback, useState } from 'react';
+import React from 'react';
+import { useState } from 'react';
 
 import styles from './Dropdown.module.css';
+import { DropdownProps } from './IDropdown';
 
-interface Props {
-  action: (elem: string) => void;
-  options: string[];
-  defaultAction: () => void;
-}
-
-const Dropdown = ({ options, defaultAction, action }: Props) => {
+const Dropdown = ({ options, defaultAction, action }: DropdownProps) => {
   const [isActive, setIsActive] = useState(false);
   const [currentValue, setCurrentValue] = useState(options[0]);
 
-  const optionHandler = () => {
+  const generateClass = () => {
     let result = styles.dropdown__button;
     if (options) {
       result += ' ' + styles.active;
@@ -22,29 +17,32 @@ const Dropdown = ({ options, defaultAction, action }: Props) => {
       result += ' ' + styles.opened;
     }
 
+    if (currentValue === options[0]) {
+      result += ` ${styles.current}`;
+    }
+
     return result;
   };
 
-  const onClick = useCallback((e: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
+  const toggleActive = () => setIsActive((prevValue) => !prevValue);
+
+  const onClick = (e: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
     setCurrentValue((e.target as HTMLInputElement).value);
     setIsActive((prevValue) => !prevValue);
     action((e.target as HTMLInputElement).value);
     defaultAction();
-  }, []);
+  };
 
   return (
     <div className={styles.dropdown}>
-      <button
-        className={optionHandler()}
-        onClick={() => setIsActive(!isActive)}
-        style={currentValue === options[0] ? { color: '#000000a1' } : { color: 'black' }}
-      >
+      <button data-testid='dropdown' className={generateClass()} onClick={toggleActive}>
         {currentValue ? currentValue : options[0]}
       </button>
       {isActive && (
         <div className={styles.dropdown__content}>
           {options.map((option, i) => (
             <input
+              data-testid='dropdown-item'
               type='button'
               key={i}
               className={
@@ -62,4 +60,4 @@ const Dropdown = ({ options, defaultAction, action }: Props) => {
   );
 };
 
-export default memo(Dropdown);
+export default Dropdown;

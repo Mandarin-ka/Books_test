@@ -1,8 +1,8 @@
+import { useTypedSelector } from '@hooks/useTypedSelector';
+import { setThemeToLS } from '@utils/ThemeStorage';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 
-import { useTypedSelector } from '../../types/useTypedSelector';
-import { setThemeToLS } from '../../utils/ThemeStorage';
 import styles from './ThemeToggler.module.css';
 
 function ThemeToggler() {
@@ -25,6 +25,7 @@ function ThemeToggler() {
       className={
         theme === 'dark' ? styles.toggler + ' ' + styles.dark : styles.toggler + ' ' + styles.light
       }
+      data-testid='theme-toggler'
     >
       <div className={styles.helper}></div>
       <div className={styles.helper1}></div>
