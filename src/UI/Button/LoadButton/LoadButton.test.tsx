@@ -1,8 +1,7 @@
 import React from 'react';
 
-import { render, screen } from '@testing-library/react';
-
 import LoadButton from './LoadButton';
+import { render, screen } from '@testing-library/react';
 
 describe('load button', () => {
   test('Render load button', () => {

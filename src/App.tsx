@@ -1,13 +1,12 @@
-import { getAuth } from 'firebase/auth';
 import React, { useContext, useEffect, useState } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 
-import { FirebaseContext } from '@context/FirebaseContext';
+import MainRoutes from './routes/MainRoutes';
 import Header from '@components/Header/Header';
 import Login from '@components/Login/Login';
+import { FirebaseContext } from '@context/FirebaseContext';
 import ThemeToggler from '@UI/ThemeToggler/ThemeToggler';
-
-import MainRoutes from './routes/MainRoutes';
+import { getAuth } from 'firebase/auth';
 
 import './styles/reset.css';
 import './styles/media.css';

@@ -1,4 +1,3 @@
-import { getAuth } from 'firebase/auth';
 import React, { useContext, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
@@ -8,6 +7,7 @@ import { FirebaseContext } from '@context/FirebaseContext';
 import { useTypedSelector } from '@hooks/useTypedSelector';
 import Dropdown from '@UI/DropDown/Dropdown';
 import SearchInput from '@UI/SearchInput/SearchInput';
+import { getAuth } from 'firebase/auth';
 
 import styles from './Header.module.css';
 

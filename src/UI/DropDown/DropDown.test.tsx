@@ -1,8 +1,7 @@
 import React from 'react';
 
-import { fireEvent, render, screen } from '@testing-library/react';
-
 import Dropdown from './Dropdown';
+import { fireEvent, render, screen } from '@testing-library/react';
 
 describe('Dropdown', () => {
   const filterOptions = ['all', 'art', 'biography', 'computers', 'history', 'medical', 'poetry'];

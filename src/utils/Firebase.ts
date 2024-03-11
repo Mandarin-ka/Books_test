@@ -1,3 +1,5 @@
+import { IBook } from '@projectTypes/IBooks';
+import { initializeApp } from 'firebase/app';
 import {
   collection,
   deleteDoc,
@@ -8,9 +10,6 @@ import {
   getFirestore,
   setDoc,
 } from 'firebase/firestore';
-import { initializeApp } from 'firebase/app';
-
-import { IBook } from '@projectTypes/IBooks';
 
 export const addToDB = async (db: Firestore, user: string, book: IBook) => {
   try {

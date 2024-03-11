@@ -1,11 +1,10 @@
-import { getAuth } from 'firebase/auth';
 import React from 'react';
-import { renderWithAll } from 'Tests/Helpers/MainHelper';
-
-import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 
 import Header from './Header';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { getAuth } from 'firebase/auth';
+import { renderWithAll } from 'Tests/Helpers/MainHelper';
 
 jest.mock('firebase/auth');
 

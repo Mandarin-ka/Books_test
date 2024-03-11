@@ -1,8 +1,8 @@
 import React, { memo } from 'react';
 
+import BookItem from './BooksItem/BookItem';
 import { IBook } from '@projectTypes/IBooks';
 
-import BookItem from './BooksItem/BookItem';
 import styles from './BookItems.module.css';
 
 function BookItems({ books }: { books: IBook[] }) {

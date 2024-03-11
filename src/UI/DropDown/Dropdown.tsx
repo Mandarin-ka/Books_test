@@ -1,8 +1,9 @@
 import React from 'react';
 import { useState } from 'react';
 
-import styles from './Dropdown.module.css';
 import { DropdownProps } from './IDropdown';
+
+import styles from './Dropdown.module.css';
 
 const Dropdown = ({ options, defaultAction, action }: DropdownProps) => {
   const [isActive, setIsActive] = useState(false);

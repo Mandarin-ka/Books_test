@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { LoadButtonProps } from './ILoadButton';
+
 import styles from './LoadButton.module.css';
 
 function LoadButton({ theme, onClick, children }: LoadButtonProps) {

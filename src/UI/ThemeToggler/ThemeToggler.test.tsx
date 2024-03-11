@@ -1,9 +1,8 @@
 import React from 'react';
-import { renderWithStorage } from 'Tests/Helpers/StoreHelper';
-
-import { fireEvent, render, screen } from '@testing-library/react';
 
 import ThemeToggler from './ThemeToggler';
+import { fireEvent, render, screen } from '@testing-library/react';
+import { renderWithStorage } from 'Tests/Helpers/StoreHelper';
 
 test('Change theme', () => {
   render(renderWithStorage(<ThemeToggler />));

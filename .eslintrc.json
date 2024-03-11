@@ -39,16 +39,7 @@
       {
         "groups": [
           ["^react", "^@?\\w"],
-          // Internal packages.
-          ["^(@|@components"],
-          ["|@UI|@pages|@utils|@projectTypes|@hooks|@routes|@store|@context|)(/.*|$)"],
-          // Side effect imports.
-          ["^\\u0000"],
-          // Parent imports. Put `..` last.
-          ["^\\.\\.(?!/?$)", "^\\.\\./?$"],
-          // Other relative imports. Put same-folder imports and `.` last.
-          ["^\\./(?=.*/)(?!/?$)", "^\\.(?!/?$)", "^\\./?$"],
-          // Style imports.
+          ["(@|@components@UI|@pages|@utils|@projectTypes|@hooks|@routes|@store|@context|)(/.*|$)"],
           ["^.+\\.s?css$"]
         ]
       }

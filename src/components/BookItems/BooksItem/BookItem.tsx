@@ -1,4 +1,3 @@
-import { getAuth } from 'firebase/auth';
 import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -6,6 +5,7 @@ import { FirebaseContext } from '@context/FirebaseContext';
 import { useTypedSelector } from '@hooks/useTypedSelector';
 import { IBook } from '@projectTypes/IBooks';
 import { addToDB, deleteFromBD, hasBook } from '@utils/Firebase';
+import { getAuth } from 'firebase/auth';
 
 import styles from './BookItem.module.css';
 

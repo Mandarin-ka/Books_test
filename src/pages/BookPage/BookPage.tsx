@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 
+import BooksService from '@API/BooksAPI';
+import BookInfo from '@components/BookInfo/BookInfo';
 import { useFetching } from '@hooks/useFetching';
 import { useTypedSelector } from '@hooks/useTypedSelector';
 import { IBook } from '@projectTypes/IBooks';
-import BookInfo from '@components/BookInfo/BookInfo';
-import BooksService from '@API/BooksAPI';
 import Loader from '@UI/Loader/Loader';
 
 import './../styles/common.css';
