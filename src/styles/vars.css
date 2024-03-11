@@ -1,0 +1,13 @@
+:root {
+  --page-light: #fff;
+  --page-dark: #1f1f1f;
+  --font-color-light: #fff;
+  --font-color-dark: #000;
+  --button-hover: rgba(128, 128, 128, 0.075);
+  --theme-toggler-light: rgb(255, 153, 0);
+  --theme-toggler-dark: #d6d6d6;
+  --header-image: url('https://fonoteka.top/uploads/posts/2021-04/1617295983_39-p-knigi-oboi-fon-pozdravlenie-50.jpg');
+  --authors_type-light-color: #ffffff8f;
+  --authors_type-dark-color: #0000007a;
+  --title-light-color: rgb(221, 221, 221);
+}

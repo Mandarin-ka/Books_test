@@ -1,15 +1,16 @@
-import './styles/reset.css';
-import './styles/media.css';
+import React, { useContext, useEffect, useState } from 'react';
+import { BrowserRouter } from 'react-router-dom';
 
+import MainRoutes from './routes/MainRoutes';
 import Header from '@components/Header/Header';
 import Login from '@components/Login/Login';
 import { FirebaseContext } from '@context/FirebaseContext';
 import ThemeToggler from '@UI/ThemeToggler/ThemeToggler';
 import { getAuth } from 'firebase/auth';
-import React, { useContext, useEffect, useState } from 'react';
-import { BrowserRouter } from 'react-router-dom';
 
-import MainRoutes from './routes/MainRoutes';
+import './styles/reset.css';
+import './styles/media.css';
+import './styles/vars.css';
 
 function App() {
   const { app } = useContext(FirebaseContext);
@@ -22,14 +23,14 @@ function App() {
     });
   }, []);
 
-  return user ? (
+  if (!user) return <Login />;
+
+  return (
     <BrowserRouter>
       <Header />
       <MainRoutes />
       <ThemeToggler />
     </BrowserRouter>
-  ) : (
-    <Login />
   );
 }
 

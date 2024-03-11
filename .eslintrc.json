@@ -32,12 +32,21 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": ["@typescript-eslint", "react", "simple-import-sort"],
+  "plugins": ["react", "@typescript-eslint", "simple-import-sort"],
   "rules": {
+    "simple-import-sort/imports": [
+      "error",
+      {
+        "groups": [
+          ["^react", "^@?\\w"],
+          ["(@|@components@UI|@pages|@utils|@projectTypes|@hooks|@routes|@store|@context|)(/.*|$)"],
+          ["^.+\\.s?css$"]
+        ]
+      }
+    ],
     "indent": ["error", 2, { "SwitchCase": 1 }],
     "quotes": ["error", "single"],
     "semi": ["error", "always"],
-    "simple-import-sort/imports": "error",
     "simple-import-sort/exports": "error"
   }
 }

@@ -1,7 +1,7 @@
-import { render, screen } from '@testing-library/react';
 import React from 'react';
 
 import LoginButton from './LoginButton';
+import { render, screen } from '@testing-library/react';
 
 test('Render Login Button', () => {
   render(<LoginButton onClick={() => console.log(1)} />);

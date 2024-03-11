@@ -1,28 +1,14 @@
 import React from 'react';
 import { useState } from 'react';
 
-import styles from './Dropdown.module.css';
+import { generateClass } from './config';
 import { DropdownProps } from './IDropdown';
+
+import styles from './Dropdown.module.css';
 
 const Dropdown = ({ options, defaultAction, action }: DropdownProps) => {
   const [isActive, setIsActive] = useState(false);
   const [currentValue, setCurrentValue] = useState(options[0]);
-
-  const generateClass = () => {
-    let result = styles.dropdown__button;
-    if (options) {
-      result += ' ' + styles.active;
-    }
-    if (isActive) {
-      result += ' ' + styles.opened;
-    }
-
-    if (currentValue === options[0]) {
-      result += ` ${styles.current}`;
-    }
-
-    return result;
-  };
 
   const toggleActive = () => setIsActive((prevValue) => !prevValue);
 
@@ -35,7 +21,11 @@ const Dropdown = ({ options, defaultAction, action }: DropdownProps) => {
 
   return (
     <div className={styles.dropdown}>
-      <button data-testid='dropdown' className={generateClass()} onClick={toggleActive}>
+      <button
+        data-testid='dropdown'
+        className={generateClass(options, currentValue, isActive)}
+        onClick={toggleActive}
+      >
         {currentValue ? currentValue : options[0]}
       </button>
       {isActive && (

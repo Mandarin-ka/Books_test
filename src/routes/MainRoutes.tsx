@@ -1,15 +1,14 @@
-import BookPage from '@pages/BookPage/BookPage';
-import FavoritesPage from '@pages/FavoritesPage/FavoritesPage';
-import MainPage from '@pages/MainPage/MainPage';
 import React from 'react';
 import { Route, Routes } from 'react-router';
+
+import { bookPage, favoritesPage, mainPage } from './Routes';
 
 function MainRoutes() {
   return (
     <Routes>
-      <Route path={'/'} element={<MainPage />} />
-      <Route path={'/bookPage/:id'} element={<BookPage />} />
-      <Route path={'/favorites'} element={<FavoritesPage />} />
+      <Route path={'/'} element={mainPage} />
+      <Route path={'/bookPage/:id'} element={bookPage} />
+      <Route path={'/favorites'} element={favoritesPage} />
     </Routes>
   );
 }

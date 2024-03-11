@@ -9,17 +9,17 @@
 }
 
 .page.light {
-  background-color: #fff;
+  background-color: var(--page-light);
 }
 
 .page.dark {
-  background-color: #1f1f1f;
+  background-color: var(--page-dark);
 }
 
 .page.light .quantity {
-  color: black;
+  color: var(--font-color-dark);
 }
 
 .page.dark .quantity {
-  color: white;
+  color: var(--font-color-light);
 }

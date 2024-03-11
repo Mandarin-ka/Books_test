@@ -1,4 +1,5 @@
-import './../styles/common.css';
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 import BooksService from '@API/BooksAPI';
 import BookItems from '@components/BookItems/BookItems';
@@ -9,8 +10,8 @@ import LoadButton from '@UI/Button/LoadButton/LoadButton';
 import Loader from '@UI/Loader/Loader';
 import { mapData } from '@utils/DataMap';
 import { getUniqData } from '@utils/UniqData';
-import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+
+import './../styles/common.css';
 
 function MainPage() {
   const { theme } = useTypedSelector((state) => state.theme);
@@ -42,7 +43,7 @@ function MainPage() {
   };
 
   return (
-    <div className={`page ${theme}`}>
+    <div className={`page ${theme}`} data-testid='main-page'>
       {isBooksLoading && books.length < 1 ? (
         <Loader />
       ) : (

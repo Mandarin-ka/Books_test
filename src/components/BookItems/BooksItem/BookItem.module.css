@@ -8,14 +8,18 @@
   position: relative;
   box-sizing: border-box;
   cursor: auto;
+
+  --dark-color: rgba(94, 94, 94, 0.452);
+  --light-color: rgba(128, 128, 128, 0.15);
+  --shadow: rgba(0, 0, 0, 0.493);
 }
 
 .book__item.light {
-  background-color: rgba(128, 128, 128, 0.15);
+  background-color: var(--light-color);
 }
 
 .book__item.dark {
-  background-color: rgba(94, 94, 94, 0.452);
+  background-color: var(--dark-color);
 }
 
 .book__img {
@@ -35,12 +39,12 @@
 
 .book__item.light .type,
 .book__item.light .authors {
-  color: #0000007a;
+  color: var(--authors_type-dark-color);
 }
 
 .book__item.dark .type,
 .book__item.dark .authors {
-  color: #ffffff8f;
+  color: var(--authors_type-light-color);
 }
 
 .title {
@@ -50,7 +54,7 @@
 }
 
 .book__item.dark .title {
-  color: rgb(221, 221, 221);
+  color: var(--title-light-color);
 }
 
 .book__item.light .title {
@@ -67,7 +71,7 @@
   position: absolute;
   width: 15px;
   height: 26px;
-  background-color: #d3d3d3;
+  background-color: var(--theme-toggler-dark);
   -webkit-border-radius: 50px 50px 0 0;
   -moz-border-radius: 50px 50px 0 0;
   border-radius: 50px 50px 0 0;
@@ -89,7 +93,7 @@
   left: 0;
   bottom: 0;
   content: '';
-  background-color: #d3d3d3;
+  background-color: var(--theme-toggler-dark);
   -webkit-border-radius: 50px 50px 0 0;
   -moz-border-radius: 50px 50px 0 0;
   border-radius: 0 50px 50px 0;
@@ -101,7 +105,7 @@
 }
 
 .heart.active:before {
-  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.493);
+  box-shadow: 0 2px 2px var(--shadow);
 }
 
 @media screen and (max-width: 460px) {

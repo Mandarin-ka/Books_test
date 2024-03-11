@@ -1,6 +1,7 @@
+import React from 'react';
+
 import LoginButton from '@UI/Button/LoginButton/LoginButton';
 import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
-import React from 'react';
 
 function Login() {
   const login = async () => {

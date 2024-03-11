@@ -1,10 +1,11 @@
+import React, { useContext, useEffect, useState } from 'react';
+
 import BookItems from '@components/BookItems/BookItems';
 import { FirebaseContext } from '@context/FirebaseContext';
 import { useTypedSelector } from '@hooks/useTypedSelector';
 import { IBook } from '@projectTypes/IBooks';
 import { getBooks } from '@utils/Firebase';
 import { getAuth } from 'firebase/auth';
-import React, { useContext, useEffect, useState } from 'react';
 
 function FavoritesPage() {
   const { theme } = useTypedSelector((state) => state.theme);
@@ -23,7 +24,7 @@ function FavoritesPage() {
   }, []);
 
   return (
-    <div className={`page ${theme}`}>
+    <div className={`page ${theme}`} data-testid='faorites-page'>
       <h2 className='quantity'>Найдено книг: {favorites.length}</h2>
       <BookItems books={favorites} />
     </div>
