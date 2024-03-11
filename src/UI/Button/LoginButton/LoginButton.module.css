@@ -9,5 +9,5 @@
 }
 
 .button:hover {
-  background-color: #e6e5e5;
+  background-color: var(--button-hover);
 }

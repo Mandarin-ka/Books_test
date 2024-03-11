@@ -10,6 +10,7 @@ import { getAuth } from 'firebase/auth';
 
 import './styles/reset.css';
 import './styles/media.css';
+import './styles/vars.css';
 
 function App() {
   const { app } = useContext(FirebaseContext);

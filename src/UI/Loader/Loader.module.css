@@ -1,10 +1,11 @@
 .loader {
+  --loader-color: rgb(134, 134, 134);
   min-width: 50px;
   min-height: 50px;
   max-width: 50px;
   max-height: 50px;
   border-radius: 50%;
-  background-color: rgb(134, 134, 134);
+  background-color: var(--loader-color);
   animation: rotate 2s infinite linear;
   margin: 50px auto;
   position: relative;
@@ -16,7 +17,7 @@
   width: 70px;
   height: 10px;
   position: absolute;
-  background-color: rgb(134, 134, 134);
+  background-color: var(--loader-color);
 }
 
 .loader::before {
