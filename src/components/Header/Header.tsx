@@ -1,12 +1,13 @@
-import { FirebaseContext } from '@context/FirebaseContext';
-import { useTypedSelector } from '@hooks/useTypedSelector';
-import Dropdown from '@UI/DropDown/Dropdown';
-import SearchInput from '@UI/SearchInput/SearchInput';
 import { getAuth } from 'firebase/auth';
 import React, { useContext, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { Link } from 'react-router-dom';
+
+import { FirebaseContext } from '@context/FirebaseContext';
+import { useTypedSelector } from '@hooks/useTypedSelector';
+import Dropdown from '@UI/DropDown/Dropdown';
+import SearchInput from '@UI/SearchInput/SearchInput';
 
 import styles from './Header.module.css';
 
@@ -36,6 +37,7 @@ function Header() {
 
   const signOut = () => {
     auth.signOut();
+    setUser(null);
   };
 
   useEffect(() => {

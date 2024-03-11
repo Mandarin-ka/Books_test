@@ -1,8 +1,9 @@
+import React from 'react';
+import { Route, Routes } from 'react-router';
+
 import BookPage from '@pages/BookPage/BookPage';
 import FavoritesPage from '@pages/FavoritesPage/FavoritesPage';
 import MainPage from '@pages/MainPage/MainPage';
-import React from 'react';
-import { Route, Routes } from 'react-router';
 
 function MainRoutes() {
   return (

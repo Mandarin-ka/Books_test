@@ -1,7 +1,8 @@
-import { useTypedSelector } from '@hooks/useTypedSelector';
-import { IBook } from '@projectTypes/IBooks';
 import parse from 'html-react-parser';
 import React from 'react';
+
+import { useTypedSelector } from '@hooks/useTypedSelector';
+import { IBook } from '@projectTypes/IBooks';
 
 import styles from './BookInfo.module.css';
 
