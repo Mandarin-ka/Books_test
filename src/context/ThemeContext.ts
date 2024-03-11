@@ -1,9 +1,6 @@
 import React from 'react';
 
-interface IContext {
-  theme?: string | null;
-  setTheme?: ((elem: 'dark' | 'light') => void) | null;
-}
+import { IContext } from './IThemeContext';
 
 const context: IContext = { theme: null, setTheme: null };
 
