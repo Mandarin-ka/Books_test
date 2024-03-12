@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { Link } from 'react-router-dom';
@@ -19,18 +19,18 @@ function Header() {
   const dispatch = useDispatch();
   const { page } = useTypedSelector((state) => state.request);
 
-  const defaultAction = () => {
+  const defaultAction = useCallback(() => {
     if (page !== 0) dispatch({ type: 'RESET_PAGE' });
     navigate('./');
-  };
+  }, []);
 
-  const setFilter = (filterOption: string) => {
+  const setFilter = useCallback((filterOption: string) => {
     dispatch({ type: 'SET_CATEGORY', payload: filterOption });
-  };
+  }, []);
 
-  const setSort = (sortOption: string) => {
+  const setSort = useCallback((sortOption: string) => {
     dispatch({ type: 'SET_SORT', payload: sortOption });
-  };
+  }, []);
 
   const filterOptions = ['all', 'art', 'biography', 'computers', 'history', 'medical', 'poetry'];
   const sortOptions = ['relevance', 'newest'];

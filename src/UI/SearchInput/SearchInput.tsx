@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useState } from 'react';
+import React, { memo, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import styles from './SearchInput.module.css';
@@ -7,23 +7,20 @@ function SearchInput({ defaultAction }: { defaultAction: () => void }) {
   const [inputValue, setInputValue] = useState('');
   const dispatch = useDispatch();
 
-  const onClick = useCallback(() => {
+  const onClick = () => {
     dispatch({ type: 'SET_SEARCH', payload: inputValue });
     defaultAction();
-  }, [inputValue]);
+  };
 
-  const onChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
-  }, []);
+  };
 
-  const keyPress = useCallback(
-    (e: React.KeyboardEvent<HTMLInputElement>) => {
-      if (e.key.toLowerCase() === 'enter') {
-        onClick();
-      }
-    },
-    [inputValue]
-  );
+  const keyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key.toLowerCase() === 'enter') {
+      onClick();
+    }
+  };
 
   return (
     <div className={styles.search}>
