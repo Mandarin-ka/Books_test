@@ -25,7 +25,7 @@ function FavoritesPage() {
   }, []);
 
   return (
-    <div className={`page ${theme}`} data-testid='faorites-page'>
+    <div className={`page ${theme}`} data-testid='favorites-page'>
       <Typography variant='h4' align='center' sx={{ marginBottom: '30px' }}>
         Найдено книг: {favorites.length}
       </Typography>

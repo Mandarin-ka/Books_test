@@ -9,12 +9,10 @@ import { renderWithAll } from 'Tests/Helpers/MainHelper';
 jest.mock('firebase/firestore');
 
 describe('', () => {
-  let response: { exists: () => boolean };
+  let response;
   beforeEach(() => {
     response = {
-      exists: () => {
-        return false;
-      },
+      exists: () => console.log('temp'),
     };
   });
 
