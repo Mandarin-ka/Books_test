@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 import { FirebaseContext } from '@context/FirebaseContext';
 import { useTypedSelector } from '@hooks/useTypedSelector';
-import Dropdown from '@UI/DropDown/Dropdown';
+import Dropdown from '@UI/DropDown/MUIDropDown/DroprDown';
 import SearchInput from '@UI/SearchInput/SearchInput';
 import { getAuth } from 'firebase/auth';
 
@@ -58,8 +58,11 @@ function Header() {
       </ul>
       <SearchInput defaultAction={defaultAction} />
       <div className={styles.dropdown__items}>
+        {/* <Dropdown options={filterOptions} defaultAction={defaultAction} action={setFilter} /> */}
         <Dropdown options={filterOptions} defaultAction={defaultAction} action={setFilter} />
         <Dropdown options={sortOptions} defaultAction={defaultAction} action={setSort} />
+
+        {/* <Dropdown options={sortOptions} defaultAction={defaultAction} action={setSort} /> */}
       </div>
 
       {user && (
