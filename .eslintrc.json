@@ -16,7 +16,8 @@
           ["@UI/", "./src/UI"],
           ["@routes/", "./src/routes"],
           ["@API/", "./src/API"],
-          ["@hooks/", "./src/hooks"]
+          ["@hooks/", "./src/hooks"],
+          ["@tests/", "./src/tests"]
         ],
         "extensions": [".ts", ".js", ".tsx", ".json"]
       }

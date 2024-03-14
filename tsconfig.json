@@ -10,7 +10,7 @@
     "strictNullChecks": false,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
-    "module": "esnext",
+    "module": "ESNext",
     "noImplicitAny": false,
     "moduleResolution": "node",
     "resolveJsonModule": true,
@@ -28,8 +28,9 @@
       "@UI/*": ["./UI/*"],
       "@routes/*": ["./routes/*"],
       "@API/*": ["./API/*"],
-      "@hooks/*": ["./hooks/*"]
+      "@hooks/*": ["./hooks/*"],
+      "@tests/*": ["src/tests/*"]
     }
   },
-  "include": ["src", "src/.ts"]
+  "include": ["src", "src/.ts", "test/specs", "test/pageobjects"]
 }
