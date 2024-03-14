@@ -1,7 +1,7 @@
-import { render, screen } from '@testing-library/react';
 import React from 'react';
 
 import Loader from './Loader';
+import { render, screen } from '@testing-library/react';
 
 test('Render loader', () => {
   render(<Loader />);

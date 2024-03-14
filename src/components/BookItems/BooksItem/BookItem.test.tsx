@@ -1,18 +1,18 @@
-import { act, fireEvent, render, screen } from '@testing-library/react';
-import { getDoc } from 'firebase/firestore';
 import React from 'react';
-import { renderWithAll } from 'Tests/Helpers/MainHelper';
 
 import BookItem from './BookItem';
+import { act, render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { getDoc } from 'firebase/firestore';
+import { renderWithAll } from 'Tests/Helpers/MainHelper';
 
 jest.mock('firebase/firestore');
 
 describe('', () => {
   let response;
-
   beforeEach(() => {
     response = {
-      exists: () => false,
+      exists: () => console.log('temp'),
     };
   });
 
@@ -29,9 +29,8 @@ describe('', () => {
     },
   };
 
-  test('Render book', async () => {
-    (getDoc as jest.Mock).mockReturnValue(response);
-    render(renderWithAll(await act(async () => <BookItem book={book} />)));
+  test('Render book', () => {
+    render(renderWithAll(<BookItem book={book} />));
 
     const item = screen.getByTestId('book-item');
     expect(item).toBeInTheDocument();
@@ -39,21 +38,36 @@ describe('', () => {
 
   test('Add favorite', async () => {
     (getDoc as jest.Mock).mockReturnValue(response);
-    render(renderWithAll(await act(async () => <BookItem book={book} />)));
+
+    await act(async () => render(renderWithAll(<BookItem book={book} />)));
 
     expect(screen.getByTestId('add-favorite')).toBeInTheDocument();
     expect(screen.getByTestId('add-favorite').classList.contains('active')).toBe(false);
-    fireEvent.click(screen.getByTestId('add-favorite'));
+
+    await act(async () => {
+      userEvent.click(screen.getByTestId('add-favorite'));
+    });
+
     expect(screen.getByTestId('add-favorite').classList.contains('active')).toBe(true);
+
+    await act(async () => {
+      userEvent.click(screen.getByTestId('add-favorite'));
+    });
+
+    expect(screen.getByTestId('add-favorite').classList.contains('active')).toBe(false);
+    expect(getDoc).toBeCalledTimes(1);
   });
 
   test('Go to book page', async () => {
     (getDoc as jest.Mock).mockReturnValue(response);
-    render(renderWithAll(await act(async () => <BookItem book={book} />)));
+    render(renderWithAll(<BookItem book={book} />));
 
     const item = screen.getByTestId('book-item');
     expect(screen.queryByTestId('book-page')).not.toBeInTheDocument();
-    fireEvent.click(item);
+
+    await act(async () => {
+      userEvent.click(item);
+    });
     expect(screen.getByTestId('book-page')).toBeInTheDocument();
   });
 });

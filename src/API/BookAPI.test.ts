@@ -1,5 +1,6 @@
-import BooksService from '@API/BooksAPI';
 import axios from 'axios';
+
+import BooksService from '@API/BooksAPI';
 
 jest.mock('axios');
 describe('API getting data', () => {

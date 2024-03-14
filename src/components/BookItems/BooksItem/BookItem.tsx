@@ -1,10 +1,12 @@
+import React, { useContext, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+
 import { FirebaseContext } from '@context/FirebaseContext';
 import { useTypedSelector } from '@hooks/useTypedSelector';
+import { Typography } from '@mui/material';
 import { IBook } from '@projectTypes/IBooks';
 import { addToDB, deleteFromBD, hasBook } from '@utils/Firebase';
 import { getAuth } from 'firebase/auth';
-import React, { useContext, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 
 import styles from './BookItem.module.css';
 
@@ -19,7 +21,7 @@ function BookItem({ book }: { book: IBook }) {
     const getData = async () => {
       const data = await hasBook(db, user, book);
 
-      setIsFavorite(data);
+      setIsFavorite(data || false);
     };
 
     getData();
@@ -47,11 +49,27 @@ function BookItem({ book }: { book: IBook }) {
             alt={book.volumeInfo?.title}
             className={styles.book__img}
           />
-          <p className={styles.type + ' ' + styles[theme]}>{book.volumeInfo?.categories}</p>
-          <h2 className={styles.title + ' ' + styles[theme]}>{book.volumeInfo?.title}</h2>
-          <p className={styles.authors + ' ' + styles[theme]}>
+          <Typography
+            variant='subtitle2'
+            className={styles.type + ' ' + styles[theme]}
+            sx={{ margin: '5px 0' }}
+          >
+            {book.volumeInfo?.categories}
+          </Typography>
+          <Typography
+            variant='h6'
+            className={styles.title + ' ' + styles[theme]}
+            sx={{ margin: '5px 0' }}
+          >
+            {book.volumeInfo?.title}
+          </Typography>
+          <Typography
+            variant='subtitle1'
+            className={styles.authors + ' ' + styles[theme]}
+            sx={{ margin: '5px 0' }}
+          >
             {book.volumeInfo?.authors?.join(', ')}
-          </p>
+          </Typography>
         </div>
       </Link>
     )

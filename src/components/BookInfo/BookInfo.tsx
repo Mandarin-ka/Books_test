@@ -1,13 +1,15 @@
-import { useTypedSelector } from '@hooks/useTypedSelector';
-import { IBook } from '@projectTypes/IBooks';
-import parse from 'html-react-parser';
 import React from 'react';
+import parse from 'html-react-parser';
+
+import { useTypedSelector } from '@hooks/useTypedSelector';
+import { Typography } from '@mui/material';
+import { IBook } from '@projectTypes/IBooks';
 
 import styles from './BookInfo.module.css';
 
 function BookInfo({ book }: { book: IBook }) {
   const { theme } = useTypedSelector((state) => state.theme);
-  if (!book) return <p>Книга не найдена...</p>;
+  if (!book) return <Typography variant='h5'>Книга не найдена...</Typography>;
 
   return (
     <div className={styles.book + ' ' + styles[theme]}>
@@ -19,11 +21,17 @@ function BookInfo({ book }: { book: IBook }) {
         />
       </div>
       <div className={styles.info}>
-        <span className={styles.type}>{book.volumeInfo.categories?.join(' / ')}</span>
-        <h2 className={styles.title}>{book.volumeInfo?.title}</h2>
-        <span className={styles.authors}>{book.volumeInfo?.authors.join(', ')}</span>
+        <Typography variant='subtitle1'>{book.volumeInfo.categories?.join(' / ')}</Typography>
+        <Typography variant='h5' className={styles.title} sx={{ margin: '15px 0' }}>
+          {book.volumeInfo?.title}
+        </Typography>
+        <Typography variant='subtitle2' className={styles.authors} sx={{ margin: '15px 0' }}>
+          {book.volumeInfo?.authors.join(', ')}
+        </Typography>
         {book.volumeInfo?.description && (
-          <div className={styles.description}>{parse(book.volumeInfo?.description)}</div>
+          <Typography variant='subtitle1' className={styles.description} sx={{ margin: '15px 0' }}>
+            {parse(book.volumeInfo?.description)}
+          </Typography>
         )}
       </div>
     </div>

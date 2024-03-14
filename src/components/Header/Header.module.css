@@ -8,7 +8,7 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
-  background: url('https://fonoteka.top/uploads/posts/2021-04/1617295983_39-p-knigi-oboi-fon-pozdravlenie-50.jpg');
+  background: var(--header-image);
   padding: 5% 0;
   background-size: cover;
   background-repeat: no-repeat;
@@ -24,7 +24,7 @@
 
 .ul {
   list-style-type: none;
-  color: white;
+  color: var(--font-color-light);
   display: flex;
   margin: 10px 0;
 }
@@ -35,19 +35,7 @@
 
 .ul > * > * {
   font-size: 1.5rem;
-  color: white;
-}
-
-.login {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  border: 0;
-  background-color: transparent;
-  outline: 0;
-  font-size: 1.5rem;
-  color: white;
-  cursor: pointer;
+  color: var(--font-color-light);
 }
 
 @media screen and (max-width: 560px) {

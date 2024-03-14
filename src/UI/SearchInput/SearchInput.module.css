@@ -34,7 +34,7 @@
 }
 
 .searchButton:hover {
-  background-color: rgba(128, 128, 128, 0.068);
+  background-color: var(--button-hover);
 }
 
 .loupe {

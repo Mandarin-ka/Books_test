@@ -1,16 +1,18 @@
-import './../styles/common.css';
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 import BooksService from '@API/BooksAPI';
 import BookItems from '@components/BookItems/BookItems';
 import { useFetching } from '@hooks/useFetching';
 import { useTypedSelector } from '@hooks/useTypedSelector';
+import { Typography } from '@mui/material';
 import { IBook } from '@projectTypes/IBooks';
-import LoadButton from '@UI/Button/LoadButton/LoadButton';
+import ContainedButton from '@UI/Button/MUIButton/ContainedButtons/MUIContainedButton';
 import Loader from '@UI/Loader/Loader';
 import { mapData } from '@utils/DataMap';
 import { getUniqData } from '@utils/UniqData';
-import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+
+import './../styles/common.css';
 
 function MainPage() {
   const { theme } = useTypedSelector((state) => state.theme);
@@ -42,19 +44,21 @@ function MainPage() {
   };
 
   return (
-    <div className={`page ${theme}`}>
+    <div className={`page ${theme}`} data-testid='main-page'>
       {isBooksLoading && books.length < 1 ? (
         <Loader />
       ) : (
         <>
-          <h2 className='quantity'>Найдено книг {totalBooks}</h2>
+          <Typography variant='h5' sx={{ marginBottom: '30px' }} align='center'>
+            Найдено книг {totalBooks}
+          </Typography>
           <BookItems books={books} />
           {isFetchinfNewPage ? (
             <Loader />
           ) : (
-            <LoadButton onClick={onLoad} theme={theme}>
+            <ContainedButton onClick={onLoad} theme={theme}>
               Load More
-            </LoadButton>
+            </ContainedButton>
           )}
         </>
       )}
