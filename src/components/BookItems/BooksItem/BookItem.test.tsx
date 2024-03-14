@@ -12,7 +12,9 @@ describe('', () => {
   let response: { exists: () => boolean };
   beforeEach(() => {
     response = {
-      exists: () => false,
+      exists: () => {
+        return false;
+      },
     };
   });
 
@@ -38,17 +40,19 @@ describe('', () => {
 
   test('Add favorite', async () => {
     (getDoc as jest.Mock).mockReturnValue(response);
-    render(renderWithAll(<BookItem book={book} />));
+
+    await act(async () => render(renderWithAll(<BookItem book={book} />)));
 
     expect(screen.getByTestId('add-favorite')).toBeInTheDocument();
     expect(screen.getByTestId('add-favorite').classList.contains('active')).toBe(false);
 
-    act(() => {
+    await act(async () => {
       userEvent.click(screen.getByTestId('add-favorite'));
     });
+
     expect(screen.getByTestId('add-favorite').classList.contains('active')).toBe(true);
 
-    act(() => {
+    await act(async () => {
       userEvent.click(screen.getByTestId('add-favorite'));
     });
 
@@ -63,7 +67,7 @@ describe('', () => {
     const item = screen.getByTestId('book-item');
     expect(screen.queryByTestId('book-page')).not.toBeInTheDocument();
 
-    act(() => {
+    await act(async () => {
       userEvent.click(item);
     });
     expect(screen.getByTestId('book-page')).toBeInTheDocument();

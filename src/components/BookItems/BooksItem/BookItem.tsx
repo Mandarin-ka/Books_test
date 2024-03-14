@@ -21,7 +21,7 @@ function BookItem({ book }: { book: IBook }) {
     const getData = async () => {
       const data = await hasBook(db, user, book);
 
-      setIsFavorite(data);
+      setIsFavorite(data || false);
     };
 
     getData();
