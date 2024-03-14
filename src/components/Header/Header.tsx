@@ -51,10 +51,14 @@ function Header() {
     <header className={styles.header}>
       <ul className={styles.ul}>
         <li>
-          <Link to='./'>Главная</Link>
+          <Link to='./' data-testid='main-link'>
+            Главная
+          </Link>
         </li>
         <li>
-          <Link to='./favorites'>Избранное</Link>
+          <Link to='./favorites' data-testid='favorites-link'>
+            Избранное
+          </Link>
         </li>
       </ul>
       <SearchInput defaultAction={defaultAction} />

@@ -1,7 +1,8 @@
 import React from 'react';
 
 import BookItem from './BookItem';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { act, render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { getDoc } from 'firebase/firestore';
 import { renderWithAll } from 'Tests/Helpers/MainHelper';
 
@@ -28,8 +29,7 @@ describe('', () => {
     },
   };
 
-  test('Render book', async () => {
-    (getDoc as jest.Mock).mockReturnValue(response);
+  test('Render book', () => {
     render(renderWithAll(<BookItem book={book} />));
 
     const item = screen.getByTestId('book-item');
@@ -42,8 +42,18 @@ describe('', () => {
 
     expect(screen.getByTestId('add-favorite')).toBeInTheDocument();
     expect(screen.getByTestId('add-favorite').classList.contains('active')).toBe(false);
-    fireEvent.click(screen.getByTestId('add-favorite'));
+
+    act(() => {
+      userEvent.click(screen.getByTestId('add-favorite'));
+    });
     expect(screen.getByTestId('add-favorite').classList.contains('active')).toBe(true);
+
+    act(() => {
+      userEvent.click(screen.getByTestId('add-favorite'));
+    });
+
+    expect(screen.getByTestId('add-favorite').classList.contains('active')).toBe(false);
+    expect(getDoc).toBeCalledTimes(1);
   });
 
   test('Go to book page', async () => {
@@ -52,7 +62,10 @@ describe('', () => {
 
     const item = screen.getByTestId('book-item');
     expect(screen.queryByTestId('book-page')).not.toBeInTheDocument();
-    fireEvent.click(item);
+
+    act(() => {
+      userEvent.click(item);
+    });
     expect(screen.getByTestId('book-page')).toBeInTheDocument();
   });
 });
