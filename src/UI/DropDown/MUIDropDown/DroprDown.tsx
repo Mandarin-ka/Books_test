@@ -1,7 +1,7 @@
 import React, { useId, useState } from 'react';
 
 import { DropdownProps } from '../IDropdown';
-import { FormControl, MenuItem, Select, SelectChangeEvent } from '@mui/material';
+import { Box, FormControl, MenuItem, Select, SelectChangeEvent } from '@mui/material';
 
 function Dropdown({ options, defaultAction, action }: DropdownProps) {
   const [value, setValue] = useState(options[0]);
@@ -14,26 +14,30 @@ function Dropdown({ options, defaultAction, action }: DropdownProps) {
   };
 
   return (
-    <FormControl sx={{ m: 1 }} fullWidth>
-      <Select
-        id={id}
-        value={value}
-        onChange={onChange}
-        sx={{
-          p: '0 30px ',
-          background: 'white',
-          border: '1px solid white',
-          w: 'fit-content',
-          fontSize: '1.25rem',
-        }}
-      >
-        {options.map((e, i) => (
-          <MenuItem key={i} value={e}>
-            {e}
-          </MenuItem>
-        ))}
-      </Select>
-    </FormControl>
+    <Box sx={{ minWidth: '150px', textAlign: 'center' }}>
+      <FormControl fullWidth>
+        <Select
+          fullWidth
+          id={id}
+          value={value}
+          onChange={onChange}
+          sx={{ background: 'white', border: ' 1px solid white', fontSize: '20px' }}
+        >
+          {options.map((e, i) => (
+            <MenuItem
+              key={i}
+              value={e}
+              sx={{
+                fontSize: '1.25rem',
+                padding: '5px 12px',
+              }}
+            >
+              {e}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+    </Box>
   );
 }
 
