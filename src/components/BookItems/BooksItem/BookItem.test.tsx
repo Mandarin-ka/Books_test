@@ -3,18 +3,14 @@ import React from 'react';
 import BookItem from './BookItem';
 import { act, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { renderWithAll } from '@tests/Helpers/MainHelper';
 import { getDoc } from 'firebase/firestore';
-import { renderWithAll } from 'Tests/Helpers/MainHelper';
 
 jest.mock('firebase/firestore');
 
 describe('', () => {
   let response;
-  beforeEach(() => {
-    response = {
-      exists: () => console.log('temp'),
-    };
-  });
+  beforeEach(() => () => true);
 
   const book = {
     id: 'testId',

@@ -3,7 +3,7 @@ import React from 'react';
 import SearchInput from './SearchInput';
 import { act, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { renderWithStorage } from 'Tests/Helpers/StoreHelper';
+import { renderWithStorage } from '@tests/Helpers/StoreHelper';
 
 describe('text field check', () => {
   test('Inputing value', () => {

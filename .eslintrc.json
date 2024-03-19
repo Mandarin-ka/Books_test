@@ -39,7 +39,8 @@
       "error",
       {
         "groups": [
-          ["^react", "^@?\\w"],
+          ["^react", "^@?\\w", "(react-dom)(/.*)"],
+          ["^firebase"],
           ["(@|@components@UI|@pages|@utils|@projectTypes|@hooks|@routes|@store|@context|)(/.*|$)"],
           ["^.+\\.s?css$"]
         ]

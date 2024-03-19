@@ -35,7 +35,7 @@
 }
 
 .dropdown__button.current {
-  color: #000000a1;
+  color: var(--button-hover);
 }
 
 .dropdown__button.opened::after,

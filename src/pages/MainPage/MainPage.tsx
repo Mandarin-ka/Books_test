@@ -12,7 +12,7 @@ import Loader from '@UI/Loader/Loader';
 import { mapData } from '@utils/DataMap';
 import { getUniqData } from '@utils/UniqData';
 
-import './../styles/common.css';
+import '@pages/styles/common.css';
 
 function MainPage() {
   const { theme } = useTypedSelector((state) => state.theme);

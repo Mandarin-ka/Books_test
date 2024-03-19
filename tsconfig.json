@@ -29,7 +29,7 @@
       "@routes/*": ["./routes/*"],
       "@API/*": ["./API/*"],
       "@hooks/*": ["./hooks/*"],
-      "@tests/*": ["src/tests/*"]
+      "@tests/*": ["./tests/*"]
     }
   },
   "include": ["src", "src/.ts", "test/specs", "test/pageobjects"]

@@ -26,7 +26,7 @@
   width: 128px;
   height: 192px;
   margin: 0 auto 10px;
-  box-shadow: 5px 5px 20px black;
+  box-shadow: 5px 5px 20px var(--font-color-dark);
   min-height: 192px;
 }
 
@@ -58,7 +58,7 @@
 }
 
 .book__item.light .title {
-  color: black;
+  color: var(--font-color-dark);
 }
 
 .authors {
@@ -101,7 +101,7 @@
 
 .heart.active,
 .heart.active:before {
-  background-color: red;
+  background-color: var(--heart);
 }
 
 .heart.active:before {

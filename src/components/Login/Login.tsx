@@ -1,7 +1,8 @@
 import React, { useCallback } from 'react';
 
-import LoginButton from '@UI/Button/LoginButton/LoginButton';
 import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+
+import LoginButton from '@UI/Button/LoginButton/LoginButton';
 
 function Login() {
   const login = useCallback(async () => {
