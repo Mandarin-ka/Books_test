@@ -10,7 +10,15 @@ jest.mock('firebase/firestore');
 
 describe('', () => {
   let response;
-  beforeEach(() => () => true);
+  beforeEach(
+    () =>
+      (response = {
+        exists: () => {
+          return false;
+        },
+        data: { name: 'name' },
+      })
+  );
 
   const book = {
     id: 'testId',
@@ -26,6 +34,7 @@ describe('', () => {
   };
 
   test('Render book', () => {
+    (getDoc as jest.Mock).mockResolvedValue(Promise.resolve(response));
     render(renderWithAll(<BookItem book={book} />));
 
     const item = screen.getByTestId('book-item');
@@ -33,7 +42,7 @@ describe('', () => {
   });
 
   test('Add favorite', async () => {
-    (getDoc as jest.Mock).mockReturnValue(response);
+    (getDoc as jest.Mock).mockResolvedValue(Promise.resolve(response));
 
     await act(async () => render(renderWithAll(<BookItem book={book} />)));
 
@@ -55,7 +64,7 @@ describe('', () => {
   });
 
   test('Go to book page', async () => {
-    (getDoc as jest.Mock).mockReturnValue(response);
+    (getDoc as jest.Mock).mockResolvedValue(Promise.resolve(response));
     render(renderWithAll(<BookItem book={book} />));
 
     const item = screen.getByTestId('book-item');
