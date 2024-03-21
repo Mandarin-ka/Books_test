@@ -21,7 +21,9 @@ function BookInfo({ book }: { book: IBook }) {
         />
       </div>
       <div className={styles.info}>
-        <Typography variant='subtitle1'>{book.volumeInfo.categories?.join(' / ')}</Typography>
+        <Typography variant='subtitle1' className={styles.type}>
+          {book.volumeInfo.categories?.join(' / ')}
+        </Typography>
         <Typography variant='h5' className={styles.title} sx={{ margin: '15px 0' }}>
           {book.volumeInfo?.title}
         </Typography>

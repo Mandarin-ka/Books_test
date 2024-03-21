@@ -3,12 +3,13 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { Link } from 'react-router-dom';
 
+import { getAuth } from 'firebase/auth';
+
 import { FirebaseContext } from '@context/FirebaseContext';
 import { useTypedSelector } from '@hooks/useTypedSelector';
 import TextButton from '@UI/Button/MUIButton/TextButton/MUITextButton';
 import Dropdown from '@UI/DropDown/MUIDropDown/DroprDown';
 import SearchInput from '@UI/SearchInput/SearchInput';
-import { getAuth } from 'firebase/auth';
 
 import styles from './Header.module.css';
 

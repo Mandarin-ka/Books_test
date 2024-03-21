@@ -1,5 +1,6 @@
-import { IBook } from '@projectTypes/IBooks';
 import { initializeApp } from 'firebase/app';
+
+import { IBook } from '@projectTypes/IBooks';
 import {
   collection,
   deleteDoc,

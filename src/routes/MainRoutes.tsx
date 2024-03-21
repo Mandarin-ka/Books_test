@@ -1,14 +1,22 @@
 import React from 'react';
 import { Route, Routes } from 'react-router';
 
-import { bookPage, favoritesPage, mainPage } from './Routes';
+import BookPage from '@pages/BookPage/BookPage';
+import FavoritesPage from '@pages/FavoritesPage/FavoritesPage';
+import MainPage from '@pages/MainPage/MainPage';
+
+const pathes = {
+  mainPage: '/',
+  bookPage: '/bookPage/:id',
+  favoritesPage: '/favorites',
+};
 
 function MainRoutes() {
   return (
     <Routes>
-      <Route path={'/'} element={mainPage} />
-      <Route path={'/bookPage/:id'} element={bookPage} />
-      <Route path={'/favorites'} element={favoritesPage} />
+      <Route path={pathes.mainPage} element={<MainPage />} />
+      <Route path={pathes.bookPage} element={<BookPage />} />
+      <Route path={pathes.favoritesPage} element={<FavoritesPage />} />
     </Routes>
   );
 }

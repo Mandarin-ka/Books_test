@@ -15,7 +15,7 @@
 
 .book__img {
   width: 240px;
-  box-shadow: 5px 5px 20px black;
+  box-shadow: 5px 5px 20px var(--font-color-dark);
 }
 
 .type {
@@ -44,7 +44,7 @@
 }
 
 .book.light .description {
-  color: black;
+  color: var(--font-color-dark);
 }
 
 .book.dark .description {
@@ -58,11 +58,11 @@
 }
 
 .book.dark .title {
-  color: rgb(221, 221, 221);
+  color: var(--title-light-color);
 }
 
 .book.light .title {
-  color: black;
+  color: var(--font-color-dark);
 }
 
 .authors {
@@ -85,7 +85,7 @@
 }
 
 .book.dark .img__wrapper {
-  background-color: #a7a7a78a;
+  background-color: var(--authors_type-light-color);
 }
 
 @media screen and (max-width: 1400px) {

@@ -8,7 +8,7 @@ import { useTypedSelector } from '@hooks/useTypedSelector';
 import { IBook } from '@projectTypes/IBooks';
 import Loader from '@UI/Loader/Loader';
 
-import './../styles/common.css';
+import '@pages/styles/common.css';
 
 function BookPage() {
   const { theme } = useTypedSelector((state) => state.theme);

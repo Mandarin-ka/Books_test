@@ -10,5 +10,11 @@ module.exports = {
         tsConfigPath: './tsconfig.json',
       },
     },
+    {
+      plugin: 'babel-plugin-jsx-remove-data-test-id',
+      options: {
+        attributes: 'selenium-id',
+      },
+    },
   ],
 };

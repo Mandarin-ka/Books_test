@@ -3,18 +3,22 @@ import React from 'react';
 import BookItem from './BookItem';
 import { act, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { renderWithAll } from '@tests/Helpers/MainHelper';
 import { getDoc } from 'firebase/firestore';
-import { renderWithAll } from 'Tests/Helpers/MainHelper';
 
 jest.mock('firebase/firestore');
 
 describe('', () => {
   let response;
-  beforeEach(() => {
-    response = {
-      exists: () => console.log('temp'),
-    };
-  });
+  beforeEach(
+    () =>
+      (response = {
+        exists: () => {
+          return false;
+        },
+        data: { name: 'name' },
+      })
+  );
 
   const book = {
     id: 'testId',
@@ -30,6 +34,7 @@ describe('', () => {
   };
 
   test('Render book', () => {
+    (getDoc as jest.Mock).mockResolvedValue(Promise.resolve(response));
     render(renderWithAll(<BookItem book={book} />));
 
     const item = screen.getByTestId('book-item');
@@ -37,7 +42,7 @@ describe('', () => {
   });
 
   test('Add favorite', async () => {
-    (getDoc as jest.Mock).mockReturnValue(response);
+    (getDoc as jest.Mock).mockResolvedValue(Promise.resolve(response));
 
     await act(async () => render(renderWithAll(<BookItem book={book} />)));
 
@@ -59,7 +64,7 @@ describe('', () => {
   });
 
   test('Go to book page', async () => {
-    (getDoc as jest.Mock).mockReturnValue(response);
+    (getDoc as jest.Mock).mockResolvedValue(Promise.resolve(response));
     render(renderWithAll(<BookItem book={book} />));
 
     const item = screen.getByTestId('book-item');

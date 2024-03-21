@@ -1,5 +1,5 @@
 .loader {
-  --loader-color: rgb(134, 134, 134);
+  --loader-color: var(--img-background);
   min-width: 50px;
   min-height: 50px;
   max-width: 50px;

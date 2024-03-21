@@ -1,6 +1,6 @@
 import React, { useId, useState } from 'react';
 
-import { DropdownProps } from '../IDropdown';
+import { DropdownProps } from '../OLD__Dropdown/IDropdown';
 import { Box, FormControl, MenuItem, Select, SelectChangeEvent } from '@mui/material';
 
 function Dropdown({ options, defaultAction, action }: DropdownProps) {
